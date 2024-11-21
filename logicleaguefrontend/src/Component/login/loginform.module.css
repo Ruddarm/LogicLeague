@@ -1,0 +1,27 @@
+.Container{
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    border: 1px solid red;
+    justify-content: center;
+}
+.loginform{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.loginform input{
+    padding: 0.2rem 1rem;
+    height: 2rem;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+#singupBtn{
+    color: blue;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

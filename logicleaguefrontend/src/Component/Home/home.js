@@ -6,19 +6,21 @@ function HomePage() {
   const token = localStorage.getItem("jwttoken"); 
   console.log(token)
   const getData = async () => {
-    data = await axios.get("http://127.0.0.1:8000/users/getName/", {
+    let response = await axios.get("http://127.0.0.1:8000/users/getName/", {
       headers: {
         Authorization: `Bearer ${token}`, // Include the token
       },
     });
-    console.log(data);
+    console.log(response.data)
+    setdata(response.data.msg)
   };
-  // useEffect(getData,[])
+  useEffect(()=>{
   getData();
+  },[])
 
   return (
     <>
-      <p>Welocome to home page bc</p>
+      <p>{data}</p>
     </>
   );
 }

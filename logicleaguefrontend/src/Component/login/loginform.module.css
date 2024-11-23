@@ -1,23 +1,82 @@
-.Container{
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
+.blockContainer{
     display: flex;
-    border: 1px solid red;
+    height: 100vh;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+}
+.Container{
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    display: flex;
+    /* background-color:red; */
+    flex: 1;
+    /* background-color: red; */
+    /* border: 1px solid red; */
     justify-content: center;
 }
-.loginform{
+.innerContainer{
+    height: 100%;
+    background-color: aliceblue;
+}
+.loginContainer{
+    /* background-color: red; */
+    width: auto;
+    background-color: aliceblue;
+    /* min-height: 500px; */
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    padding: 1.5rem 3rem;
+}
+.loginContainer h1,h2{
+    margin: 0;
+}
+.ImgContainer{
     width: 100%;
-    padding: 1rem;
+    height: 100%;
+}
+.ImgContainer img
+{
+    width: 100%;
+    height: 100%;
+}
+.loginform{
+    /* background-color: beige; */
+    width: 100%;
+    height: auto;
+    /* padding: 1rem; */
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#loginbtn{
+    background-color: #0f3b3b;
+    color: white;
+    cursor: pointer;
+    width: 7rem;
+    padding:0;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    margin: 1rem 0rem;
+    height: 3rem;
+}
+#loginbtn:hover{
+    background-color: white;
+    color: #e77b00;
 }
 .forminput {
     padding: 0.2rem 1rem;
-    height: 2rem;
-    width: 100%;
+    height: 2.5rem;
+    width: 27rem;
+    font-family: "Montserrat", 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px solid white;
+    outline: 1px solid grey;
     margin-top: 1rem;
 }
 .forminput:focus{
@@ -31,14 +90,18 @@
     cursor: pointer;
 }
 
+
 .warnborder{
-    border: 2px solid red ;
+    border: 1px solid white;
+    outline: 1.5px solid red !important ;
 }
 .greenborder{
-    border: 2px solid green;
+    border: 1px solid white;
+    outline: 1.5px solid green !important;
 }
 
 .errorblock{
+    align-self: flex-start;
     color: red;
     margin: 0;
     padding-left: 0.3rem;
@@ -47,4 +110,40 @@
 }
 .display{
     display: block;
+}
+.oauth
+{
+    color: white;
+
+    align-self: center;
+    margin-top: 2rem;
+    align-items: center;
+    background-color: #0f3b3b;
+    padding: 0rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    border-radius: 10px;
+    width: max-content;
+}
+
+.oauth a{
+    size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+
+}
+.oauth a img{
+    margin: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+.oauth:hover{
+    border: 1px solid black;
+    background-color: white;
+    color: #e77b00;
+    cursor: pointer;
 }

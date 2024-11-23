@@ -4,7 +4,7 @@ import Style from "./loginform.module.css";
 import { useNavigate } from "react-router-dom";
 import Header from "../utils/header";
 import axios from "axios";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginFrom() {
   const [singUP, setSingUP] = useState(false);
@@ -67,13 +67,13 @@ function LoginFrom() {
   };
   const handelChange = (e) => {
     let { name, value } = e.target;
-    if (name == "username") {
+    if (name === "username") {
       setUserName(value);
-    } else if (name == "email") {
+    } else if (name === "email") {
       setEmail(value);
-    } else if (name == "password") {
+    } else if (name === "password") {
       setPassword(value);
-    } else if (name == "cnfPassword") {
+    } else if (name === "cnfPassword") {
       setCnfPassword(value);
     }
     validateFeild(name);
@@ -97,7 +97,9 @@ function LoginFrom() {
             }
           );
           if (response.status === 200) {
+            console.log(response)
             localStorage.setItem("jwttoken", response.data.tokens.access);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
             navigate("/home");
           }
         } catch (err) {
@@ -145,6 +147,37 @@ function LoginFrom() {
       }
     }
   };
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      const accessToken = tokenResponse.access_token;
+      console.log("ID Token:", tokenResponse.access_token);
+      try {
+        // console.log(userInfoResponse)
+        const response = await axios.post(
+          "http://127.0.0.1:8000/users/api/auth/google/",
+          {
+            token: accessToken,
+          }
+        );
+        // console.log(response);
+        console.log(response.data.user);
+        localStorage.setItem("jwttoken", response.data.tokens.access);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        navigate("/home");
+
+        // console.log("Login successful:", response.data);
+      } catch (error) {
+        console.error("Login failed:", error.response);
+      }
+    },
+    onError: () => console.log("Login Failed"),
+  });
+  // const handelLoginSucess = useGoogleLogin({
+  //   onSuccess: async (tokenResponse) => {
+  //     const idToken = tokenResponse.credential;
+  //     console.log("ID Token:", idToken);
+  //   },
+  // });
   //   //Implment login / singup handel
   //   setValidate(validateFields());
   //   if (isLogin && isvalid) {
@@ -155,6 +188,7 @@ function LoginFrom() {
 
   return (
     <>
+      {/* {localStorage.removeItem("jwttoken")} */}
       <Header></Header>
       <div className={Style.blockContainer}>
         <div className={Style.Container}>
@@ -237,10 +271,10 @@ function LoginFrom() {
             </div>
             <hr></hr>
             <div className={Style.oauth}>
-              <a>
+              <button onClick={googleLogin}>
                 <img src="/google.png"></img>
                 Continue with Google
-              </a>
+              </button>
             </div>
           </div>
           <div className={Style.ImgContainer}>

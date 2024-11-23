@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import Style from "./header.module.css";
 function Header({ props }) {
   return (

@@ -53,6 +53,7 @@
     justify-content: space-around;
 }
 #loginbtn{
+    align-self: flex-start;
     background-color: #0f3b3b;
     color: white;
     cursor: pointer;
@@ -88,6 +89,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    align-self: flex-start;
 }
 
 
@@ -118,8 +120,7 @@
     align-self: center;
     margin-top: 2rem;
     align-items: center;
-    background-color: #0f3b3b;
-    padding: 0rem 1rem;
+    padding: 0rem 0rem;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -128,21 +129,24 @@
     width: max-content;
 }
 
-.oauth a{
+.oauth button{
+    background-color: #0f3b3b;
+    border-radius: 10px;
+    padding: 0rem 0.5rem;
     size: 1.1rem;
     display: flex;
     align-items: center;
+    color: white;
     justify-content: center;
     /* background-color: red; */
 
 }
-.oauth a img{
+.oauth button img{
     margin: 0.5rem;
     width: 2rem;
     height: 2rem;
 }
-.oauth:hover{
-    border: 1px solid black;
+.oauth button:hover{
     background-color: white;
     color: #e77b00;
     cursor: pointer;

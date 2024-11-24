@@ -27,7 +27,7 @@ function App() {
     //   </Router>
     // </GoogleOAuthProvider>
     <>
-      <h1>Hello bc</h1>
+      <h1>Hello bc no bcs</h1>
     </>
   );
 }

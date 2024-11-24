@@ -150,7 +150,7 @@ function LoginFrom() {
       console.log("ID Token:", tokenResponse.access_token);
       try {
         // console.log(userInfoResponse)
-        const response = await axios.post("users/api/auth/google/", {
+        const response = await axiosInstance.post("users/api/auth/google/", {
           token: accessToken,
         });
         localStorage.setItem("jwttoken", response.data.tokens.access);

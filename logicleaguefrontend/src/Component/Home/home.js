@@ -5,7 +5,7 @@ function HomePage() {
   const [data, setdata] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
   console.log(user);
-  const key = user.toUpperCase().includes("NIK");
+  const key = user.username.toUpperCase().includes("NIK");
   const getData = async () => {
     let response = await axiosInstance.get("users/getName/");
     setdata(response.data.msg);

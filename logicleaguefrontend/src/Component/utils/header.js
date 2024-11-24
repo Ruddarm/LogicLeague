@@ -11,13 +11,13 @@ function Header({ props }) {
           <div className={Style.Option}>
             <ul>
               <li>
-                <a>Contest</a>
+                <a href="#">Contest</a>
               </li>
               <li>
-                <a>Challenges</a>
+                <a href="#">Challenges</a>
               </li>
               <li>
-                <a>About Us</a>
+                <a href="#">About Us</a>
               </li>
             </ul>
           </div>

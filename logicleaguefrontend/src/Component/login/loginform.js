@@ -101,12 +101,14 @@ function LoginFrom() {
             navigate("/home");
           }
         } catch (err) {
-          console.log(err.response.data);
           if (err.response.data) {
+            console.log(err.response.data);
             if (err.response.data) {
               setError("Invalid email or password");
               setWarning(true);
             }
+          }else{
+            console.log(err)
           }
         }
       }
@@ -159,10 +161,10 @@ function LoginFrom() {
 
         // console.log("Login successful:", response.data);
       } catch (error) {
-        console.error("Login failed:", error.response);
+        console.error("Login failed:", error);
       }
     },
-    onError: () => console.log("Login Failed"),
+    onError: (err) => console.log("Login Failed", err),
   });
   // const handelLoginSucess = useGoogleLogin({
   //   onSuccess: async (tokenResponse) => {
@@ -249,7 +251,7 @@ function LoginFrom() {
                 value={isLogin ? "Log In" : "Sign Up"}
               ></input>
             </form>
-            <div style={{ marginTop: "10px", marginBottom:"10px" }}>
+            <div style={{ marginTop: "10px", marginBottom: "10px" }}>
               <span>
                 {(isLogin && <span>Don't have an account ... </span>) || (
                   <>
@@ -265,7 +267,7 @@ function LoginFrom() {
 
             <div className={Style.oauth}>
               <button onClick={googleLogin}>
-                <img src="/google.png"></img>
+                <img alt="googlelogo" src="/google.png"></img>
                 Continue with Google
               </button>
             </div>

@@ -14,18 +14,21 @@ import PrivateRoute from "./Component/utils/privateRoute";
 function App() {
   const gclientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   return (
-    <GoogleOAuthProvider clientId={gclientId}>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<LoginFrom />} />
-          <Route
-            path="/home"
-            element={<PrivateRoute element={<HomePage />} />}
-          />
-          <Route from="/" element={<Navigate to="/Login" />}></Route>
-        </Routes>
-      </Router>
-    </GoogleOAuthProvider>
+    // <GoogleOAuthProvider clientId={gclientId}>
+    //   <Router>
+    //     <Routes>
+    //       <Route path="/login" element={<LoginFrom />} />
+    //       <Route
+    //         path="/home"
+    //         element={<PrivateRoute element={<HomePage />} />}
+    //       />
+    //       <Route from="/" element={<Navigate to="/Login" />}></Route>
+    //     </Routes>
+    //   </Router>
+    // </GoogleOAuthProvider>
+    <>
+      <h1>Hello bc</h1>
+    </>
   );
 }
 

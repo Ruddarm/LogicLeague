@@ -52,3 +52,20 @@ li:hover{
     color: #e77b00;
     cursor: pointer;
 }
+
+
+/* Phone Configuration */
+
+@media (min-width:100px) and (max-width : 601px) {
+
+    .headContainer{
+        padding: 1rem;
+    }
+    .Headlogo{
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .Option{
+        display: none;
+    }
+}

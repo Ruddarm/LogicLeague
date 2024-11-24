@@ -4,6 +4,7 @@ import Style from "./loginform.module.css";
 import { useNavigate } from "react-router-dom";
 import Header from "../utils/header";
 import axios from "axios";
+import axiosInstance from "../utils/request";
 import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginFrom() {
@@ -89,15 +90,12 @@ function LoginFrom() {
       if (validate()) {
         try {
           console.log({ email, password });
-          const response = await axios.post(
-            "http://127.0.0.1:8000/users/login/",
-            {
-              email,
-              password,
-            }
-          );
+          const response = await axiosInstance.post("users/login/", {
+            email,
+            password,
+          });
           if (response.status === 200) {
-            console.log(response)
+            console.log(response);
             localStorage.setItem("jwttoken", response.data.tokens.access);
             localStorage.setItem("user", JSON.stringify(response.data.user));
             navigate("/home");
@@ -118,10 +116,11 @@ function LoginFrom() {
           try {
             console.log(username, password, email);
 
-            const response = await axios.post(
-              "http://127.0.0.1:8000/users/register/",
-              { username, email, password }
-            );
+            const response = await axios.post("users/register/", {
+              username,
+              email,
+              password,
+            });
             if (response.status === 201) {
               setSingUP(true);
               setLogin(true);
@@ -140,9 +139,7 @@ function LoginFrom() {
           setWarning(true);
         }
       } else {
-        console.log("there");
-        setError("Invalid Data");
-
+        setError("Invalid Details");
         setWarning(true);
       }
     }
@@ -153,14 +150,9 @@ function LoginFrom() {
       console.log("ID Token:", tokenResponse.access_token);
       try {
         // console.log(userInfoResponse)
-        const response = await axios.post(
-          "http://127.0.0.1:8000/users/api/auth/google/",
-          {
-            token: accessToken,
-          }
-        );
-        // console.log(response);
-        console.log(response.data.user);
+        const response = await axios.post("users/api/auth/google/", {
+          token: accessToken,
+        });
         localStorage.setItem("jwttoken", response.data.tokens.access);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/home");
@@ -257,7 +249,7 @@ function LoginFrom() {
                 value={isLogin ? "Log In" : "Sign Up"}
               ></input>
             </form>
-            <div style={{ marginTop: "10px" }}>
+            <div style={{ marginTop: "10px", marginBottom:"10px" }}>
               <span>
                 {(isLogin && <span>Don't have an account ... </span>) || (
                   <>
@@ -270,6 +262,7 @@ function LoginFrom() {
               </span>
             </div>
             <hr></hr>
+
             <div className={Style.oauth}>
               <button onClick={googleLogin}>
                 <img src="/google.png"></img>

@@ -151,3 +151,23 @@
     color: #e77b00;
     cursor: pointer;
 }
+
+
+@media (min-width:100px) and (max-width:601px) {
+    .loginform{
+        justify-content: center;
+        align-items:  flex-start;
+        /* background-color: red; */
+    }
+    .loginContainer{
+        width: 100%;
+        padding: 1rem 1.5rem;
+    }
+    .forminput{
+        width: 25rem;
+    }
+    .ImgContainer{
+        display: none;
+    }
+
+}

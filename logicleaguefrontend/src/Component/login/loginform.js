@@ -117,8 +117,7 @@ function LoginFrom() {
         if (password === cnfPassword) {
           try {
             console.log(username, password, email);
-
-            const response = await axios.post("users/register/", {
+            const response = await  axiosInstance.post("users/register/", {
               username,
               email,
               password,
@@ -130,10 +129,11 @@ function LoginFrom() {
               console.log("login sucesfull");
             }
           } catch (e) {
-            if (e.response.data.msg.email) {
+            if (e.response.data) {
               setError("Email already exist.. please try to login");
               setWarning(true);
             }
+            console.log(e)
           }
         } else {
           setError("Confirm password should match with password");

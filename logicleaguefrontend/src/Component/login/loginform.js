@@ -3,8 +3,8 @@ import { useState } from "react";
 import Style from "./loginform.module.css";
 import { useNavigate } from "react-router-dom";
 import Header from "../utils/header";
-import axios from "axios";
 import axiosInstance from "../utils/request";
+import axios  from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginFrom() {
@@ -96,12 +96,11 @@ function LoginFrom() {
           });
           if (response.status === 200) {
             console.log(response);
-            localStorage.setItem("jwttoken", response.data.tokens.access);
             localStorage.setItem("user", JSON.stringify(response.data.user));
             navigate("/home");
           }
         } catch (err) {
-          if (err.response.data) {
+          if (err.response?.data) {
             console.log(err.response.data);
             if (err.response.data) {
               setError("Invalid email or password");
@@ -126,7 +125,6 @@ function LoginFrom() {
               setSingUP(true);
               setLogin(true);
               navigate("/login");
-              console.log("login sucesfull");
             }
           } catch (e) {
             if (e.response.data) {
@@ -148,14 +146,13 @@ function LoginFrom() {
   };
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      const accessToken = tokenResponse.access_token;
-      console.log("ID Token:", tokenResponse.access_token);
+      const access_token = tokenResponse.access_token;
       try {
         // console.log(userInfoResponse)
         const response = await axiosInstance.post("users/api/auth/google/", {
-          token: accessToken,
+          token: access_token,
         });
-        localStorage.setItem("jwttoken", response.data.tokens.access);
+        // localStorage.setItem("jwttoken", response.data.tokens.access);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/home");
 

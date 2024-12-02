@@ -4,7 +4,7 @@ import Style from "./loginform.module.css";
 import { useNavigate } from "react-router-dom";
 import Header from "../utils/header";
 import axiosInstance from "../utils/request";
-import axios  from "axios";
+import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginFrom() {
@@ -32,8 +32,7 @@ function LoginFrom() {
       console.warn(`Element with id ${name} not found`);
       return false;
     }
-    // console.log(name);
-    // console.log(e);
+    
     if (e.value.trim() === "") {
       e.classList.remove(Style.greenborder);
       e.classList.add(Style.warnborder);
@@ -45,10 +44,7 @@ function LoginFrom() {
       e.classList.add(Style.greenborder);
       return true;
     }
-    // }
-    // else{
-    // console.log("gadabad hai ")
-    // }
+   
   };
   const validate = () => {
     let isValidFields = true;
@@ -80,7 +76,6 @@ function LoginFrom() {
     validateFeild(name);
   };
   const handelLogin = async (e) => {
-    //   console.log(e.target.elements)
     e.preventDefault();
     setWarning(false);
     setError("");
@@ -106,8 +101,8 @@ function LoginFrom() {
               setError("Invalid email or password");
               setWarning(true);
             }
-          }else{
-            console.log(err)
+          } else {
+            console.log(err);
           }
         }
       }
@@ -116,7 +111,7 @@ function LoginFrom() {
         if (password === cnfPassword) {
           try {
             console.log(username, password, email);
-            const response = await  axiosInstance.post("users/register/", {
+            const response = await axiosInstance.post("users/register/", {
               username,
               email,
               password,
@@ -131,7 +126,7 @@ function LoginFrom() {
               setError("Email already exist.. please try to login");
               setWarning(true);
             }
-            console.log(e)
+            console.log(e);
           }
         } else {
           setError("Confirm password should match with password");
@@ -148,34 +143,17 @@ function LoginFrom() {
     onSuccess: async (tokenResponse) => {
       const access_token = tokenResponse.access_token;
       try {
-        // console.log(userInfoResponse)
         const response = await axiosInstance.post("users/api/auth/google/", {
           token: access_token,
         });
-        // localStorage.setItem("jwttoken", response.data.tokens.access);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/home");
-
-        // console.log("Login successful:", response.data);
       } catch (error) {
         console.error("Login failed:", error);
       }
     },
     onError: (err) => console.log("Login Failed", err),
   });
-  // const handelLoginSucess = useGoogleLogin({
-  //   onSuccess: async (tokenResponse) => {
-  //     const idToken = tokenResponse.credential;
-  //     console.log("ID Token:", idToken);
-  //   },
-  // });
-  //   //Implment login / singup handel
-  //   setValidate(validateFields());
-  //   if (isLogin && isvalid) {
-  //
-  //   } else if (!isLogin && isvalid) {
-  //     if (password !== cnfPassword) {
-  //     }
 
   return (
     <>

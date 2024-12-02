@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+
 import Style from "./header.module.css";
+import { AuthContext } from "./authencation";
+
 function Header({ props }) {
+  const { logedIn } = useContext(AuthContext);
   return (
     <>
       {/* Header container */}
@@ -8,8 +12,8 @@ function Header({ props }) {
         {/* Logo contianer */}
         <div className={Style.Headlogo}>
           <div className={Style.logo}>LogicLeague</div>
-          <div className={Style.Option}>
-            <ul>
+          <div className={Style.listContainer}>
+            <ul className={Style.unorderlist}>
               <li>
                 <a href="#">Contest</a>
               </li>
@@ -22,10 +26,27 @@ function Header({ props }) {
             </ul>
           </div>
         </div>
-        {/* Profile Contaienr */}
-        <div>
-          <button>Profile</button>
+        <div className={Style.profileContianer}>
+          <div className={Style.listContainer}>
+            <ul className={Style.unorderlist}>
+              {!logedIn ? (
+                <>
+                  <li>
+                    <a href="logout">Logout</a>
+                  </li>
+                  <li>
+                    <a>Profile</a>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <a>Login</a>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
+        <div></div>
       </div>
     </>
   );

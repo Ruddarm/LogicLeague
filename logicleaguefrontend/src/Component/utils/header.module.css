@@ -1,10 +1,10 @@
 .headContainer{
     width: 100%;
     background-color: #0f3b3b;
-    /* padding: 0.5rem 1rem; */
+    /* background-color: orange; */
+
     display: flex;
     padding: 0rem 1rem;
-    /* height: 5rem; */
     justify-content: space-between;
     align-items: center;
     position: sticky;
@@ -13,8 +13,9 @@
 }
 .Headlogo{
     display: flex;
+    width: 50%;
     /* background-color: pink; */
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 0 1rem;
 }
@@ -22,19 +23,19 @@
 
 .logo{
     /* background-color: black; */
-    margin-right: 0.3rem;
+    /* margin-right: 0.3rem; */
     color: white;
     font-size: 1.8rem;
 }
-.Option{
+.listContainer{
 
-    /* background-color: red; */
+    /* background-color: blue; */
     display: flex;
     vertical-align:middle;
     justify-content: center;
     
 }
-.Option ul{
+.unorderlist{
     list-style: none;
     margin: 0;
     display: flex;
@@ -43,22 +44,33 @@
     size: 1.3rem;
 }
 li{
-    /* background-color: sblue; */
+    /* background-color:#0f3b3b; */
     margin: 1rem;
-    font-size: 1.2rem
-    ;
+    font-size: 1.2rem;
+    height: auto;
 }
 li a{
     font-family: inherit;
     color: inherit;
+    /* background-color: pink; */
     text-decoration: none;
 }
 li:hover{
     color: #e77b00;
     cursor: pointer;
 }
-
-
+.profileContianer{
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    /* background-color: red; */
+}
+.profileContianer ul{
+    /* background-color: #0f3b3b; */
+}
+/* .profileContianer ul li{
+    background-color: aliceblue;
+} */
 /* Phone Configuration */
 
 @media (min-width:100px) and (max-width : 601px) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import Style from "./loginform.module.css";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +6,10 @@ import Header from "../utils/header";
 import axiosInstance from "../utils/request";
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
+import { AuthContext } from "../utils/authencation";
 
 function LoginFrom() {
+  const {isLogedIN, SetLogedIn} = useContext(AuthContext);
   const [singUP, setSingUP] = useState(false);
   const [isLogin, setLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -32,7 +34,7 @@ function LoginFrom() {
       console.warn(`Element with id ${name} not found`);
       return false;
     }
-    
+
     if (e.value.trim() === "") {
       e.classList.remove(Style.greenborder);
       e.classList.add(Style.warnborder);
@@ -44,7 +46,6 @@ function LoginFrom() {
       e.classList.add(Style.greenborder);
       return true;
     }
-   
   };
   const validate = () => {
     let isValidFields = true;
@@ -90,8 +91,8 @@ function LoginFrom() {
             password,
           });
           if (response.status === 200) {
-            console.log(response);
             localStorage.setItem("user", JSON.stringify(response.data.user));
+            SetLogedIn(true);
             navigate("/home");
           }
         } catch (err) {
@@ -147,6 +148,7 @@ function LoginFrom() {
           token: access_token,
         });
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        SetLogedIn(true);
         navigate("/home");
       } catch (error) {
         console.error("Login failed:", error);

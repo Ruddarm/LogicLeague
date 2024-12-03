@@ -8,23 +8,25 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axiosInstance.get("users/auth/");
+        const response = await axiosInstance.post("users/auth/");
         //if user is already logeding
-        if (response.status == 200) {
+        if (response?.status == 200) {
           SetLogedIn(true);
+          console.log("login");
         }
         //else if he is not loged in or token is expired
-        else if (response.status == 401) {
+        else if (response?.status == 401) {
           SetLogedIn(false);
+          console.log("logout");
         }
         //server down error
       } catch (e) {
-        console.log(e);
         setLoading(false);
       }
     };
-    // checkAuth();
+    checkAuth();
   }, []);
+
   return (
     <AuthContext.Provider value={{ logedIn, SetLogedIn }}>
       {children}

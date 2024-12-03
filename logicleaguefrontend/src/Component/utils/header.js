@@ -2,9 +2,17 @@ import React, { useState, useContext } from "react";
 
 import Style from "./header.module.css";
 import { AuthContext } from "./authencation";
+import axiosInstance from "./request";
 
 function Header({ props }) {
-  const { logedIn } = useContext(AuthContext);
+  const { logedIn, SetLogedIn } = useContext(AuthContext);
+  let logout = document.getElementById("logout");
+  logout?.addEventListener("click", async () => {
+    const response = await axiosInstance.post("users/logout/");
+    if (response.status == 200) {
+      SetLogedIn(false);
+    }
+  });
   return (
     <>
       {/* Header container */}
@@ -29,10 +37,10 @@ function Header({ props }) {
         <div className={Style.profileContianer}>
           <div className={Style.listContainer}>
             <ul className={Style.unorderlist}>
-              {!logedIn ? (
+              {logedIn ? (
                 <>
                   <li>
-                    <a href="logout">Logout</a>
+                    <a id="logout">Logout</a>
                   </li>
                   <li>
                     <a>Profile</a>
@@ -40,7 +48,7 @@ function Header({ props }) {
                 </>
               ) : (
                 <li>
-                  <a>Login</a>
+                  <a href="/login">Login</a>
                 </li>
               )}
             </ul>

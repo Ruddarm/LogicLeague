@@ -12,11 +12,18 @@
 }
 .Headlogo{
     display: flex;
-    width: 50%;
+    width: auto;
     /* background-color: pink; */
     justify-content: flex-start;
     align-items: center;
     padding: 0 1rem;
+}
+.NavBar{
+    /* background-color: orange; */
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+
 }
 
 
@@ -24,8 +31,17 @@
     color: white;
     font-size: 1.8rem;
 }
-.listContainer{
+.Option{
+    /* background-color: pink; */
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+.HamBurger{
+    display: none;
 
+}
+.listContainer{
     /* background-color: blue; */
     display: flex;
     vertical-align:middle;
@@ -58,12 +74,9 @@ li:hover{
 }
 .profileContianer{
     display: flex;
-    width: 50%;
+    width: auto;
     justify-content: flex-end;
     /* background-color: red; */
-}
-.profileContianer ul{
-    /* background-color: #0f3b3b; */
 }
 /* .profileContianer ul li{
     background-color: aliceblue;
@@ -73,7 +86,7 @@ li:hover{
 @media (min-width:100px) and (max-width : 601px) {
 
     .headContainer{
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     .Headlogo{
@@ -81,6 +94,40 @@ li:hover{
         width: 100%;
     }
     .Option{
+        display: block;
+        /* background-color: red; */
+        flex: 0;
+
+    }
+    .HamBurger{
+        display: block;
+    }
+    .NavBar{
         display: none;
+        text-align: center;
+    }
+    .profileContianer{
+        display: block;
+        /* background-color: pink; */
+    }
+    .Open{
+        position: absolute;
+        top: 5rem;
+        /* right: 1rem; */
+        width: calc(100% - 1rem);
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        align-self: center;
+        background-color:#0f3b3b;
+        min-height: 400px;
+        justify-content: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        box-shadow: 2px 1px 4px black;
+    }
+    .unorderlist{
+        display: block;
     }
 }
+

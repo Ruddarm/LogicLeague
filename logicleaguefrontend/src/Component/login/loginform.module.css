@@ -184,7 +184,8 @@
         display: none;
     }
     .forminput{
-        margin-bottom: 1rem
+        margin-bottom: 1rem;
+        width: 100%;
      }
 
      .oauth{

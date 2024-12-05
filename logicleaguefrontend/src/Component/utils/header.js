@@ -7,7 +7,7 @@ import axiosInstance from "./request";
 function Header({ props }) {
   const { logedIn, SetLogedIn } = useContext(AuthContext);
   const [isMenuOpen, openMenu] = useState(false);
-  
+
   let logout = document.getElementById("logout");
   logout?.addEventListener("click", async () => {
     const response = await axiosInstance.post("users/logout/");
@@ -15,10 +15,10 @@ function Header({ props }) {
       SetLogedIn(false);
     }
   });
-  //Setting event listiner on hamburger menubutton 
-  const handelMenu=()=>{
+  //Setting event listiner on hamburger menubutton
+  const handelMenu = () => {
     openMenu(!isMenuOpen);
-  }
+  };
   return (
     <>
       {/* Header container */}
@@ -27,48 +27,54 @@ function Header({ props }) {
         <div className={Style.Headlogo}>
           <div className={Style.logo}>LogicLeague</div>
         </div>
-        <div className={`${Style.NavBar} ${isMenuOpen?Style.Open:""}`}>
-          <div>
-            <button onClick={handelMenu}>X</button>
+        <div className={`${Style.NavBar} ${isMenuOpen ? Style.Open : ""}`}>
+          <div className={Style.closeMenu}>
+            <button onClick={handelMenu}>
+              <img src="/close.png"></img>
+            </button>
           </div>
-          <div className={Style.Option}>
-            <div className={Style.listContainer}>
-              <ul className={Style.unorderlist}>
-                <li>
-                  <a href="#">Contest</a>
-                </li>
-                <li>
-                  <a href="#">Challenges</a>
-                </li>
-                <li>
-                  <a href="#">About Us</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className={Style.profileContianer}>
-            <div className={Style.listContainer}>
-              <ul className={Style.unorderlist}>
-                {logedIn ? (
-                  <>
-                    <li>
-                      <a id="logout">Logout</a>
-                    </li>
-                    <li>
-                      <a>Profile</a>
-                    </li>
-                  </>
-                ) : (
+          <div className={Style.NavContainer}>
+            <div className={Style.Option}>
+              <div className={Style.listContainer}>
+                <ul className={Style.unorderlist}>
                   <li>
-                    <a href="/login">Login</a>
+                    <a href="#">Contest</a>
                   </li>
-                )}
-              </ul>
+                  <li>
+                    <a href="#">Challenges</a>
+                  </li>
+                  <li>
+                    <a href="#">About Us</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className={Style.profileContianer}>
+              <div className={Style.listContainer}>
+                <ul className={Style.unorderlist}>
+                  {logedIn ? (
+                    <>
+                      <li>
+                        <a id="logout">Logout</a>
+                      </li>
+                      <li>
+                        <a>Profile</a>
+                      </li>
+                    </>
+                  ) : (
+                    <li>
+                      <a href="/login">Login</a>
+                    </li>
+                  )}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
         <div className={Style.HamBurger}>
-                <button id="menubtn" onClick={handelMenu}>|||</button>
+          <button id="menubtn" onClick={handelMenu}>
+            <img src="/menu.png"></img>
+          </button>
         </div>
       </div>
     </>

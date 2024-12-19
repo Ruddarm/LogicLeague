@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import Style from "./loginform.module.css";
 import { useNavigate } from "react-router-dom";
-import Header from "../utils/header";
 import axiosInstance from "../utils/request";
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
@@ -160,7 +159,6 @@ function LoginFrom() {
   return (
     <>
       {/* {localStorage.removeItem("jwttoken")} */}
-      <Header></Header>
       <div className={Style.blockContainer}>
         <div className={Style.Container}>
           <div className={Style.loginContainer}>

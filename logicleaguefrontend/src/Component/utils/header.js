@@ -25,7 +25,7 @@ function Header({ props }) {
       <div className={Style.headContainer}>
         {/* Logo contianer */}
         <div className={Style.Headlogo}>
-          <div className={Style.logo}>LogicLeague</div>
+          <div className={Style.logo}><a href="/">LogicLeague</a></div>
         </div>
         <div className={`${Style.NavBar} ${isMenuOpen ? Style.Open : ""}`}>
           <div className={Style.closeMenu}>
@@ -41,7 +41,7 @@ function Header({ props }) {
                     <a href="#">Contest</a>
                   </li>
                   <li>
-                    <a href="#">Challenges</a>
+                    <a href="/challenge">Challenges</a>
                   </li>
                   <li>
                     <a href="#">About Us</a>

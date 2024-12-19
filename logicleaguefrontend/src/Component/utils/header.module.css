@@ -1,7 +1,6 @@
 .headContainer{
     width: 100%;
     background-color: #0f3b3b;
-    /* background-color: orange; */
     display: flex;
     padding: 0rem 1rem;
     justify-content: space-between;
@@ -13,13 +12,11 @@
 .Headlogo{
     display: flex;
     width: auto;
-    /* background-color: pink; */
     justify-content: flex-start;
     align-items: center;
     padding: 0 1rem;
 }
 .NavBar{
-    /* background-color: orange; */
     flex: 1;
     display: flex;
     justify-content: space-between;
@@ -79,7 +76,7 @@ li{
     font-size: 1.2rem;
     height: auto;
 }
-li a{
+ a{
     font-family: inherit;
     color: inherit;
     /* background-color: pink; */

@@ -20,7 +20,7 @@ function CodeEditor() {
             <CodeNavBar></CodeNavBar>
           </div>
           {/* code block */}
-          <div>
+          <div className={Style.CodeEditiorContainer}>
             {/* line  */}
             <CodeEditior></CodeEditior>
             <div></div>

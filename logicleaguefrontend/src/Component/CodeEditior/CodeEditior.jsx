@@ -1,9 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import Style from "./CodeEditior.module.css";
 const CodeEditor = () => {
   const editorRef = useRef(null);
-  const [lines, updateLine] = useState(["",""]);
+  const [lines, updateLine] = useState(["", ""]);
   const operationQueue = useRef([]);
+  const [cursorPosition, setCursorPosition] = useState(null); //
+  const isContentEditableRef = useRef(true);
 
   // Function to execute queued operations in a single animation frame
   const processOperations = () => {
@@ -28,7 +30,7 @@ const CodeEditor = () => {
     return { startOffset, parentNode };
   };
   const restoreCursorPosition = (cursor) => {
-    console.dir(cursor)
+    console.dir(cursor);
     if (!cursor || !cursor.parentNode) return;
 
     const selection = window.getSelection();
@@ -51,9 +53,9 @@ const CodeEditor = () => {
     const newLines = [...lines];
     newLines[index] = text;
     updateLine(newLines);
-    requestAnimationFrame(()=>{
+    requestAnimationFrame(() => {
       restoreCursorPosition(cursor);
-    })
+    });
   };
   // Handel key donw evetns
   const handelKeyDown = (event, index) => {
@@ -65,7 +67,8 @@ const CodeEditor = () => {
         const updatedCode = [...lines];
         updatedCode.splice(index + 1, 0, "");
         updateLine(updatedCode);
-        focusNextLine(index + 1);
+        // focusNextLine(index + 1);
+        setCursorPosition(index + 1);
       });
     } else if (event.key === "Backspace") {
       console.log(cursor.startOffset);
@@ -75,7 +78,8 @@ const CodeEditor = () => {
           const updatedCode = [...lines];
           updatedCode.splice(index, 1); // Remove the empty line
           updateLine(updatedCode);
-          focusNextLine(index - 1, false); // Place the cursor at the end of the previous line
+          setCursorPosition(index - 1);
+          // focusNextLine(index - 1, false); // Place the cursor at the end of the previous line
         });
       }
     } else if (event.key === "ArrowDown") {
@@ -160,12 +164,26 @@ const CodeEditor = () => {
       selection.addRange(range);
     }
   };
+  useEffect(() => {
+    // Focus the editor on the line where the cursor was last set
+    if (cursorPosition !== null && editorRef.current) {
+      const lineElement = editorRef.current.children[cursorPosition];
+      if (lineElement) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(lineElement);
+        range.collapse(true); // Collapse to the start of the line
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+  }, [cursorPosition])
   return (
     <div className={Style.CodeEditiorContainer}>
       {/* create lines Index  */}
       <div className={Style.LineIndexContainer}>
         {lines.map((line, index) => (
-          <div className={Style.lineIndex}>{index}</div>
+          <div className={Style.lineIndex}>{index + 1}</div>
         ))}
       </div>
       {/* Create editalbe lines */}
@@ -175,7 +193,6 @@ const CodeEditor = () => {
             <div
               key={index}
               contentEditable={true}
-             
               onInput={(e) => {
                 handelOnInput(index, e.target.innerText);
               }}
@@ -185,7 +202,6 @@ const CodeEditor = () => {
               onKeyDown={(e) => {
                 handelKeyDown(e, index);
               }}
-
               className={`${Style.line} ${Style.code}`}
             >
               {line}

@@ -3,6 +3,22 @@
     padding-left: 0.5rem;
     background-color: white;
     width: 100%;
-    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 2rem;
     border-bottom: 1px solid gray;
+}
+.select{
+    /* background-color: rebeccapurple; */
+    border: none;
+    color: gray;
+
+
+}
+.select:hover{
+    background-color: rgb(240, 240, 240);
+    height: 1rem;
+    cursor: pointer;
+    color: black;
+    border-radius: 4px;
 }

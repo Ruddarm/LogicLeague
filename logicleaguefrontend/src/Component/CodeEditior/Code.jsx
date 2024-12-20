@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Style from "./Code.module.css";
 import CodeBar from "./CodeBar";
 import CodeNavBar from "./CodeNavBar";
-import CodeEditior from "./CodeEditior";
+import CodeEditior from "./MonacEditior";
 function CodeEditor() {
   const [code, setCode] = useState("");
-
+  const [language,setLanguage] = useState("javascript")
+  console.log(language)
   return (
     <>
       {/* Contianer div */}
@@ -17,12 +18,12 @@ function CodeEditor() {
           </div>
           {/* Code Editor nav bar */}
           <div>
-            <CodeNavBar></CodeNavBar>
+            <CodeNavBar language={language} updateLanguage={(newlang)=>{setLanguage(newlang)}}></CodeNavBar>
           </div>
           {/* code block */}
           <div className={Style.CodeEditiorContainer}>
             {/* line  */}
-            <CodeEditior></CodeEditior>
+            <CodeEditior language={language}></CodeEditior>
             <div></div>
           </div>
         </div>

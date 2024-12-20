@@ -12,7 +12,7 @@ import {
 import PrivateRoute from "./Component/utils/privateRoute";
 import { AuthProvider } from "./Component/utils/authencation";
 import CodeEditor from "./Component/CodeEditior/Code.jsx";
-
+import ChallengePlayground from "./Component/Challenge/ChallengePlayground.jsx";
 function App() {
   // console.log(process.env.REACT_APP_BASE_URL);
   const gclientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginFrom />} />
             <Route path="/home" element={<HomePage />} />
-            <Route path="/challenge" element={<CodeEditor/>} />
+            <Route path="/challenge" element={<ChallengePlayground/>} />
             <Route path="/" element={<Navigate to="/home" />} />
           </Routes>
           </div>

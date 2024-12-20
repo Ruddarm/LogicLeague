@@ -1,0 +1,30 @@
+
+.PlaygroundContainer{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    /* background-color: pink; */
+}
+.ChallengeDescBox{
+    width: 40%;
+    /* background-color: yellow; */
+    height: 100%;
+    display: flex
+}
+.CodeContainer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* background: blue; */
+}
+
+.CodeEditor{
+    /* background-color: black; */
+    max-height: 70%;
+    overflow: hidden;
+}
+.TestCaseContainer{
+    background-color: orange;
+    max-width: 30%;
+
+}

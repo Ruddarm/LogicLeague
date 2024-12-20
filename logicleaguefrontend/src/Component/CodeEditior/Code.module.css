@@ -1,6 +1,6 @@
 .EditorContianer{
     width: 100%;
-    height: 50%;
+    height: 100%;
     justify-content: center;
     display: flex;
     flex: 1;
@@ -13,8 +13,8 @@
     background-color:  white;
     border: 1px solid gray;
     border-radius: 5px;
-    box-shadow: -1px -1px 2px black;
-    outline: 1px solid #0f3b3b;
+    /* box-shadow: -1px -1px 2px white; */
+    outline: 1px solid white;
     overflow: hidden;
 }
 

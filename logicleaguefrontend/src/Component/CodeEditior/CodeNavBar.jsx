@@ -1,7 +1,6 @@
 import React from "react";
 import Style from "./CodeNavBar.module.css";
 function CodeNavBar({ language, updateLanguage }) {
-  console.log(updateLanguage)
   const setofLang = ["java", "javascript", "python"];
   const handleChange = (e) => {
     console.log("called")

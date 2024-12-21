@@ -1,23 +1,110 @@
-import React from 'react'
-import Style from './ChallengePlayground.module.css'
-import CodeEditor from '../CodeEditior/Code'
-import ChallengeDesc from './ChallengeDescripiton'
-export default ()=>{
-    return(
-        <>
-            <div className={Style.PlaygroundContainer}>
-                <div className={Style.ChallengeDescBox}>
-                    <ChallengeDesc></ChallengeDesc>
-                </div>
-                <div className={Style.CodeContainer}>
-                    <div className={Style.CodeEditor}>
-                        <CodeEditor></CodeEditor>
-                    </div>
-                    <div className={Style.TestCaseContainer}>
-                       
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
+import React, { useRef, useState, useEffect, useContext } from "react";
+import Style from "./ChallengePlayground.module.css";
+import CodeEditor from "../CodeEditior/Code";
+import { ResizeContext } from "./ResizeContext";
+import ChallengeDesc from "./ChallengeDescripiton";
+import TestCase from "./TestCase";
+
+export default () => {
+  const { heightContext, widthContext } = useContext(ResizeContext);
+  const descBoxRef = useRef(null);
+  const codeContainerRef = useRef(null);
+  // const [width, setWidth] = useState(500);
+  // const [height, setHeight] = useState(250);
+
+  // useEffect(() => {
+  //   // const resizeObserver = new ResizeObserver((entries) => {
+  //   // requestAnimationFrame(() => {
+  //   // entries.forEach((entry) => {
+  //   // if (entry.target === descBoxRef.current) {
+  //   // descBoxRef.current.style.width = `${width}px`;
+  //   // }
+  //   // if(entry.target===codeContainerRef.current){
+  //   // codeContainerRef.current.style.height = `${height}px`;
+  //   // }
+  //   // });
+  //   // });
+  //   // });
+  //   // if (descBoxRef.current) {
+  //   // resizeObserver.observe(descBoxRef.current); // Observe the element
+  //   // }
+  //   // if(codeContainerRef.current){
+  //   // resizeObserver.observe(codeContainerRef.current)
+  //   // }
+
+  //   // Clean up the observer on unmount
+  //   // return () => {
+  //   // resizeObserver.disconnect();
+  //   // };
+  // }, [width, height]);
+
+  // Handel horizonatlly layout
+  const handleHorizontalMouseDown = (e) => {
+    e.preventDefault();
+    const startX = e.clientX;
+    const startWidth = descBoxRef.current.offsetWidth;
+
+    const handleMouseMove = (moveEvent) => {
+      const newWidth = startWidth + (moveEvent.clientX - startX);
+      if (newWidth >= 100) {
+        widthContext.setWidth(newWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+  };
+
+  //handle layout verticaly
+  const handleVerticalMouseDown = (e) => {
+    e.preventDefault();
+    const startY = e.clientY;
+    const startHeight = codeContainerRef.current.offsetHeight;
+
+    const handleMouseMove = (moveEvent) => {
+      const newHeight = startHeight + (moveEvent.clientY - startY);
+      if (newHeight >= 100) {
+        heightContext.setHeight(newHeight);
+      }
+    };
+
+    const handleMouseUp = () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+  };
+
+  return (
+    <div className={Style.PlaygroundContainer}>
+      <div
+        ref={descBoxRef}
+        style={{ width: widthContext.width }}
+        className={Style.ChallengeDescBox}
+      >
+        <ChallengeDesc />
+      </div>
+      <div className={Style.Resizer} onMouseDown={handleHorizontalMouseDown} />
+      <div className={Style.CodeContainer}>
+        <div
+          ref={codeContainerRef}
+          style={{ height: heightContext.height }}
+          className={Style.CodeEditor}
+        >
+          <CodeEditor />
+        </div>
+        <div className={Style.VResizer} onMouseDown={handleVerticalMouseDown} />
+        <div className={Style.TestCaseContainer}>
+          <TestCase></TestCase>
+        </div>
+      </div>
+    </div>
+  );
+};

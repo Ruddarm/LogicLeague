@@ -9,34 +9,7 @@ export default () => {
   const { heightContext, widthContext } = useContext(ResizeContext);
   const descBoxRef = useRef(null);
   const codeContainerRef = useRef(null);
-  // const [width, setWidth] = useState(500);
-  // const [height, setHeight] = useState(250);
-
-  // useEffect(() => {
-  //   // const resizeObserver = new ResizeObserver((entries) => {
-  //   // requestAnimationFrame(() => {
-  //   // entries.forEach((entry) => {
-  //   // if (entry.target === descBoxRef.current) {
-  //   // descBoxRef.current.style.width = `${width}px`;
-  //   // }
-  //   // if(entry.target===codeContainerRef.current){
-  //   // codeContainerRef.current.style.height = `${height}px`;
-  //   // }
-  //   // });
-  //   // });
-  //   // });
-  //   // if (descBoxRef.current) {
-  //   // resizeObserver.observe(descBoxRef.current); // Observe the element
-  //   // }
-  //   // if(codeContainerRef.current){
-  //   // resizeObserver.observe(codeContainerRef.current)
-  //   // }
-
-  //   // Clean up the observer on unmount
-  //   // return () => {
-  //   // resizeObserver.disconnect();
-  //   // };
-  // }, [width, height]);
+  
 
   // Handel horizonatlly layout
   const handleHorizontalMouseDown = (e) => {
@@ -84,7 +57,7 @@ export default () => {
 
   return (
     <div className={Style.PlaygroundContainer}>
-      <div
+      {/* <div
         ref={descBoxRef}
         style={{ width: widthContext.width }}
         className={Style.ChallengeDescBox}
@@ -95,7 +68,7 @@ export default () => {
       <div className={Style.CodeContainer}>
         <div
           ref={codeContainerRef}
-          style={{ height: heightContext.height }}
+          style={{ height: heightContext.height , maxHeight:'80%'}}
           className={Style.CodeEditor}
         >
           <CodeEditor />
@@ -104,6 +77,9 @@ export default () => {
         <div className={Style.TestCaseContainer}>
           <TestCase></TestCase>
         </div>
+      </div> */}
+      <div className={Style.demo}>
+        fuck you
       </div>
     </div>
   );

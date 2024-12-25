@@ -5,7 +5,7 @@
 
 }
 .demo{
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -18,7 +18,7 @@
     /* height: 100%  !important; */
     /* width: 100% !important; */
     flex: 1  !important;
-    background-color: green;
+    /* background-color: green; */
     overflow: auto !important;
     display: flex !important;
     /* flex-direction: row !important; */

@@ -1,9 +1,123 @@
 .Container{
     display: flex;
     width: 100%;
-    background-color: red;
     height: 100%;
     flex: 1;
-    background-color: white;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    background-color: #4d8a77;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 10px;
+    /* max-width: max-content; */
+}
+.Header{
+    display: flex;
+    background-color: rgb(240, 240, 240);
+    min-width: max-content;
+    justify-content: flex-start;
+    align-content: center;
+    min-height: 2rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color:#4d8a77;
+    outline: 1px solid #4d8a77;
+    /* background-color: pink; */
+    padding: 2px;
+
+
+}
+.Header button{
+    border: none;
+    height: 100%;
+    background-color: transparent;
+    margin-left: 0.5rem;
+    display: flex;
     border-radius: 5px;
+    justify-content: center;
+    padding:  0 0.5rem;
+    align-items: center;
+    color: white;
+    white-space: nowrap;
+
+}
+
+.Header button img{
+    width: 1rem;
+    height: 1rem;
+    margin-right: 5px;
+}
+.Header button:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.TestCaseContiner{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    padding:  0 0.5rem 0.5rem 0.5rem;
+    flex: 1;
+    background-color: white;
+    /* background-color: red; */
+
+}
+.TestCaseIndex{
+    /* background-color: beige; */
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 3rem;
+    min-width: max-content;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+}
+
+.caseIndex{
+    cursor: pointer;
+    /* background-color: orange; */
+    font-size: 1.25rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+    flex-wrap: nowrap;
+    white-space:nowrap;
+    font-family: 'Times new roman';
+}
+
+.caseIndex:hover{
+    background-color: #4d8a77;
+    color: white;
+}
+.CaseDisplay{
+    display: flex;
+    flex-direction: column;
+    min-width: max-content;
+    min-width: 100%;
+    flex: 1;
+    /* background-color: orange; */
+}
+
+.Case{
+    margin-bottom: 0.5rem;
+    padding: 0 0.5rem;
+    flex-wrap: nowrap;
+    white-space:nowrap;
+    /* background-color: red; */
+}
+.Case span{
+    /* background-color: beige; */
+}
+.Case div{
+    height:3rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.15rem;
+    padding: 0.5rem;
+    font-family: 'Times New Roman', 'Times, serif';
+    color: white;
+    background-color: #0f3b3b;
+    border-radius: 5px;
+    min-width: max-content;
+    /* background-color: blue; */
 }

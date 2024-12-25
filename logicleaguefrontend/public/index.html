@@ -22,18 +22,22 @@
         padding: 0;
         box-sizing: border-box;
       }
-      body {
+      html,body {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         background-color: #0f3b3b;
         overflow-x: hidden;
-        height: 100vh;
+        width: 100%;
+        height: 100dvh;
       }
       #root {
         display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
         flex: 1;
         flex-direction: column;
+        background-color: aqua;
       }
       .monaco-editor {
         background-color: yellow;

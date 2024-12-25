@@ -1,20 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import Style from "./header.module.css";
 import { AuthContext } from "./authencation";
 import axiosInstance from "./request";
 
-function Header({ props }) {
+function Header({ sticky }) {
   const { logedIn, SetLogedIn } = useContext(AuthContext);
   const [isMenuOpen, openMenu] = useState(false);
 
   let logout = document.getElementById("logout");
-  logout?.addEventListener("click", async () => {
-    const response = await axiosInstance.post("users/logout/");
-    if (response.status == 200) {
-      SetLogedIn(false);
-    }
-  });
+  useEffect(()=>{
+    logout?.addEventListener("click", async () => {
+      console.log("called logout")
+      const response = await axiosInstance.post("users/logout/");
+      if (response.status == 200) {
+        console.log("logedout")
+        SetLogedIn(false);
+      }
+    });
+  },[])
   //Setting event listiner on hamburger menubutton
   const handelMenu = () => {
     openMenu(!isMenuOpen);

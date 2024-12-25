@@ -22,6 +22,6 @@
 
 .CodeEditiorContainer {
     display: flex;
-    background-color: yellow;
+    /* background-color: yellow; */
     flex: 1; /* Ensures that this element grows and shrinks as needed */
 }

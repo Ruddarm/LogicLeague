@@ -1,8 +1,9 @@
 .descContainer{
     width: 100%;
-    background-color: white;
+    background-color: #ffffff;
     margin-top: 0.5rem;
     border-top-right-radius: 10px;
+    overflow: auto;
     border-bottom-right-radius: 10px;
     flex: 1;
 }

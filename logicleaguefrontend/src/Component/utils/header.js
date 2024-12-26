@@ -8,17 +8,16 @@ function Header({ sticky }) {
   const { logedIn, SetLogedIn } = useContext(AuthContext);
   const [isMenuOpen, openMenu] = useState(false);
 
-  let logout = document.getElementById("logout");
-  useEffect(()=>{
-    logout?.addEventListener("click", async () => {
-      console.log("called logout")
-      const response = await axiosInstance.post("users/logout/");
-      if (response.status == 200) {
-        console.log("logedout")
-        SetLogedIn(false);
-      }
-    });
-  },[])
+  // let logout = document.getElementById("logout");
+  const handelLogout = async () => {
+    console.log("called logout");
+    const response = await axiosInstance.post("users/logout/");
+    if (response.status == 200) {
+      console.log("logedout");
+      SetLogedIn(false);
+    }
+  };
+
   //Setting event listiner on hamburger menubutton
   const handelMenu = () => {
     openMenu(!isMenuOpen);
@@ -29,7 +28,9 @@ function Header({ sticky }) {
       <div className={Style.headContainer}>
         {/* Logo contianer */}
         <div className={Style.Headlogo}>
-          <div className={Style.logo}><a href="/">LogicLeague</a></div>
+          <div className={Style.logo}>
+            <a href="/">LogicLeague</a>
+          </div>
         </div>
         <div className={`${Style.NavBar} ${isMenuOpen ? Style.Open : ""}`}>
           <div className={Style.closeMenu}>
@@ -59,7 +60,9 @@ function Header({ sticky }) {
                   {logedIn ? (
                     <>
                       <li>
-                        <a id="logout">Logout</a>
+                        <a onClick={handelLogout} id="logout">
+                          Logout
+                        </a>
                       </li>
                       <li>
                         <a>Profile</a>

@@ -6,4 +6,5 @@
     overflow: auto;
     border-bottom-right-radius: 10px;
     flex: 1;
+    background-color: red;
 }

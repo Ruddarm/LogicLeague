@@ -5,27 +5,33 @@
 }
 .PlaygroundContainer{
     width: 100%;
-    display: flex;
+    display:flex;
+    flex-direction: column;
     flex: 1;
     align-content: center;
     justify-content: center;
-    padding: 1rem;
-    background-color: pink;
+    padding: 0 1rem 1rem 1rem;
     flex-wrap: nowrap;
+    box-sizing: border-box;
     overflow: hidden;
-
 }
-.demo
-{
-  background-color: yellow;
-  height: 900px;
+.innerPlayground{
+  display: flex;
   flex: 1;
+  /* min-height: 100%; */
   overflow: auto;
+  /* background-color: aliceblue; */
+  /* height: 100px; */
 }
+/* .innerPlayground div{
+  background-color: beige;
+  width: 100%;
+  height: 800px;
+} */
 .ChallengeDescBox
 {
     width: 40%;
-    background-color: yellow;
+    /* background-color: yellow; */
     height: 100%;
     display: flex;
     overflow: auto;
@@ -39,21 +45,26 @@
     overflow: hidden;
     flex-direction: column;
     flex: 1;
-
+    /* background-color: yellow; */
 }
 
 .CodeEditor{
-    background-color: black;
+    /* background-color: black; */
     min-width: 150px;
     display: flex;
     width: 100%;
     min-height: 150px;
     height: 70%;
+    /* flex: 1; */
     overflow-y: hidden;
     padding: 0;
 }
+.flexOne{
+  flex: 1;
+  /* background-color: red; */
+}
 .TestCaseContainer{
-  background-color: orange;
+  /* background-color: orange; */
   height: 10%; 
   flex:  1;/* Sets the height relative to the parent */
   min-height: 10%; /* Ensures it doesn't shrink below this */
@@ -78,7 +89,9 @@
     display:flex;
     margin: 0.1rem;
     border-radius: 5px;
-    background-color: rgba(230, 230, 230, 0.8);
+    /* background-color: rgba(230, 230, 230, 0.8);
+     */
+     background-color: #0f3b3b;
     transition: height 0.1s ease-in;
     
   }
@@ -101,8 +114,9 @@
     border-radius: 5px;
     transition: width 0.1s ease-in;
 
-    background-color: rgba(230, 230, 230, 0.8);
-
+    /* background-color: rgba(230, 230, 230, 0.8);
+     */
+    background-color: #0f3b3b;
   }
 
   .VResizer:hover{
@@ -110,3 +124,8 @@
     background-color:red;
 
   }
+
+
+.displayNone{
+    display: none;
+}

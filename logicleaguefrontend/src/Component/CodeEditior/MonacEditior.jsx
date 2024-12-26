@@ -3,7 +3,7 @@ import MonacoEditor from "@monaco-editor/react";
 import { ResizeContext } from "../Challenge/ResizeContext";
 import Style from "./MonacEditior.module.css";
 const CodeEditor = ({ code, setCode, language }) => {
-  const { heightContext, widthContext } = useContext(ResizeContext);
+  const { heightContext, widthContext , maxContext } = useContext(ResizeContext);
   // const [code, setCode] = useState("// Write your code here");
   const editorref = useRef(null);
   const handleEditorChange = (value) => {
@@ -12,7 +12,7 @@ const CodeEditor = ({ code, setCode, language }) => {
 
   useEffect(() => {
     editorref.current?.layout();
-  }, [heightContext.height, widthContext.width]);
+  }, [heightContext.height, widthContext.width , maxContext.max]);
   const handelOnMount = (editor) => {
     editorref.current = editor;
     editorref.current.layout();

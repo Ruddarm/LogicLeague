@@ -9,12 +9,10 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import PrivateRoute from "./Component/utils/privateRoute";
 import { AuthProvider } from "./Component/utils/authencation";
-import CodeEditor from "./Component/CodeEditior/Code.jsx";
-import ResizableEditor from "./Component/Challenge/ResizableEditor.jsx";
 import ChallengePlayground from "./Component/Challenge/ChallengePlayground.jsx";
 import { ResizeProvider } from "./Component/Challenge/ResizeContext.jsx";
+import CreateChallengePage from "./Component/Challenge/CreateChallenge/create.jsx";
 function App() {
   // console.log(process.env.REACT_APP_BASE_URL);
   const gclientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -22,8 +20,8 @@ function App() {
     <AuthProvider>
       <GoogleOAuthProvider clientId={gclientId}>
         <Router>
-          <Header></Header>
           <div className={Style.RouteBody}>
+          <Header></Header>
             <Routes>
               <Route path="/login" element={<LoginFrom />} />
               <Route path="/home" element={<HomePage />} />
@@ -32,6 +30,14 @@ function App() {
                 element={
                   <ResizeProvider>
                     <ChallengePlayground />
+                  </ResizeProvider>
+                }
+              />
+              <Route
+                path="/challenge/create"
+                element={
+                  <ResizeProvider>
+                    <CreateChallengePage />
                   </ResizeProvider>
                 }
               />

@@ -1,9 +1,10 @@
 .EditorContianer {
     width: 100%;
+    min-width: 150px;
     min-height: 250px;
     justify-content: center;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     flex: 1;
     transition: width 0s ease-in;
 }

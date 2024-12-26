@@ -1,0 +1,47 @@
+.CreateContainer{
+    /* background-color: red; */
+    padding: 0.5rem;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow: auto;
+    box-sizing: border-box;
+
+}
+.Continaer{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 1000px;
+    overflow: hidden;
+
+}
+.Header{
+    color: rgb(110, 110, 110);
+    /* background-color: red; */
+}
+.DesContainer{
+    flex: 1;
+    /* background-color: orange; */
+    min-width: 300px;
+    overflow: auto;
+}
+.InputContainer{
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    min-width: 300px;
+    overflow: auto;
+    margin: 0.2rem;
+}
+.InputContainer label {
+    font-family: "Roboto";
+    font-size: 1.5rem;
+    font-weight: bold;
+}

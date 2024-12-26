@@ -3,30 +3,31 @@
     width: 100%;
     height: 100%;
     flex: 1;
-    flex-wrap: nowrap;
     flex-direction: column;
-    background-color: #4d8a77;
     overflow-y: auto;
-    overflow-x: auto;
+    overflow-x: hidden;
     border-radius: 10px;
-    /* max-width: max-content; */
+    container: size;
+    background-color: red;
 }
 .Header{
+
     display: flex;
     background-color: rgb(240, 240, 240);
-    min-width: max-content;
     justify-content: flex-start;
     align-content: center;
     min-height: 2rem;
+    max-height: 2rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color:#4d8a77;
     outline: 1px solid #4d8a77;
-    /* background-color: pink; */
     padding: 2px;
+    /* width: 100%; */
 
 
 }
+
 .Header button{
     border: none;
     height: 100%;
@@ -52,6 +53,31 @@
     color: black;
     cursor: pointer;
 }
+.optionContinaer{
+    padding: 0 0.5rem;
+    /* background-color: red; */
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.optionContinaer button{
+    padding: 0;
+    display: flex;
+    padding: 0.2rem;
+    justify-content: center;
+    /* background-color: yellow; */
+}
+
+.optionContinaer button img{
+    display: flex;
+    justify-content: center;
+    width: 1.5rem;
+    margin: 0;
+    height: 1.5rem;
+}
+.optionContinaer button:hover{
+    background-color: #0f3b3b;
+}
 .TestCaseContiner{
     display: flex;
     flex-direction: column;
@@ -59,6 +85,7 @@
     padding:  0 0.5rem 0.5rem 0.5rem;
     flex: 1;
     background-color: white;
+    overflow-x: auto;
     /* background-color: red; */
 
 }
@@ -67,7 +94,7 @@
     display: flex;
     flex: 1;
     width: 100%;
-    height: 3rem;
+    max-height: 3rem;
     min-width: max-content;
     align-items: center;
     padding: 0.25rem 0.5rem;
@@ -75,7 +102,6 @@
 
 .caseIndex{
     cursor: pointer;
-    /* background-color: orange; */
     font-size: 1.25rem;
     padding: 0.2rem 0.5rem;
     border-radius: 5px;
@@ -86,7 +112,7 @@
 }
 
 .caseIndex:hover{
-    background-color: #4d8a77;
+    background-color: #0f3b3b;
     color: white;
 }
 .CaseDisplay{
@@ -105,9 +131,7 @@
     white-space:nowrap;
     /* background-color: red; */
 }
-.Case span{
-    /* background-color: beige; */
-}
+
 .Case div{
     height:3rem;
     display: flex;
@@ -120,4 +144,11 @@
     border-radius: 5px;
     min-width: max-content;
     /* background-color: blue; */
+}
+
+@container  (min-height:50px){
+  
+    .Container{
+        background-color: yellow;
+    }
 }

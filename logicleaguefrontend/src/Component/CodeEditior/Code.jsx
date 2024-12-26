@@ -4,15 +4,39 @@ import CodeBar from "./CodeBar";
 import CodeNavBar from "./CodeNavBar";
 import CodeEditior from "./MonacEditior";
 import axiosInstance from "../utils/request.js";
+import { useContext } from "react";
+import { CodeContext } from "../Challenge/CodeContext.js";
 function CodeEditor() {
   const [code, setCode] = useState("");
+  const { codecontext, resultContext, loadContext, terminalContext } =
+    useContext(CodeContext);
 
-  const EditiorContianer = useRef(null);
+  // const EditiorContianer = useRef(null);
   const [language, setLanguage] = useState("javascript");
-  const Submit = async () => {
-    console.log("called")
+  const RunCode = async () => {
     try {
-     const  data = await axiosInstance.post("challenges/solution/",{code:code});
+      loadContext.setLoading(true);
+      const response = await axiosInstance.post("challenges/solution/", {
+        code: code,
+        lang: language,
+      });
+      loadContext.setLoading(false);
+      console.log(response);
+      if (response?.status == 200) {
+        // if (response.data.isError) {
+        //   terminalContext.openTerminal(true);
+        //   resultContext.setResult((res) => ({
+        //     ...res,
+        //     error: response.data?.error,
+        //   }));
+        // }
+        resultContext.setResult((res) => ({
+          ...res,
+          output: response?.data?.output,
+          error: response.data.error,
+          isError: response.data.isError,
+        }));
+      }
     } catch (e) {}
   };
 
@@ -24,7 +48,7 @@ function CodeEditor() {
           {/* {console.log("editor render")} */}
           {/* Editor head */}
           <div>
-            <CodeBar submit = {Submit}></CodeBar>
+            <CodeBar></CodeBar>
           </div>
           {/* Code Editor nav bar */}
           <div>
@@ -33,6 +57,7 @@ function CodeEditor() {
               updateLanguage={(newlang) => {
                 setLanguage(newlang);
               }}
+              runcode={RunCode}
             ></CodeNavBar>
           </div>
           {/* code block */}

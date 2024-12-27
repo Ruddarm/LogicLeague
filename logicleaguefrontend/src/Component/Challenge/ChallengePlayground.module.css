@@ -100,7 +100,7 @@
     height: 90%;
     border-radius: 2px;
     display: block;
-    background-color: red;
+    /* background-color: red; */
   }
 
   .VResizer{
@@ -121,7 +121,7 @@
 
   .VResizer:hover{
     width: 90%;
-    background-color:red;
+    /* background-color:red; */
 
   }
 

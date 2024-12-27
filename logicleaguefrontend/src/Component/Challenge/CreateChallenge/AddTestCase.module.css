@@ -1,0 +1,137 @@
+.TestCaseContinaer{
+    position: absolute;
+    width: auto;
+    padding: 0.2rem;
+    display: flex;
+    max-width: 90%;
+    flex-direction: column;
+    top: 5rem;
+    height: 500px;
+    background-color: white;
+    box-shadow: 1px 1px 4px white, 1px 2px 3px black;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    overflow-y: auto;
+
+}
+.TestCaseHeader{
+    /* background-color: orange; */
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.5rem 0.5rem;
+
+
+}
+.closebtn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 0.25rem;
+    cursor: pointer;
+    background-color: gainsboro;
+    border-radius: 50%;
+}
+.TestCaseContinaer h2{
+    color: gray;
+}
+.TestCaseContinaer div button img{
+    width: 1rem;
+    height: 1rem;
+    /* background-color: yellow; */
+}
+.GuideLineContainer{
+    /* background-color: orange; */
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+.GuideLineContainer p{
+padding-left: 0.5rem;
+padding-bottom: 0.2rem;
+}
+
+.InputContainer{
+    padding: 0.5rem;
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width:max-content;
+    min-width: 100%;
+    height: auto;
+    overflow-x: auto;
+}
+.InputinnerContainer{
+    display: flex;
+
+
+}
+.VariableContainer, .ValueContainer{
+    display: flex;
+    /* background-color: yellow; */
+    font-family: "Times new roman";
+    font-size: 1.2rem;
+    flex-direction: column;
+}
+.ValueContainer{
+    padding-left:0.5rem;
+    /* background-color: yellow; */
+    align-content: center;
+
+}
+.deletectn{
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.deletectn button{
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem;
+}
+.inputlabel{
+    
+    /* background-color: aliceblue; */
+}
+.inputbox{
+    font-size: 1.25rem;
+
+    border: 1px solid gainsboro;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+.inputbox, .inputlabel{
+
+}
+#addInputfeildBtn{
+    width: 8rem;
+    height: 2rem;
+    margin-top: 0.5rem;
+    align-self: center;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: gainsboro;
+    border: 1px dashed white;
+    outline: 1px solid gainsboro;
+}
+#savebtn{
+    background-color: green;
+    border: none;
+    border: 1px dashed white;
+    outline: 1px solid gainsboro;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+    width: 5rem;
+    height: 2rem;
+    color: white;
+}

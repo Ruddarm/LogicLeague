@@ -16,8 +16,6 @@ axiosInstance.interceptors.request.use(
 );
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log(response)
-
     if (response) {
       return response;
     }

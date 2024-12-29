@@ -1,17 +1,34 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import Style from "./ChallengePlayground.module.css";
+import { useParams } from "react-router-dom";
 import CodeEditor from "../CodeEditior/Code";
 import { ResizeContext } from "./ResizeContext";
 import ChallengeDesc from "./ChallengeDescription/ChallengeDescripiton";
 import TestCase from "./Terminal/TerminalContainer";
+import { FetchChallengeByID, fetchTestCase } from "./Challengeapi";
 import Header from "../utils/header";
 import CodeConainter from "./ChallengeCodeContainer";
 import { CodeContextProvider } from "./CodeContext";
+import axiosInstance from "../utils/request";
+import Loader from "../utils/loading";
 export default () => {
-  const { heightContext, widthContext, maxContext } = useContext(ResizeContext);
+  const { widthContext, maxContext } = useContext(ResizeContext);
   const descBoxRef = useRef(null);
-  const codeContainerRef = useRef(null);
-
+  const { id } = useParams();
+  const [loadChallenge, setLoadChallenge] = useState(true);
+  const [challengeDesc, setChallengeDesc] = useState("");
+  useEffect(() => {
+    GetChallenge();
+  }, [id]);
+  const GetChallenge = async () => {
+    const response = await FetchChallengeByID(id);
+    setLoadChallenge(false);
+    if (response?.status == 200) {
+      console.log(response.data);
+      setChallengeDesc(response.data?.challenge);
+    }
+    
+  };
   const handleHorizontalMouseDown = (e) => {
     e.preventDefault();
     const startX = e.clientX;
@@ -45,7 +62,11 @@ export default () => {
               : Style.ChallengeDescBox
           }
         >
-          <ChallengeDesc />
+          {!loadChallenge ? (
+            <ChallengeDesc challenge={challengeDesc} />
+          ) : (
+            <Loader></Loader>
+          )}
         </div>
         {maxContext.codeEditior || maxContext.terminal || maxContext.desc || (
           <div

@@ -13,39 +13,53 @@ import { AuthProvider } from "./Component/utils/authencation";
 import ChallengePlayground from "./Component/Challenge/ChallengePlayground.jsx";
 import { ResizeProvider } from "./Component/Challenge/ResizeContext.jsx";
 import CreateChallengePage from "./Component/Challenge/CreateChallenge/create.jsx";
+import { ChallengeContextProvider } from "./Component/Challenge/CreateChallenge/ChallengeContext.js";
 import { CreateChallengeTabContextProvider } from "./Component/Challenge/CreateChallenge/tabContext.js";
 function App() {
-  // console.log(process.env.REACT_APP_BASE_URL);
   const gclientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   return (
     <AuthProvider>
       <GoogleOAuthProvider clientId={gclientId}>
-        <Router>
-          <div className={Style.RouteBody}>
-            <Header></Header>
+        <div className={Style.RouteBody}>
+          <Header></Header>
+          <Router>
             <Routes>
               <Route path="/login" element={<LoginFrom />} />
               <Route path="/home" element={<HomePage />} />
               <Route
-                path="/challenge"
+                path="/challenge/edit/:id"
+                element={
+                  <ChallengeContextProvider>
+                    <CreateChallengeTabContextProvider>
+                      <CreateChallengePage edit={true} />
+                    </CreateChallengeTabContextProvider>
+                  </ChallengeContextProvider>
+                }
+              />
+              <Route
+                path="/challenge/:id"
                 element={
                   <ResizeProvider>
                     <ChallengePlayground />
                   </ResizeProvider>
                 }
               />
+
               <Route
                 path="/challenge/create"
                 element={
-                  <CreateChallengeTabContextProvider>
-                    <CreateChallengePage />
-                  </CreateChallengeTabContextProvider>
+                  <ChallengeContextProvider>
+                    <CreateChallengeTabContextProvider>
+                      <CreateChallengePage />
+                    </CreateChallengeTabContextProvider>
+                  </ChallengeContextProvider>
                 }
               />
+
               <Route path="/" element={<Navigate to="/home" />} />
             </Routes>
-          </div>
-        </Router>
+          </Router>
+        </div>
       </GoogleOAuthProvider>
     </AuthProvider>
   );

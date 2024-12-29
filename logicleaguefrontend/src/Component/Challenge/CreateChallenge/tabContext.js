@@ -6,6 +6,7 @@ export const CreateChallengeTabContextProvider = ({ children }) => {
     basicTab: true,
     TestCaseTab: false,
     Setting: false,
+    PDCode:false
   });
 
   return (

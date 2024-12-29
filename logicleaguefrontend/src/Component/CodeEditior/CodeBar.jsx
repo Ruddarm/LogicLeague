@@ -16,7 +16,7 @@ function CodeBar({ submit }) {
       <div className={Style.CodeBarContainer}>
         <div className={Style.OptionContainer}>
           <button>
-            <img src="web-programming.png" alt="" />
+            <img src="/web-programming.png" alt="" />
             <span style={{ marginLeft: "5px", fontFamily: "times new roman" }}>
               <b>Code</b>
             </span>
@@ -26,7 +26,7 @@ function CodeBar({ submit }) {
         <div className={Style.OptionContainer}>
           <button onClick={maxCodeEditior}>
             <img
-              src={maxContext.max.codeEditior ? "minimize.png" : "maximize.png"}
+              src={maxContext.max.codeEditior ? "/minimize.png" : "/maximize.png"}
             ></img>
           </button>
         </div>

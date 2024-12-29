@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Style from "./TestCase.module.css";
 import OpenAddTestCase from "./AddTestCase";
 
-function tableRow() {
+function TableRow() {
   return (
     <>
       <tr className={Style.trth}>
@@ -27,8 +27,19 @@ function tableRow() {
     </>
   );
 }
-function TestCasePage() {
+function TestCasePage({ id }) {
+  // JSON.stringify(value)
   const [AddTestCase, openAddTestCase] = useState(false);
+  const [testCases, setTestCases] = useState([{}, {}]);
+  const [newTestCase, setNewTestCase] = useState({
+    input: [{ variable: "", value: "" }],
+    output: "",
+    explaination: "",
+    isSample: false,
+    marks: 0,
+  });
+  
+  useEffect(() => {}, [id]);
   return (
     <>
       <div className={Style.AddtestContainer}>
@@ -37,6 +48,7 @@ function TestCasePage() {
             closefun={() => {
               openAddTestCase(!AddTestCase);
             }}
+            id={id}
           ></OpenAddTestCase>
         )}
         <div className={Style.GuideLineContainer}>
@@ -63,7 +75,11 @@ function TestCasePage() {
               <th className={Style.tabledata}></th>
             </tr>
           </thead>
-          <tbody>{tableRow()}</tbody>
+          <tbody>
+            {testCases.map((data, index) => (
+                <TableRow key={index} ></TableRow>
+            ))}
+          </tbody>
         </table>
       </div>
     </>

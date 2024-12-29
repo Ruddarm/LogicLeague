@@ -23,7 +23,7 @@ function CodeNavBar({ language, updateLanguage, runcode }) {
         </select>
         <div className={Style.OptionContainer}>
           <button onClick={runcode}>
-            <img src="play-button.png"></img>
+            <img src="/play-button.png"></img>
             <span>Run</span>
           </button>
         </div>

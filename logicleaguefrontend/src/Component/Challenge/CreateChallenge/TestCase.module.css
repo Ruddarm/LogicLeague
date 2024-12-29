@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 .theadtd{
-    background-color:yellow;
+    /* background-color:yellow; */
     display: flex;
 
 }

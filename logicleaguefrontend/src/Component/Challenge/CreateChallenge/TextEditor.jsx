@@ -2,22 +2,26 @@
 import React, { useRef, useState } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-function DefualtEditior() {
+function DefualtEditior({ setData, prevData = "" }) {
   const editorRef = useRef();
   const quillInstanceRef = useRef(null); //
-  const [data, setData] = useState([]);
   React.useEffect(() => {
     if (!quillInstanceRef.current) {
       // Initialize Quill only if it hasn't been initialized already
       quillInstanceRef.current = new Quill(editorRef.current, {
         theme: "snow",
         modules: {
-          toolbar: false
+          toolbar: false,
         },
       });
+      quillInstanceRef.current.on("text-change", () => {
+        const plainText = quillInstanceRef.current.getText();
+        // let formattext = plainText.trim().replace(/\n$/, "");
+        // let finaltext = formattext.trim("/n");
+        setData(plainText);
+      });
     }
-  }, []);
-  console.log(data);
+  }, [prevData, setData]);
   return (
     <>
       <div
@@ -40,13 +44,12 @@ function DefualtEditior() {
     </>
   );
 }
-function TextEditior() {
+function TextEditior({ setData, prevData = "" }) {
   const editorRef = useRef();
-  const quillInstanceRef = useRef(null); //
-  const [data, setData] = useState([]);
+  const quillInstanceRef = useRef(null);
+
   React.useEffect(() => {
     if (!quillInstanceRef.current) {
-      // Initialize Quill only if it hasn't been initialized already
       quillInstanceRef.current = new Quill(editorRef.current, {
         theme: "snow",
         modules: {
@@ -57,31 +60,41 @@ function TextEditior() {
           ],
         },
       });
+
+      quillInstanceRef.current.on("text-change", () => {
+        setData(JSON.stringify(quillInstanceRef.current.getContents()));
+      });
+
+      if (prevData) {
+        try {
+          const parsedData = JSON.parse(prevData); // Parse prevData if it's a string
+          quillInstanceRef.current.setContents(parsedData);
+        } catch (e) {
+          console.error("Error parsing prevData:", e);
+        }
+      }
     }
-  }, []);
-  console.log(data);
+  }, [prevData, setData]);
+
   return (
-    <>
+    <div
+      style={{
+        backgroundColor: "rgba(110,110,110,0.7)",
+        border: "1px solid rgb(223, 223, 223)",
+        borderRadius: "5px",
+        overflow: "hidden",
+        flexWrap: "nowrap",
+      }}
+    >
       <div
+        ref={editorRef}
         style={{
-          backgroundColor: "rgba(110,110,110,0.7)",
-          border: "1px solid rgb(223, 223, 223)",
-          borderRadius: "5px",
-          overflow: "hidden",
-          flexWrap: "nowrap",
+          height: "250px",
+          backgroundColor: "white",
         }}
-      >
-        <div
-          ref={editorRef}
-          style={{
-            height: "250px",
-            backgroundColor: "white",
-          }}
-        />
-      </div>
-    </>
+      />
+    </div>
   );
 }
 export default TextEditior;
-
-export {DefualtEditior}
+export { DefualtEditior };

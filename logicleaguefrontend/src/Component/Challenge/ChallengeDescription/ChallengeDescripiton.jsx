@@ -1,34 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Style from "./ChallengeDescripiton.module.css";
 import DescHead from "./DescHead.jsx";
-function ChallengeDesc() {
+import Loader from "../../utils/loading.jsx";
+import Quill, { Delta } from "quill";
+import DOMPurify from "dompurify";
+
+function getHtmlformat(data) {
+  // const [data,setData] = useState({})
+  if (data) {
+    const quill = new Quill(document.createElement("div"));
+    const delta = JSON.parse(data);
+    quill.setContents(delta);
+    const rawHtml = quill.root.innerHTML;
+    return DOMPurify.sanitize(rawHtml);
+  }
+  else{
+
+  }
+  return "";
+}
+function ChallengeDesc({ challenge }) {
+  const [loading, setLoading] = useState(true);
+  // console.log(challenge);
   return (
     <>
       <div className={Style.descContainer}>
         <DescHead></DescHead>
         <div className={Style.content}>
           <div>
-            <h1>Add Two Numbers</h1>
+            <h1>{challenge.challengeName}</h1>
             <div>
-              <div>Easy</div>
+              <div>{challenge.challengeLevel}</div>
             </div>
           </div>
           <div>
-            <p>
-              You are given two non-empty linked lists representing two
-              non-negative integers. The digits are stored in reverse order, and
-              each of their nodes contains a single digit. Add the two numbers
-              and return the sum as a linked list.
-            </p>
-            <p>
-              You may assume the two numbers do not contain any leading zero,
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: getHtmlformat(challenge.outputFormat),
+              }}
+            />
           </div>
           <div>
             <div>
               <p></p>
-              <p><b>Input : </b> l1 = [2,4,3], l2 = [5,6,4]</p>
-
+              <p>
+                <b>Input : </b> l1 = [2,4,3], l2 = [5,6,4]
+              </p>
             </div>
           </div>
         </div>

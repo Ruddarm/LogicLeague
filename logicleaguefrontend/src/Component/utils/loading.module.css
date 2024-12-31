@@ -4,10 +4,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid #f3f3f3;
+    /* border: 2px solid #f3f3f3; */
     /* border-radius: 50%; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    /* background-color: #fff; */
     text-align: center;
     font-size: 0.8rem;
     /* margin: auto; */

@@ -13,6 +13,7 @@ import { AuthProvider } from "./Component/utils/authencation";
 import ChallengePlayground from "./Component/Challenge/ChallengePlayground.jsx";
 import { ResizeProvider } from "./Component/Challenge/ResizeContext.jsx";
 import CreateChallengePage from "./Component/Challenge/CreateChallenge/create.jsx";
+import ChallengeBoard from "./Component/Challenge/DisplayChallenge.jsx";
 import { ChallengeContextProvider } from "./Component/Challenge/CreateChallenge/ChallengeContext.js";
 import { CreateChallengeTabContextProvider } from "./Component/Challenge/CreateChallenge/tabContext.js";
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Routes>
               <Route path="/login" element={<LoginFrom />} />
               <Route path="/home" element={<HomePage />} />
+              <Route path="/Challenge" element={<ChallengeBoard />} />
               <Route
                 path="/challenge/edit/:id"
                 element={

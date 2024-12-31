@@ -16,10 +16,16 @@ function DefualtEditior({ setData, prevData = "" }) {
       });
       quillInstanceRef.current.on("text-change", () => {
         const plainText = quillInstanceRef.current.getText();
-        // let formattext = plainText.trim().replace(/\n$/, "");
-        // let finaltext = formattext.trim("/n");
         setData(plainText);
       });
+      if (prevData) {
+        try {
+          console.log(prevData)
+          quillInstanceRef.current.setText(prevData);
+        } catch (e) {
+          console.error("Error parsing prevData:", e);
+        }
+      }
     }
   }, [prevData, setData]);
   return (

@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { ResizeContext } from "../ResizeContext.jsx";
 import { CodeContext } from "../CodeContext.js";
 import { useParams } from "react-router-dom";
-import { fetchTestCase } from "../Challengeapi.js";
+import { fetchTestCases } from "../Challengeapi.js";
 import Terminal from "./Terminal.jsx";
 import Loader from "../../utils/loading.jsx";
 function GetIndex({ index, setIndex }) {
@@ -47,15 +47,16 @@ function TerminalContainer({ Output }) {
   const [terminal, Openterminal] = useState(false);
   const [testCases, setTestCases] = useState([]);
   const GetTestCases = async () => {
-    const testCaseResponse = await fetchTestCase(id);
+    const testCaseResponse = await fetchTestCases(id,true);
     if (testCaseResponse?.status == 200) {
+
       setTestCases(testCaseResponse.data.testCases);
     }
   };
   useEffect(() => {
     GetTestCases();
   }, [loadContext.load, id]);
-  // console.log(testCases[0].input);
+  // console.log(testCases);
   return (
     <>
       {!loadContext.load ? (

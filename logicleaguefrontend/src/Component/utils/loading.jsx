@@ -1,11 +1,11 @@
 import React from 'react'
 import Style from './loading.module.css'
- const Loader = () => {
+ const Loader = ({msg}) => {
   return (
     <>
       <div className={Style.loadingContainer}>
         <div className={Style.spinner}></div>
-        <span>running ...</span>
+        <span>{msg}</span>
       </div>
     </>
   );

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Style from "./AddTestCase.module.css";
 import { fetchTestCase, uploadTestCase } from "../Challengeapi";
 import TextEditior, { DefualtEditior } from "./TextEditor";
+import Loader from "../../utils/loading";
 function GetInputField({ index, data, InputFeildHandel }) {
   return (
     <>
@@ -35,13 +36,10 @@ function GetInputField({ index, data, InputFeildHandel }) {
     </>
   );
 }
-function OpenAddTestCase({ closefun, id }) {
-  const [inputFeild, setInputField] = useState(0);
-  const input = {
-    variable: "",
-    value: "",
-  };
-  const [TestCase, setTestCase] = useState({
+function OpenAddTestCase({ closefun, id, edit }) {
+  // modle for test case
+  const [loading, setLoading] = useState(false);
+  const [testCase, setTestCase] = useState({
     input: [{ variable: "", value: "" }],
     output: "",
     explaination: "",
@@ -49,6 +47,31 @@ function OpenAddTestCase({ closefun, id }) {
     marks: 0,
     challengeID: id,
   });
+  const input = {
+    variable: "",
+    value: "",
+  };
+
+  useEffect(() => {
+    if (edit) {
+      getExistingTask(id, edit);
+    }
+  }, [edit]);
+  const getExistingTask = async (challengeID, testCaseId) => {
+    setLoading(true);
+    const response = await fetchTestCase(challengeID, testCaseId);
+    let oldTestCase = response.data.testCase;
+    setTestCase((prev) => ({
+      ...prev,
+      input: oldTestCase.input,
+      output: oldTestCase.output,
+      explaination: oldTestCase.explaination,
+      marks: oldTestCase.marks,
+      isSample: oldTestCase.isSample,
+    }));
+    setLoading(false);
+    console.log(oldTestCase)
+  };
   const InputFeildHandel = (index, field, value) => {
     setTestCase((prev) => {
       const updatedInput = [...prev.input];
@@ -57,7 +80,7 @@ function OpenAddTestCase({ closefun, id }) {
     });
   };
 
-  console.log("Test case is ", TestCase);
+  // console.log("Test case is ", TestCase);
   const AddinputFeild = () => {
     setTestCase((prev) => ({ ...prev, input: [...prev.input, input] }));
   };
@@ -72,69 +95,75 @@ function OpenAddTestCase({ closefun, id }) {
     }));
   };
   const upload = async () => {
-    const res = await uploadTestCase(id, TestCase);
+    const res = await uploadTestCase(id, testCase);
     console.log(res);
   };
   return (
     <>
       <div className={Style.TestCaseContinaer}>
-        <div className={Style.TestCaseHeader}>
-          <div>
-            <h2>Add Test Case</h2>
-          </div>
-          <div>
-            <button onClick={closefun} className={Style.closebtn}>
-              <img src="/close.png"></img>
-            </button>
-          </div>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div className={Style.GuideLineContainer}>
-            <b>Input Guidelines</b> <br></br>
-            <p>Each test case defines input variables and their values.</p>
-            <p>Use the following format:</p>
-            <p>
-              <b>For strings: </b>name = Ruddarm
-            </p>
-            <p>
-              <b>For numbers:</b> age = 18
-            </p>
-            <p>
-              <b> For lists:</b> marks = [2, 5, 8] (values separated by commas
-              inside []).
-            </p>
-          </div>
-          <div className={Style.InputContainer}>
-            <h4>Input:-</h4>
-            {TestCase.input?.map((data, index) => (
-              <GetInputField
-                key={index}
-                data={data}
-                index={index}
-                InputFeildHandel={InputFeildHandel}
-              />
-            ))}
-            <button onClick={AddinputFeild} id={Style.addInputfeildBtn}>
-              Add Input Feild{" "}
-            </button>
-          </div>
-          <div className={Style.InputContainer}>
-            <div className={Style.GuideLineContainer}>
-              <b>Output Guidelines</b>
-              <p> Provide the expected output for the input.</p>
-              <p>Each output value must be on a new line (\n).</p>
+        {loading ? (
+          <Loader msg={"Fetching...."}></Loader>
+        ) : (
+          <>
+            <div className={Style.TestCaseHeader}>
+              <div>
+                <h2>Add Test Case</h2>
+              </div>
+              <div>
+                <button onClick={closefun} className={Style.closebtn}>
+                  <img src="/close.png"></img>
+                </button>
+              </div>
             </div>
-            <h4>Output:-</h4>
-            <DefualtEditior setData={outPutHandel}></DefualtEditior>
-          </div>
-          <div className={Style.InputContainer}>
-            <h4>Explanation</h4>
-            <TextEditior setData={explainationHandel}></TextEditior>
-          </div>
-          <button id={Style.savebtn} onClick={upload}>
-            Upload
-          </button>
-        </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className={Style.GuideLineContainer}>
+                <b>Input Guidelines</b> <br></br>
+                <p>Each test case defines input variables and their values.</p>
+                <p>Use the following format:</p>
+                <p>
+                  <b>For strings: </b>name = Ruddarm
+                </p>
+                <p>
+                  <b>For numbers:</b> age = 18
+                </p>
+                <p>
+                  <b> For lists:</b> marks = [2, 5, 8] (values separated by
+                  commas inside []).
+                </p>
+              </div>
+              <div className={Style.InputContainer}>
+                <h4>Input:-</h4>
+                {testCase.input?.map((data, index) => (
+                  <GetInputField
+                    key={index}
+                    data={data}
+                    index={index}
+                    InputFeildHandel={InputFeildHandel}
+                  />
+                ))}
+                <button onClick={AddinputFeild} id={Style.addInputfeildBtn}>
+                  Add Input Feild{" "}
+                </button>
+              </div>
+              <div className={Style.InputContainer}>
+                <div className={Style.GuideLineContainer}>
+                  <b>Output Guidelines</b>
+                  <p> Provide the expected output for the input.</p>
+                  <p>Each output value must be on a new line (\n).</p>
+                </div>
+                <h4>Output:-</h4>
+                <DefualtEditior prevData={testCase.output} setData={outPutHandel}></DefualtEditior>
+              </div>
+              <div className={Style.InputContainer}>
+                <h4>Explanation</h4>
+                <TextEditior prevData={testCase.explaination} setData={explainationHandel}></TextEditior>
+              </div>
+              <button id={Style.savebtn} onClick={upload}>
+                Upload
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

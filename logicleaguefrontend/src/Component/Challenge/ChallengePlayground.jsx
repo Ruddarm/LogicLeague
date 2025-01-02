@@ -27,7 +27,6 @@ export default () => {
       console.log(response.data);
       setChallengeDesc(response.data?.challenge);
     }
-    
   };
   const handleHorizontalMouseDown = (e) => {
     e.preventDefault();
@@ -62,11 +61,8 @@ export default () => {
               : Style.ChallengeDescBox
           }
         >
-          {!loadChallenge ? (
-            <ChallengeDesc challenge={challengeDesc} />
-          ) : (
-            <Loader></Loader>
-          )}
+          {loadChallenge && <Loader></Loader>}
+          <ChallengeDesc challenge={challengeDesc} />
         </div>
         {maxContext.codeEditior || maxContext.terminal || maxContext.desc || (
           <div

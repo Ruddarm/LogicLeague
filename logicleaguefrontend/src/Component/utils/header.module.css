@@ -97,9 +97,10 @@ li:hover{
 .NavContainer{
     flex: 1;
     display: flex;
-    /* background-color: blue; */
+    background-color: blue;
     justify-content: center;
     flex-direction: row;
+    z-index: 5000;
 }
 /* .profileContianer ul li{
     background-color: aliceblue;

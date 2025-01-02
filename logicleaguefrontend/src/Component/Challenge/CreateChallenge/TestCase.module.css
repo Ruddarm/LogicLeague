@@ -1,46 +1,55 @@
 .AddtestContainer{
-    /* background-color: orange; */
-    flex: 1;
     display: flex;
+    flex-direction: row;
+    min-height: 100%;
     align-items: center;
+    position: relative;
     flex-direction: column;
+    overflow-x: hidden;
+    /* overflow-y: auto; */
 }
 .testCaseTable{
-    width: 100%;
     /* background-color: pink; */
-  
     flex-direction: column;
-}
-.theadtd{
-    /* background-color:yellow; */
-    display: flex;
-
-}
-.trth{
-    /* background-color: beige; */
-    flex: 1;
     display: grid;
-    border-bottom: 1px solid black;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: max-content;
-    padding: 10px;
-
+    width: 100%;
+    /* min-width: 350px; */
+    /* max-width: ;: max-content; */
+    padding: 1rem;
+    overflow: auto;
 }
+.tableContainer{
+
+    /* background-color: greenyellow; */
+    display: flex;
+    /* padding: 1rem; */
+    width: 100%;
+}
+
+.trth{
+    /* background-color: red; */
+    flex: 1;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    display: flex;
+    overflow: hidden;
+    max-width: 100%;
+}
+
 
 .tabledata{
         display: flex;
+        width: 100%;
+        /* background-color: blue; */
         flex-direction: row;
-        /* border: 1px solid red; */
-        /* background-color: yellow; */
         padding: 0.2rem 0.5rem;
         justify-content: center; 
 }
 .GuideLineContainer{
-        /* background-color: orange; */
         display: flex;
         width: 100%;
         justify-content: flex-start;
-        padding: 1rem;
+        padding:  0.5rem 1rem ;
         font-size: 1rem;
         font-family: 'Times New Roman', Times, serif;
 
@@ -69,4 +78,38 @@
     color: white;
     background-color: green;
 }
+.tablediv{
+    
+}
 
+
+.theadtd{
+
+    display: flex;
+    flex: 1;
+    flex-wrap: nowrap;
+    width: max-content;
+    background-color: green;
+    padding: 1rem;
+    overflow: auto;
+
+}
+.tableBody{
+    display:  flex ;
+    min-width: max-content;
+    width: 100%;
+    flex-direction: column;
+    /* background-color: yellow; */
+    /* padding: 1rem; */
+}
+
+.sr{
+    /* background-color: yellow; */
+    grid-column: 1/2;
+}
+
+
+@media (max-width:400) {
+
+    
+}

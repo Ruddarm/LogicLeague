@@ -47,9 +47,8 @@ function TerminalContainer({ Output }) {
   const [terminal, Openterminal] = useState(false);
   const [testCases, setTestCases] = useState([]);
   const GetTestCases = async () => {
-    const testCaseResponse = await fetchTestCases(id,true);
+    const testCaseResponse = await fetchTestCases(id, true);
     if (testCaseResponse?.status == 200) {
-
       setTestCases(testCaseResponse.data.testCases);
     }
   };
@@ -59,64 +58,57 @@ function TerminalContainer({ Output }) {
   // console.log(testCases);
   return (
     <>
-      {!loadContext.load ? (
-        <>
-          <div className={Style.Container}>
-            <div className={Style.Header}>
-              <button onClick={() => terminalContext.openTerminal(false)}>
-                Test Cases
-              </button>
-              <button
-                onClick={() => {
-                  terminalContext.openTerminal(true);
-                }}
-              >
-                <img src="/Terminal.png"></img>Terminal
-              </button>
-              <div className={Style.optionContinaer}>
-                <button onClick={maxTerminalEditior}>
-                  <img src="/maximize.png"></img>
-                </button>
+      <div className={Style.Container}>
+        {loadContext.load && <Loader></Loader>}
+        <div className={Style.Header}>
+          <button onClick={() => terminalContext.openTerminal(false)}>
+            Test Cases
+          </button>
+          <button
+            onClick={() => {
+              terminalContext.openTerminal(true);
+            }}
+          >
+            <img src="/Terminal.png"></img>Terminal
+          </button>
+          <div className={Style.optionContinaer}>
+            <button onClick={maxTerminalEditior}>
+              <img src="/maximize.png"></img>
+            </button>
+          </div>
+        </div>
+        {!terminalContext.terminal ? (
+          <>
+            <div className={Style.TestCaseContiner}>
+              <div className={Style.TestCaseIndex}>
+                {testCases.map((data, index) => (
+                  <GetIndex
+                    key={index}
+                    setIndex={setIndex}
+                    index={index}
+                  ></GetIndex>
+                ))}
+              </div>
+              <div className={Style.CaseDisplay}>
+                {testCases[caseIndex]?.input?.map((data, index) => (
+                  <GetCase
+                    variable={data.variable}
+                    value={data.value}
+                  ></GetCase>
+                ))}
+                <GetCase
+                  variable={"Expected output"}
+                  value={testCases[caseIndex]?.output}
+                />
               </div>
             </div>
-            {!terminalContext.terminal ? (
-              <>
-                <div className={Style.TestCaseContiner}>
-                  <div className={Style.TestCaseIndex}>
-                    {testCases.map((data, index) => (
-                      <GetIndex
-                        key={index}
-                        setIndex={setIndex}
-                        index={index}
-                      ></GetIndex>
-                    ))}
-                  </div>
-                  <div className={Style.CaseDisplay}>
-                    {testCases[caseIndex]?.input?.map((data, index) => (
-                      <GetCase
-                        variable={data.variable}
-                        value={data.value}
-                      ></GetCase>
-                    ))}
-                    <GetCase
-                      variable={"Expected output"}
-                      value={testCases[caseIndex]?.output}
-                    />
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <Terminal></Terminal>
-              </>
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <Loader></Loader>
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            <Terminal></Terminal>
+          </>
+        )}
+      </div>
     </>
   );
 }

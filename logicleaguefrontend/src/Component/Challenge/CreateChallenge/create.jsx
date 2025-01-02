@@ -11,7 +11,7 @@ import Loader from "../../utils/loading";
 import axiosInstance from "../../utils/request";
 import { create_challenge, update_challenge } from "../Challengeapi";
 function CreateChallengePage({ edit = false }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [ChallengeState, setChallengeState] = useState({
     challengeName: "",
     challengeDesc: "",
@@ -111,6 +111,7 @@ function CreateChallengePage({ edit = false }) {
                       <ChallengeForm
                         ChallengeState={ChallengeState}
                         setChallengeState={setChallengeState}
+                        F
                         inputHandel={handelOnchange}
                       ></ChallengeForm>
                     )
@@ -122,7 +123,9 @@ function CreateChallengePage({ edit = false }) {
                       ></ChallengeForm>
                     )}
 
-                {tabContext.tab.TestCaseTab && <TestCasePage id ={id}></TestCasePage>}
+                {tabContext.tab.TestCaseTab && (
+                  <TestCasePage id={id}></TestCasePage>
+                )}
               </div>
               <div className={Style.btnContainer}>
                 <button className={Style.creatbtn}>Preview</button>

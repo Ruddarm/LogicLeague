@@ -3,33 +3,35 @@ import Style from "./TestCase.module.css";
 import OpenAddTestCase from "./AddTestCase";
 import { fetchTestCase, fetchTestCases, deleteTestCase } from "../Challengeapi";
 import Loader from "../../utils/loading";
-function TableRow({ index, testCase, onEdit }) {
+function TableRow({ index, testCase, onEdit, onDelete }) {
   return (
     <>
       <tr className={Style.trth}>
-        <td className={Style.tabledata}>{index + 1}</td>
-        <td className={Style.tabledata}>
+        <td className={`${Style.tabledata} ${Style.sr}`}>{index + 1}</td>
+        <td className={`${Style.tabledata} ${Style.textfile}`}>
           <a>input00.txt</a>
         </td>
-        <td className={Style.tabledata}>
+        <td className={`${Style.tabledata} ${Style.textfile}`}>
           <a>Output00.txt</a>
         </td>
-        <td className={Style.tabledata}>
+        <td className={`${Style.tabledata} ${Style.example}`}>
           <input
             type="checkbox"
             onChange={() => {
               console.log("fuck you");
             }}
             value={testCase.isSample}
+            readOnly
           ></input>
         </td>
-        <td className={Style.tabledata}>
+        <td className={`${Style.tabledata} ${Style.marks}`}>
           <input
             type="number"
             onChange={() => {
               console.log("fuck you");
             }}
             value={testCase.marks}
+            readOnly
           ></input>
         </td>
         <td className={Style.tabledata}>
@@ -40,7 +42,11 @@ function TableRow({ index, testCase, onEdit }) {
           >
             Edit
           </button>
-          <button onClick={() => deleteTestCase(testCase.testCaseId)}>
+          <button
+            onClick={() => {
+              onDelete(testCase.testCaseId);
+            }}
+          >
             Delete
           </button>
         </td>
@@ -58,76 +64,85 @@ function TestCasePage({ id }) {
     setedit(testcaseId);
   };
   useEffect(() => {
-    console.log("using effect bc ");
     getTestCase(id);
   }, [id]);
+  const handelDelete = (testcaseid) => {
+    setLoading(true);
+    deleteTestCase(id, testcaseid);
+    setLoading(false);
+  };
   // Fetch all task id,marks,issample  deitals for view only
   const getTestCase = async (challengeID) => {
     const response = await fetchTestCases(challengeID);
     setTestCases(response?.data.testCases);
-    console.log(response);
     setLoading(false);
   };
   return (
     <>
-      {loading ? (
-        <Loader msg={loading}></Loader>
-      ) : (
-        <div className={Style.AddtestContainer}>
-          {AddTestCase ? (
-            <OpenAddTestCase
-              closefun={() => {
+      <div className={Style.AddtestContainer}>
+        {AddTestCase ? (
+          <OpenAddTestCase
+            closefun={() => {
+              openAddTestCase(!AddTestCase);
+            }}
+            id={id}
+          ></OpenAddTestCase>
+        ) : edit ? (
+          <OpenAddTestCase
+            closefun={() => {
+              setedit(!edit);
+            }}
+            edit={edit}
+          ></OpenAddTestCase>
+        ) : (
+          <></>
+        )}
+        <div className={Style.GuideLineContainer}>
+          <div className={Style.BtnContainer}>
+            <button
+              onClick={() => {
                 openAddTestCase(!AddTestCase);
               }}
-              id={id}
-            ></OpenAddTestCase>
-          ) : edit ? (
-            <OpenAddTestCase
-              closefun={() => {
-                setedit(!edit);
-              }}
-              edit={edit}
-            ></OpenAddTestCase>
-          ) : (
-            <></>
-          )}
-          <div className={Style.GuideLineContainer}>
-            <div className={Style.BtnContainer}>
-              <button
-                onClick={() => {
-                  openAddTestCase(!AddTestCase);
-                }}
-                className={Style.testCasebtn}
-              >
-                {" "}
-                Add Test case
-              </button>
-            </div>
+              className={Style.testCasebtn}
+            >
+              {" "}
+              Add Test case
+            </button>
           </div>
+        </div>
+        <div className={Style.tableContainer}>
           <table className={Style.testCaseTable}>
-            <thead className={Style.theadtd}>
+            <thead className={Style.tableBody}>
               <tr className={Style.trth}>
-                <th className={Style.tabledata}>Sr</th>
-                <th className={Style.tabledata}>Input</th>
-                <th className={Style.tabledata}>Output</th>
-                <th className={Style.tabledata}>Eaxmple</th>
-                <th className={Style.tabledata}>Marks</th>
-                <th className={Style.tabledata}></th>
+                <th className={`${Style.tabledata} ${Style.sr}`}>Sr</th>
+                <th className={`${Style.tabledata} ${Style.textfile}`}>
+                  Input
+                </th>
+                <th className={`${Style.tabledata} ${Style.textfile}`}>
+                  Output
+                </th>
+                <th className={`${Style.tabledata} ${Style.example}`}>
+                  Eaxmple
+                </th>
+                <th className={`${Style.tabledata} ${Style.marks}`}>Marks</th>
+                <th className={`${Style.tabledata}`}></th>
               </tr>
             </thead>
-            <tbody>
-              {testCases.map((data, index) => (
+            <tbody className={Style.tableBody}>
+              {testCases?.map((data, index) => (
                 <TableRow
                   key={index}
                   index={index}
                   testCase={data}
                   onEdit={openEdit}
+                  onDelete={handelDelete}
                 ></TableRow>
               ))}
             </tbody>
           </table>
         </div>
-      )}
+        {loading && <Loader msg={loading}></Loader>}
+      </div>
     </>
   );
 }

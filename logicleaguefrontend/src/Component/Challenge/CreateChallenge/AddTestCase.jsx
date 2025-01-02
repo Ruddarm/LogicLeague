@@ -70,7 +70,7 @@ function OpenAddTestCase({ closefun, id, edit }) {
       isSample: oldTestCase.isSample,
     }));
     setLoading(false);
-    console.log(oldTestCase)
+    console.log(oldTestCase);
   };
   const InputFeildHandel = (index, field, value) => {
     setTestCase((prev) => {
@@ -95,14 +95,17 @@ function OpenAddTestCase({ closefun, id, edit }) {
     }));
   };
   const upload = async () => {
+    setLoading(true);
     const res = await uploadTestCase(id, testCase);
-    console.log(res);
+    setLoading(false);
+    closefun();
+    // console.log(res);
   };
   return (
     <>
       <div className={Style.TestCaseContinaer}>
         {loading ? (
-          <Loader msg={"Fetching...."}></Loader>
+          <Loader msg={`${loading ? "fetching..." : "Uploading..."}`}></Loader>
         ) : (
           <>
             <div className={Style.TestCaseHeader}>
@@ -115,7 +118,7 @@ function OpenAddTestCase({ closefun, id, edit }) {
                 </button>
               </div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className={Style.inner}>
               <div className={Style.GuideLineContainer}>
                 <b>Input Guidelines</b> <br></br>
                 <p>Each test case defines input variables and their values.</p>
@@ -130,6 +133,23 @@ function OpenAddTestCase({ closefun, id, edit }) {
                   <b> For lists:</b> marks = [2, 5, 8] (values separated by
                   commas inside []).
                 </p>
+              </div>
+              <div className={Style.InputContainer}>
+                <div className={Style.InputinnerContainer}>
+                  <div className={Style.marks}>
+                    <div>Is sample</div>
+                    <div>
+                      <input
+                        className={Style.marksInput}
+                        type="checkbox"
+                      ></input>
+                    </div>
+                  </div>
+                  <div className={Style.marks}>
+                    <div>Marks</div>
+                    <input className={Style.marksInput} type="number"></input>
+                  </div>
+                </div>
               </div>
               <div className={Style.InputContainer}>
                 <h4>Input:-</h4>
@@ -152,11 +172,17 @@ function OpenAddTestCase({ closefun, id, edit }) {
                   <p>Each output value must be on a new line (\n).</p>
                 </div>
                 <h4>Output:-</h4>
-                <DefualtEditior prevData={testCase.output} setData={outPutHandel}></DefualtEditior>
+                <DefualtEditior
+                  prevData={testCase.output}
+                  setData={outPutHandel}
+                ></DefualtEditior>
               </div>
               <div className={Style.InputContainer}>
                 <h4>Explanation</h4>
-                <TextEditior prevData={testCase.explaination} setData={explainationHandel}></TextEditior>
+                <TextEditior
+                  prevData={testCase.explaination}
+                  setData={explainationHandel}
+                ></TextEditior>
               </div>
               <button id={Style.savebtn} onClick={upload}>
                 Upload

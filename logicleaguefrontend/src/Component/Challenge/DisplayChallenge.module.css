@@ -3,14 +3,18 @@
     display: block;
     flex: 1;
     display: flex;
-    overflow: auto;
+    max-width: 100%;
+    padding: 1rem;
+    /* background-color: yellow; */
+    overflow: hidden;
     font-family: 'Times New Roman', Times, serif;
+    
 }
 .DisplayChallengeHeader{
     display: flex;
     background-color: white;
-    min-width: max-content;
-    width: 80%;
+    width: max-content;
+    /* width: 70%; */
     border-radius: 10px;
     grid-template-columns: repeat(10,10%) ;
     grid-template-rows:  max-content  auto ;
@@ -19,17 +23,20 @@
     padding: 1rem;
     justify-content: flex-start;
     margin:  1rem auto;
+    position: relative;
     overflow: auto;
-    
+
 }
 
 
 .Displaythtr{
     min-height: max-content;
-    width: 100%;
     display: grid;
+    min-width: 600px;
+    max-width: 100%;
     grid-template-columns: repeat(10,10%);
     padding: 0.2rem 0.5rem;
+    margin-top: 10px;
 
 }
 .DispalyData{
@@ -39,6 +46,7 @@
     display: flex;
     align-items: center;
     padding: 0.5rem;
+
     justify-content: flex-start;
 }
 .status {
@@ -84,9 +92,6 @@
     border-top: 2px solid gainsboro;
     border-bottom: 2px solid gainsboro;
 }
-.gridtwo{
-    grid-column: 1/4;
-}
 .challengeLevel{
     /* background-color: black; */
     display: flex;
@@ -108,4 +113,41 @@
 .hard{
 
     color: red;
+}
+
+
+@media (max-width:480px) {
+    .DisplayContainer{
+        padding: 0.5rem;
+    }
+    .DisplayChallengeHeader{
+        width: 100%;
+        padding: 0.25rem;
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    
+    }
+    .Displaythtr{
+        min-width:100%;
+    }
+    .status{
+        grid-column: 1/2;
+    }
+    .title{
+        display:flex;
+        grid-column: 3/6;
+         max-width: 100%;
+        text-wrap: nowrap;
+        overflow: hidden;
+        border: 1px solid red;
+        text-overflow: ellipsis;
+    }
+    .level{
+        grid-column: 7/9;
+    }
+    .playnow{
+        grid-column: 9/10;
+    }
+    
 }

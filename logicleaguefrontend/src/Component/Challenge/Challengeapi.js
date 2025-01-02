@@ -63,8 +63,8 @@ const uploadTestCase = async (challegneID, testCase) => {
   return response;
 };
 
-const deleteTestCase = async (testCaseId)=>{
-  const response = await axiosInstance.delete(`challenges/challenge/admin/${testCaseId}/testCase/`)
+const deleteTestCase = async (challegneID,testCaseId)=>{
+  const response = await axiosInstance.delete(`challenges/challenge/admin/${challegneID}/testCase/${testCaseId}/`)
   return response
 }
 

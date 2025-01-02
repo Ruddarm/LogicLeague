@@ -58,34 +58,30 @@ function ChallengeBoard() {
   };
   return (
     <>
-      {console.log("is loading",loading)}
-      {loading ? (
-        <Loader msg={"loading..."}></Loader>
-      ) : (
-        <div className={`${Style.DisplayContainer}`}>
-          <table className={`${Style.DisplayChallengeHeader}`}>
-            <thead className={`${Style.Displaythtr} ${Style.head}`}>
-              <th className={`${Style.DispalyData}  ${Style.status}`}>
-                Status
-              </th>
-              <th className={`${Style.DispalyData} ${Style.title}`}>Title</th>
-              <th className={`${Style.DispalyData} ${Style.level}`}>Level</th>
-              <th className={`${Style.DispalyData} ${Style.playnow}`}></th>
-            </thead>
-            <tbody>
-              {challenges.map((data) => (
-                <>
-                  <GetChallengeRow
-                    key={data.challengeID}
-                    challenge={data}
-                    handeler={playNowHandel}
-                  ></GetChallengeRow>
-                </>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      {console.log("is loading", loading)}
+      <div className={`${Style.DisplayContainer}`}>
+        <table className={`${Style.DisplayChallengeHeader}`}>
+          {loading && <Loader msg={"loading..."}></Loader>}
+
+          <thead className={`${Style.Displaythtr} ${Style.head}`}>
+            <th className={`${Style.DispalyData}  ${Style.status}`}>Status</th>
+            <th className={`${Style.DispalyData} ${Style.title}`}>Title</th>
+            <th className={`${Style.DispalyData} ${Style.level}`}>Level</th>
+            <th className={`${Style.DispalyData} ${Style.playnow}`}></th>
+          </thead>
+          <tbody>
+            {challenges.map((data) => (
+              <>
+                <GetChallengeRow
+                  key={data.challengeID}
+                  challenge={data}
+                  handeler={playNowHandel}
+                ></GetChallengeRow>
+              </>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

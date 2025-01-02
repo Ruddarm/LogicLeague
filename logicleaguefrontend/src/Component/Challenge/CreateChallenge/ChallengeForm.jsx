@@ -21,7 +21,7 @@ function challengeForm({ ChallengeState, setChallengeState, inputHandel }) {
         </p>
       </div>
       <div className={Style.InputContainer}>
-        <label>Challenge Description</label>
+        <label className={Style.lits}>Challenge Description</label>
         <textarea
           onChange={(e) => {
             inputHandel(e);
@@ -73,7 +73,7 @@ function challengeForm({ ChallengeState, setChallengeState, inputHandel }) {
               inputFormat: data,
             }))
           }
-          prevData={ChallengeState.inputFormat ?? "" }
+          prevData={ChallengeState.inputFormat ?? ""}
         ></Editor>
         <p id="inputFormatError" className={Style.ErrorMsg}>
           Problem Statement is required

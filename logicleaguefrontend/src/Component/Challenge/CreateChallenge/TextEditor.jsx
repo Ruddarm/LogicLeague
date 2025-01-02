@@ -20,7 +20,6 @@ function DefualtEditior({ setData, prevData = "" }) {
       });
       if (prevData) {
         try {
-          console.log(prevData)
           quillInstanceRef.current.setText(prevData);
         } catch (e) {
           console.error("Error parsing prevData:", e);
@@ -73,7 +72,9 @@ function TextEditior({ setData, prevData = "" }) {
 
       if (prevData) {
         try {
-          const parsedData = JSON.parse(prevData); // Parse prevData if it's a string
+
+          const parsedData = JSON.parse(prevData); // Par
+          // se prevData if it's a string
           quillInstanceRef.current.setContents(parsedData);
         } catch (e) {
           console.error("Error parsing prevData:", e);

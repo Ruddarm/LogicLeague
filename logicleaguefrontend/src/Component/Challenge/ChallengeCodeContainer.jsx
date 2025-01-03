@@ -31,41 +31,47 @@ function CodeConainter() {
   };
   return (
     <>
-      <div className={Style.CodeContainer}>
-        {maxContext.max.terminal ? (
-          <></>
-        ) : (
-          <>
+      {maxContext.max.desc ? (
+        <></>
+      ) : (
+        <>
+          <div className={`${Style.CodeContainer}`}>
+            {maxContext.max.terminal || maxContext.max.desc ? (
+              <></>
+            ) : (
+              <>
+                <div
+                  ref={codeContainerRef}
+                  style={{ height: heightContext.height }}
+                  className={
+                    maxContext.max.codeEditior
+                      ? `${Style.CodeEditor} ${Style.flexOne}`
+                      : Style.CodeEditor
+                  }
+                >
+                  <CodeEditor />
+                </div>
+                <div
+                  className={Style.VResizer}
+                  onMouseDown={handleVerticalMouseDown}
+                />
+              </>
+            )}
+
             <div
-              ref={codeContainerRef}
-              style={{ height: heightContext.height }}
               className={
-                maxContext.max.codeEditior
-                  ? `${Style.CodeEditor} ${Style.flexOne}`
-                  : Style.CodeEditor
+                maxContext.max.codeEditior || maxContext.max.desc
+                  ? `${Style.TestCaseContainer} ${Style.displayNone}`
+                  : maxContext.max.terminal
+                  ? `${Style.TestCaseContainer} mt`
+                  : Style.TestCaseContainer
               }
             >
-              <CodeEditor />
+              <TestCase></TestCase>
             </div>
-            <div
-              className={Style.VResizer}
-              onMouseDown={handleVerticalMouseDown}
-            />
-          </>
-        )}
-
-        <div
-          className={
-            maxContext.max.codeEditior || maxContext.max.desc
-              ? `${Style.TestCaseContainer} ${Style.displayNone}`
-              : maxContext.max.terminal
-              ? `${Style.TestCaseContainer} mt`
-              : Style.TestCaseContainer
-          }
-        >
-          <TestCase></TestCase>
-        </div>
-      </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

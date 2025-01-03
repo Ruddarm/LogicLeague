@@ -1,5 +1,26 @@
 .Container{
     min-height:2.5rem;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+}
 
+.maxiBtn{
+
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.maxiBtn img{
+    width: 24px;
+    height: 24px;
 }

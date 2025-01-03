@@ -97,10 +97,10 @@ li:hover{
 .NavContainer{
     flex: 1;
     display: flex;
-    background-color: blue;
+    /* background-color: blue; */
     justify-content: center;
     flex-direction: row;
-    z-index: 5000;
+
 }
 /* .profileContianer ul li{
     background-color: aliceblue;
@@ -124,6 +124,7 @@ li:hover{
 
     }
     .HamBurger{
+        /* background-color: yellow; */
         display: flex;
         justify-content: center;
         align-content: center;
@@ -154,7 +155,7 @@ li:hover{
         justify-content: center;
         border: 1px solid black;
         border-radius: 10px;
-
+        z-index: 1000;
         box-shadow: 2px 1px 4px black;
     }
     .unorderlist{

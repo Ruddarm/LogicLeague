@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./Component/utils/authencation";
 import ChallengePlayground from "./Component/Challenge/ChallengePlayground.jsx";
+import { PlayGroundChallengeContextProvider } from "./Component/Challenge/ChallengeContext.js";
 import { ResizeProvider } from "./Component/Challenge/ResizeContext.jsx";
 import CreateChallengePage from "./Component/Challenge/CreateChallenge/create.jsx";
 import ChallengeBoard from "./Component/Challenge/DisplayChallenge.jsx";
@@ -42,7 +43,9 @@ function App() {
                 path="/challenge/:id"
                 element={
                   <ResizeProvider>
-                    <ChallengePlayground />
+                    <PlayGroundChallengeContextProvider>
+                      <ChallengePlayground />
+                    </PlayGroundChallengeContextProvider>
                   </ResizeProvider>
                 }
               />

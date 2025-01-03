@@ -1,22 +1,26 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import Style from "./ChallengePlayground.module.css";
 import { useParams } from "react-router-dom";
-import CodeEditor from "../CodeEditior/Code";
+// import CodeEditor from "../CodeEditior/Code";
 import { ResizeContext } from "./ResizeContext";
 import ChallengeDesc from "./ChallengeDescription/ChallengeDescripiton";
-import TestCase from "./Terminal/TerminalContainer";
+// import TestCase from "./Terminal/TerminalContainer";
 import { FetchChallengeByID, fetchTestCase } from "./Challengeapi";
-import Header from "../utils/header";
+// import Header from "../utils/header";
 import CodeConainter from "./ChallengeCodeContainer";
 import { CodeContextProvider } from "./CodeContext";
-import axiosInstance from "../utils/request";
+import { PlayGroundChallengeContext } from "./ChallengeContext";
+// import axiosInstance from "../utils/request";
 import Loader from "../utils/loading";
 export default () => {
+  console.log("rendring")
   const { widthContext, maxContext } = useContext(ResizeContext);
+  const {challengeContext,testCasesContext} = useContext(PlayGroundChallengeContext)
   const descBoxRef = useRef(null);
   const { id } = useParams();
   const [loadChallenge, setLoadChallenge] = useState(true);
   const [challengeDesc, setChallengeDesc] = useState("");
+  const [testCases, setTestCases] = useState("")
   useEffect(() => {
     GetChallenge();
   }, [id]);
@@ -24,8 +28,7 @@ export default () => {
     const response = await FetchChallengeByID(id);
     setLoadChallenge(false);
     if (response?.status == 200) {
-      console.log(response.data);
-      setChallengeDesc(response.data?.challenge);
+      challengeContext.setChallengeData(response.data?.challenge);
     }
   };
   const handleHorizontalMouseDown = (e) => {
@@ -54,15 +57,21 @@ export default () => {
       <div className={Style.innerPlayground}>
         <div
           ref={descBoxRef}
-          style={{ width: widthContext.width, maxWidth: "70%" }}
+          style={{
+            width: widthContext.width,
+            maxWidth: maxContext.max.desc?"100%":"70%",
+
+          }}
           className={
             maxContext.max.codeEditior || maxContext.max.terminal
               ? `${Style.ChallengeDescBox} ${Style.displayNone}`
+              : maxContext.max.desc
+              ? `${Style.ChallengeDescBox} ${Style.flexOne}`
               : Style.ChallengeDescBox
           }
         >
           {loadChallenge && <Loader></Loader>}
-          <ChallengeDesc challenge={challengeDesc} />
+          <ChallengeDesc challenge={challengeContext.challengeData} />
         </div>
         {maxContext.codeEditior || maxContext.terminal || maxContext.desc || (
           <div
@@ -70,7 +79,6 @@ export default () => {
             onMouseDown={handleHorizontalMouseDown}
           />
         )}
-
         <CodeContextProvider>
           <CodeConainter></CodeConainter>
         </CodeContextProvider>

@@ -23,7 +23,7 @@ function CreateChallengePage({ edit = false }) {
   });
   const [loading, setLoading] = useState(true);
   const { tabContext } = useContext(CreateChallengeTabContext);
-  const [uploadChallenge, setUploadChallenge] = useState(false);
+  // const [uploadChallenge, setUploadChallenge] = useState(false);
   const { id } = useParams("id");
   const keys = [
     "challengeName",
@@ -71,7 +71,7 @@ function CreateChallengePage({ edit = false }) {
       if (edit) {
         const response = await FetchChallengeByID(id);
 
-        if (response?.status == 200) {
+        if (response?.status === 200) {
           const responseChallenge = response.data.challenge;
           setChallengeState((prev) => ({
             ...prev,
@@ -89,7 +89,7 @@ function CreateChallengePage({ edit = false }) {
         setLoading(false);
       }
     };
-  }, [id]);
+  }, [edit,id]);
   return (
     <>
       {loading ? (
@@ -124,7 +124,7 @@ function CreateChallengePage({ edit = false }) {
                     )}
 
                 {tabContext.tab.TestCaseTab && (
-                  <TestCasePage id={id}></TestCasePage>
+                  <TestCasePage challengeId={id}></TestCasePage>
                 )}
               </div>
               <div className={Style.btnContainer}>

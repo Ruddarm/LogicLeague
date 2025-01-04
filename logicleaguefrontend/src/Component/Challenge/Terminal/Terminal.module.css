@@ -9,7 +9,9 @@
     word-wrap: break-word;
     overflow-x: auto;
 }
-
+.terminalContainer pre{
+    margin: 0;
+}
 #errormsg{
  color: red;
 }

@@ -1,0 +1,588 @@
+.bodyContainer{
+    /* background-color: yellow; */
+    background-color: white;
+    flex: 1;
+    overflow-y: auto;
+    padding: 5px;
+}
+.main{
+    margin: 0;
+    padding: 0;
+    height: max-content;
+    /* background-color:red; */
+    width: 100%;
+    background:linear-gradient(to bottom, rgba(30,250, 93,0.1),rgba(255, 255, 255,1));  
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    /* border: 2px solid red; */
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.mainContainer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem;
+    /* background-color: green; */
+}
+#heading{
+    letter-spacing: 2px;
+    word-spacing: 6px;
+    height: auto;
+    margin: 1rem;
+    font-size: 2rem;
+    font-style: italic;
+}
+#Qutoe{
+    font-family: "Karla", serif;
+    font-style: italic;
+    word-spacing: 5px;
+    font-weight: lighter;
+    font-family: sans-serif;
+    /* padding-top: 30px; */
+    border: 1px solid lightgreen 0.5;
+    border-radius: 10px;
+    height: auto;
+    padding: 2rem;
+    /* width: 1000px; */
+    /* padding-bottom: 30px; */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, 
+    rgb(30, 250, 93, 0.2) 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgb(153, 94, 247,0.2) 100%);   
+    box-shadow: #66ccff;
+    margin: 0;
+}
+.main2{
+    height: auto;
+    background: linear-gradient(45deg, 
+    rgb(30, 250, 93, 0.3) 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgb(153, 94, 247,0.3) 100%);
+    box-shadow: lightgreen;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: center;
+    align-items: center; 
+    justify-content: space-around;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* background-color: yellow;s */
+    
+}
+
+.mainContainer2{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    /* background-color: green; */
+}
+.compilerImgContainer{
+    flex: 1;
+    height: 100%;
+    padding: 0.5rem;
+    /* background-color: red; */
+}
+
+#info{
+    /* background-color: tomato; */
+    margin: 0px;
+    width: auto;
+    height: auto;
+    padding: 0.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-size: 1.3rem;
+}
+#list{
+    margin: 0;
+    padding: 0;
+    /* background-color: blueviolet; */
+}
+#list li{  
+    display: flex; 
+    flex-direction: column;
+    color: blue;
+    list-style-type: disc;
+    font-weight: 700;
+    padding: 0px;
+    margin: 0px;
+}
+#list p{
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+#heading{
+    letter-spacing: 2px;
+    word-spacing: 6px;
+    height: auto;
+    margin: 1rem;
+    font-size: 2rem;
+    font-style: italic;
+    /* background-color: green; */
+}
+#img{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 10px 10pxblack;
+    opacity: 0;
+    transform: translateY(20px); 
+    transition: opacity 1s ease, transform 1s ease; 
+    animation: fadeIn 2s ease forwards; 
+}
+
+.main3{
+    padding: 0;
+    height:auto ; 
+    padding: 1rem;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    /* background-color: lemonchiffon; */
+    box-shadow: lightgreen;
+    background: linear-gradient(to bottom, rgb(255, 255, 255,0.5), rgba(57, 127, 230, 0.3));
+    background: linear-gradient(45deg ,rgb(45, 250, 93,0.2) ,rgba(255, 255, 255, 0.3), rgb(153, 94, 247,0.2));
+}
+.main3Content{
+    flex: 1;
+}
+.main3ImgContainer{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    overflow: hidden;
+    height: 100%;
+    /* background-color: red; */
+}
+.image{
+    padding: 0;
+    margin: 0;
+    height:100%;
+    /* padding: 2rem; */
+    width:100%;
+    /* background-color: yellowgreen; */
+    border-radius: 10px;
+    /* background-size: cover; */
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease; 
+    animation: fadeIn 10s ease forwards; 
+   
+}
+.contest{
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    width: 100%;
+    padding:1rem 0 0 0;
+    /* background-color: green; */
+    background: linear-gradient(to bottom, rgb(255, 255, 255,0.6), rgba(57, 127, 230, 0.3));
+    background: linear-gradient(45deg ,rgb(45, 250, 93,0.4) ,rgba(255, 255, 255, 0.3), rgb(153, 94, 247,0.4));
+    box-shadow: #66ccff;
+    box-shadow: 3px;
+    overflow: hidden;
+    /* border-radius: 10px; */
+}
+.contest h2{
+    
+    font-size: 2rem;
+    margin: 0;
+}
+.contestContainer{
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+    padding: 1rem 0 0 0;
+    overflow: hidden;
+    /* background-color: pink; */
+}
+
+.contestCardContainer{
+    /* background-color: blue; */
+    display: flex;
+    padding: 0.5rem;
+    padding-bottom: 2rem;
+
+    overflow: auto;
+}
+.card{ 
+    height: 280px;
+    min-width:280px;
+    padding: 0.5rem;
+    margin-top: 5px;
+    border: 1px solid gainsboro;
+    outline: 1px solid white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 0.5rem;
+    color: black;
+    /* margin: 70px; */
+    background-color:rgba(0, 0, 0, 0.521);
+    background-color:rgba(14, 232, 112,0.8);
+    text-align: center;      
+}
+.contestTitle{
+    /* background-color: yellow; */
+}
+.contestDate{
+    /* background-color: rebeccapurple; */
+}
+.Register{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card p{
+    font-size: 1.2rem;
+}
+.card h3 a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+}
+
+.Regbtn{
+        height: auto;
+        display: flex;
+        width: auto;
+        padding: 0.5rem 2rem;
+        border: 1.5px solid lightblue;
+        outline: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 2px;
+        background-color:black;
+        color: white;
+        cursor: pointer;
+        font-size: 20px;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+ #image:in-viewport {
+    animation: fadeIn 10s ease forwards; 
+}
+
+#img :in-viewport {
+    animation: fadeIn 2s ease forwards; 
+} 
+
+
+/* Clg info */
+.BharatiVidyapeeth {
+    display: flex;
+    /* background-color: pink; */
+    flex-direction: column; 
+    align-items: center;
+    height: auto;
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: linear-gradient(45deg, rgb(45, 250, 93, 0.2), rgba(255, 255, 255, 0.3), rgb(153, 94, 247, 0.2));
+}
+
+.contentContainer {
+    display: flex;
+    /* background-color: orange; */
+    flex-direction: row; 
+    text-align: center; 
+    justify-content: center;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; 
+    margin-top: 20px;
+    /* padding: 0 0 50px 50px; */
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    /* background-color: green; */
+    font-size: 1.5rem;
+    align-items: center;
+    text-align: center; 
+    justify-content: center;
+}
+.photo{
+    display: flex;
+    flex-direction: column;
+    width: 50%;   
+    padding: 2rem;
+    /* background-color: yellow; */
+}
+.paragraph{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0.5rem;
+    /* background-color: #66ccff; */
+}
+#Bvdu_image {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* height: 600px; */
+    height: auto;
+    width: 100%; 
+    border-radius: 20px;
+}
+#Intro {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 40px;
+    height: auto;
+    width: 90%; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    text-align: justify;
+    list-style: disc; 
+    margin: 0;
+}
+
+#Intro li{
+    font-size: 20px;
+    line-height: 30px;
+} 
+#Read_more_btn{
+    height: 25px;
+    border-radius: 5px;
+}
+#Read_more_btn a{
+    text-decoration: none;
+    color: black;    
+}
+
+
+.social_media{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: auto;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* background-color: #98f5ae33; */
+    background-color: white;
+    box-shadow:  2px 2px rgb(45, 250, 93,0.1);
+    /* border-top: 1px; */
+    color: black;
+    /* background-color: red; */
+}
+.logo_with_name{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    /* background-color: yellow; */
+    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+
+}
+.name_contianer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* background-color: orange; */
+}
+ .social_media p{
+    font-size: 1rem;
+    /* margin-left: 50px; */
+} 
+.social{
+    /* background-color: orange; */
+    width: 100%;
+    /* padding: 1rem; */
+    display: flex;
+    flex-direction: column;
+}
+.follow{
+    /* background-color: blue; */
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    color: black;
+}
+.follow >p{
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    /* background-color: pink; */
+     font-weight: bold;
+}
+.symbol{
+    display: flex;
+    /* background-color: pink; */
+    /* width: 100%; */
+    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+}
+.icon{
+    display: flex;
+    width: max-content;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    /* background-color: yellow; */
+}
+.social_media i{ 
+    padding: 0 0.5rem ;
+    opacity: 0.5;
+    font-size: 25px;
+    color: black;
+    /* margin-left: 1.2rem; */
+}
+.social_media h3{
+  display: flex;
+  margin-left: 20px; 
+  line-height: 70px;
+  font-size: 1.5rem;
+  /* top: 50px; */
+}
+.copywrite{
+    /* background-color: cadetblue; */
+    display: flex;
+    flex-direction: row;
+    /* background-color: yellow; */
+    padding: 0.5rem;
+    width: 100%;
+    justify-content: center;
+}
+#bvp{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    bottom: -20px;
+    height: 100px;
+    width: 100px;
+    border-top-left-radius: 150%;
+    border-top-right-radius: 150%;
+    
+}
+
+.social_media i:hover{
+    color: black;
+    opacity: 1;
+} 
+
+.btn:hover{
+ background-color: #4f5250;
+ 
+}
+#Read_more_btn:hover{
+    background-color:green;
+}
+
+
+
+@media(max-width:480px) {
+    .bodyContainer{
+        padding: 2px;
+    }
+    .mainContainer{
+        /* background-color: yello/w; */
+        padding: 0.5rem;
+    }
+    #heading{
+        margin: 0.8rem 0.2rem;
+        font-size: 1.5rem;
+        /* background-color: red; */
+    }
+    #bhendi{
+        font-size: 1rem;
+        padding: 1rem;
+    }
+    .card{    
+        /* flex-wrap:wrap */
+    }
+
+    #info{
+        font-size: 12px;
+    }
+    .mainContainer2{
+        /* background-color: pink; */
+        flex-direction: column;
+    }
+    .main3{
+        flex-direction: column;
+    }
+    .main3Content{
+        text-align: center;
+    }
+    .main3ImgContainer{
+        width: 100%;
+        /* background: yellow; */
+        justify-content: center;
+    }
+    .contest{
+        overflow: hidden;
+        /* background-color: pink; */
+        padding: 0.5rem;
+    }
+    .contentContainer{
+        /* background-color: yellowgreen; */
+        flex-direction: column;
+    }
+    .title{
+        font-size: 0.8rem;
+    }
+    .photo{
+        width: 100%;
+        padding: 0.5rem;
+    }
+    .paragraph {
+        width: 100%;
+    }
+    .logo_with_name{
+        /* background-color: antiquewhite; */
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .logo_with_name h3,h4{
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8rem;
+        /* background-color: azure; */
+    }
+    
+}

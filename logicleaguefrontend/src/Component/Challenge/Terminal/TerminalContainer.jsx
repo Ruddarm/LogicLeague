@@ -23,7 +23,7 @@ function GetCase({ variable, value }) {
     <>
       <div className={Style.Case}>
         <span>{variable}</span>
-        <div>{value}</div>
+        <div style={{height:"auto"}}><pre style={{margin:0}}>{value}</pre></div>
       </div>
     </>
   );
@@ -48,7 +48,7 @@ function TerminalContainer({ Output }) {
   const [testCases, setTestCases] = useState([]);
   const GetTestCases = async () => {
     const testCaseResponse = await fetchTestCases(id, true);
-    if (testCaseResponse?.status == 200) {
+    if (testCaseResponse?.status === 200) {
       setTestCases(testCaseResponse.data.testCases);
     }
   };

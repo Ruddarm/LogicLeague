@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Style from "./ChallengeDescripiton.module.css";
 import DescHead from "./DescHead.jsx";
 import Loader from "../../utils/loading.jsx";
-import Quill, { Delta } from "quill";
+import Quill from "quill";
 // import "quill/dist/quill.snow.css";
 import DOMPurify from "dompurify";
 import { PlayGroundChallengeContext } from "../ChallengeContext.js";
@@ -20,10 +20,12 @@ function getHtmlformat(data) {
 function GetInput({ variable, value }) {
   return (
     <>
-      <div className={Style.inputContinaer} >
-        <div>{variable}</div>
+      <div className={Style.inputContinaer}>
+        <div><b>{variable}</b></div>
         <div className={Style.outputContinaer}>
-          <div>{value}</div>
+          <div>
+            <pre style={{margin:0}} >{value}</pre>
+          </div>
         </div>
       </div>
     </>

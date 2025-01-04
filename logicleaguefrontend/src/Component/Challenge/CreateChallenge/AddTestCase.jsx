@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Style from "./AddTestCase.module.css";
-import { fetchTestCase, uploadTestCase } from "../Challengeapi";
+import { fetchTestCase, updateTestCase, uploadTestCase } from "../Challengeapi";
 import TextEditior, { DefualtEditior } from "./TextEditor";
 import Loader from "../../utils/loading";
 function GetInputField({ index, data, InputFeildHandel }) {
@@ -36,7 +36,7 @@ function GetInputField({ index, data, InputFeildHandel }) {
     </>
   );
 }
-function OpenAddTestCase({ closefun, id, edit }) {
+function OpenAddTestCase({ closefun, challengeId, edit }) {
   // modle for test case
   const [loading, setLoading] = useState(false);
   const [testCase, setTestCase] = useState({
@@ -45,7 +45,7 @@ function OpenAddTestCase({ closefun, id, edit }) {
     explaination: "",
     isSample: false,
     marks: 0,
-    challengeID: id,
+    challengeID: challengeId,
   });
   const input = {
     variable: "",
@@ -54,9 +54,9 @@ function OpenAddTestCase({ closefun, id, edit }) {
 
   useEffect(() => {
     if (edit) {
-      getExistingTask(id, edit);
+      getExistingTask(challengeId, edit);
     }
-  }, [edit]);
+  }, [challengeId, edit]);
   const getExistingTask = async (challengeID, testCaseId) => {
     setLoading(true);
     const response = await fetchTestCase(challengeID, testCaseId);
@@ -95,12 +95,20 @@ function OpenAddTestCase({ closefun, id, edit }) {
     }));
   };
   const upload = async () => {
+    if (edit) {
+      setLoading(true);
+      const res = await updateTestCase(challengeId, edit, testCase);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
-    const res = await uploadTestCase(id, testCase);
+    const res = await uploadTestCase(edit, testCase);
     setLoading(false);
     closefun();
     // console.log(res);
   };
+  console.log(testCase);
+
   return (
     <>
       <div className={Style.TestCaseContinaer}>
@@ -114,7 +122,7 @@ function OpenAddTestCase({ closefun, id, edit }) {
               </div>
               <div>
                 <button onClick={closefun} className={Style.closebtn}>
-                  <img src="/close.png"></img>
+                  <img src="/close.png" alt="close"></img>
                 </button>
               </div>
             </div>
@@ -142,12 +150,28 @@ function OpenAddTestCase({ closefun, id, edit }) {
                       <input
                         className={Style.marksInput}
                         type="checkbox"
+                        value={testCase.isSample}
+                        onChange={(e) => {
+                          setTestCase((prev) => ({
+                            ...prev,
+                            isSample: e.target.checked,
+                          }));
+                        }}
                       ></input>
                     </div>
                   </div>
                   <div className={Style.marks}>
                     <div>Marks</div>
-                    <input className={Style.marksInput} type="number"></input>
+                    <input
+                      className={Style.marksInput}
+                      onChange={(e) => {
+                        setTestCase((prev) => ({
+                          ...prev,
+                          marks: e.target.value,
+                        }));
+                      }}
+                      type="number"
+                    ></input>
                   </div>
                 </div>
               </div>

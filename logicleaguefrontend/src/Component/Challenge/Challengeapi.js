@@ -25,15 +25,17 @@ const update_challenge = async (ChallengeState, id) => {
 };
 
 // fetch testcase as view [testId,marks,sample]
-const fetchTestCases = async (challengeId, userview = false , desc=false) => {
+const fetchTestCases = async (challengeId, userview = false, desc = false) => {
   if (userview) {
     const response = await axiosInstance.get(
       `challenges/challenge/${challengeId}/testCase/`
     );
     return response;
   }
-  if(desc){
-    const response = await axiosInstance.get(`challenges/challenge/${challengeId}/testCase/desc`)
+  if (desc) {
+    const response = await axiosInstance.get(
+      `challenges/challenge/${challengeId}/testCase/desc`
+    );
     return response;
   }
   const response = await axiosInstance.get(
@@ -49,11 +51,6 @@ const fetchTestCase = async (challengeId, testCaseId, edit = true) => {
     );
     return response;
   }
-  // const response = await axiosInstance.get(
-  //   `challenges/challenge/${challengeId}/testCase/${testCaseId}`
-  // );
-
-  // return response;
 };
 
 //upload a new testcase
@@ -67,10 +64,19 @@ const uploadTestCase = async (challegneID, testCase) => {
   return response;
 };
 
-const deleteTestCase = async (challegneID,testCaseId)=>{
-  const response = await axiosInstance.delete(`challenges/challenge/admin/${challegneID}/testCase/${testCaseId}/`)
+const deleteTestCase = async (challegneID, testCaseId) => {
+  const response = await axiosInstance.delete(
+    `challenges/challenge/admin/${challegneID}/testCase/${testCaseId}/`
+  );
+  return response;
+};
+const updateTestCase = async (challegneID, testCaseId,testCase) => {
+  const response = await axiosInstance.put(
+    `challenges/challenge/admin/${challegneID}/testCase/${testCaseId}/`,
+    {testCase}
+  );
   return response
-}
+};
 
 export {
   FetchChallengeByID,
@@ -80,5 +86,6 @@ export {
   uploadTestCase,
   FetchChallenges,
   fetchTestCases,
-  deleteTestCase
+  deleteTestCase,
+  updateTestCase
 };

@@ -4,15 +4,16 @@ import OpenAddTestCase from "./AddTestCase";
 import { fetchTestCase, fetchTestCases, deleteTestCase } from "../Challengeapi";
 import Loader from "../../utils/loading";
 function TableRow({ index, testCase, onEdit, onDelete }) {
+  console.log(testCase)
   return (
     <>
       <tr className={Style.trth}>
         <td className={`${Style.tabledata} ${Style.sr}`}>{index + 1}</td>
         <td className={`${Style.tabledata} ${Style.textfile}`}>
-          <a>input00.txt</a>
+          <a href="/nthng">input00.txt</a>
         </td>
         <td className={`${Style.tabledata} ${Style.textfile}`}>
-          <a>Output00.txt</a>
+          <a href="/nthng"> Output00.txt</a>
         </td>
         <td className={`${Style.tabledata} ${Style.example}`}>
           <input
@@ -20,7 +21,7 @@ function TableRow({ index, testCase, onEdit, onDelete }) {
             onChange={() => {
               console.log("fuck you");
             }}
-            value={testCase.isSample}
+            checked={testCase.isSample}
             readOnly
           ></input>
         </td>
@@ -54,26 +55,27 @@ function TableRow({ index, testCase, onEdit, onDelete }) {
     </>
   );
 }
-function TestCasePage({ id }) {
+function TestCasePage({challengeId}) {
   const [AddTestCase, openAddTestCase] = useState(false);
   const [testCases, setTestCases] = useState([]);
   const [edit, setedit] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [refresh,setRefresh] = useState(false)
 
   const openEdit = async (testcaseId) => {
     setedit(testcaseId);
   };
   useEffect(() => {
-    getTestCase(id);
-  }, [id]);
+    getTestCases(challengeId);
+  }, [challengeId,loading]);
   const handelDelete = (testcaseid) => {
     setLoading(true);
-    deleteTestCase(id, testcaseid);
+    deleteTestCase(challengeId, testcaseid);
     setLoading(false);
   };
   // Fetch all task id,marks,issample  deitals for view only
-  const getTestCase = async (challengeID) => {
-    const response = await fetchTestCases(challengeID);
+  const getTestCases = async (cId) => {
+    const response = await fetchTestCases(cId);
     setTestCases(response?.data.testCases);
     setLoading(false);
   };
@@ -85,13 +87,14 @@ function TestCasePage({ id }) {
             closefun={() => {
               openAddTestCase(!AddTestCase);
             }}
-            id={id}
+            challengeId={challengeId}
           ></OpenAddTestCase>
         ) : edit ? (
           <OpenAddTestCase
             closefun={() => {
               setedit(!edit);
             }}
+            challengeId={challengeId}
             edit={edit}
           ></OpenAddTestCase>
         ) : (

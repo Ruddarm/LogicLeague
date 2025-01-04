@@ -92,6 +92,7 @@ function TerminalContainer({ Output }) {
               <div className={Style.CaseDisplay}>
                 {testCases[caseIndex]?.input?.map((data, index) => (
                   <GetCase
+                    key={index}
                     variable={data.variable}
                     value={data.value}
                   ></GetCase>

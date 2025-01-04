@@ -1,12 +1,15 @@
 .CodeBarContainer{
     width: 100%;
     padding-left: 0.5rem;
-    background-color: #4d8a77;
+    /* background-color: #4d8a77; */
     height: 2.5rem;
     display: flex;
     color: white;
     justify-content: space-between;
     align-content: center;
+    /* background-color: rgba(183, 180, 184,0.8) finalaise by niks */
+    background-color: rgb(137, 137, 137);
+
 }
 
 .OptionContainer{

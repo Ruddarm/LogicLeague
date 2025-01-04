@@ -3,15 +3,15 @@ import { FetchChallengeByID } from "./Challengeapi";
 export const PlayGroundChallengeContext = createContext();
 export const PlayGroundChallengeContextProvider = ({ children }) => {
   const [challengeData, setChallengeData] = useState({});
-  const [testCases, setTestCasesData] = useState([]);
-
+  const [testCaseData, setTestCaseData] = useState([]);
   return (
     <>
       <PlayGroundChallengeContext.Provider
         value={{
           challengeContext: { challengeData, setChallengeData },
-          testCasesContext: { testCases, setTestCasesData },
+          testCasesContext : {testCaseData,setTestCaseData}
         }}
+
       >
         {children}
       </PlayGroundChallengeContext.Provider>

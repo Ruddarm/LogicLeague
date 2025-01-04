@@ -58,7 +58,7 @@ function ChallengeBoard() {
   };
   return (
     <>
-      {console.log("is loading", loading)}
+      {/* {console.log("is loading", loading)} */}
       <div className={`${Style.DisplayContainer}`}>
         <table className={`${Style.DisplayChallengeHeader}`}>
           {loading && <Loader msg={"loading..."}></Loader>}

@@ -8,23 +8,23 @@
     overflow-x: hidden;
     border-radius: 10px;
     position: relative;
+    border: 1px solid gainsboro;
     container: size;
-    background-color: red;
+    /* background-color: red; */
 }
 .Header{
 
     display: flex;
-    background-color: rgb(240, 240, 240);
     justify-content: flex-start;
     align-content: center;
     min-height: 2rem;
     max-height: 2rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    background-color:#4d8a77;
     outline: 1px solid #4d8a77;
     padding: 2px;
-    /* width: 100%; */
+    background-color: rgb(137, 137, 137);
+
 
 
 }

@@ -25,11 +25,15 @@ const update_challenge = async (ChallengeState, id) => {
 };
 
 // fetch testcase as view [testId,marks,sample]
-const fetchTestCases = async (challengeId, userview = false) => {
+const fetchTestCases = async (challengeId, userview = false , desc=false) => {
   if (userview) {
     const response = await axiosInstance.get(
       `challenges/challenge/${challengeId}/testCase/`
     );
+    return response;
+  }
+  if(desc){
+    const response = await axiosInstance.get(`challenges/challenge/${challengeId}/testCase/desc`)
     return response;
   }
   const response = await axiosInstance.get(

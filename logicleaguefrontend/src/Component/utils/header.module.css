@@ -6,6 +6,8 @@
     padding: 0rem 1rem;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
+    box-shadow: 1px 1px 4px rgba(45,250,93,0.2);
     /* background-color: red; */
     /* position: sticky;
     top: 0;
@@ -29,7 +31,7 @@
     display: none;
 }
 .logo{
-    color: white;
+    color: black;
     font-size: 1.8rem;
 }
 .Option{
@@ -69,7 +71,7 @@
     margin: 0;
     display: flex;
     text-decoration: none;
-    color: white;
+    color: black;
     size: 1.3rem;
 }
 li{

@@ -3,7 +3,6 @@ import Style from "./DescHead.module.css";
 import { ResizeContext } from "../ResizeContext.jsx";
 function DescHead() {
   const { maxContext } = useContext(ResizeContext);
-  console.log(maxContext)
   const maxDiscription = () => {
     maxContext.setMax((prev) => ({
       ...prev,

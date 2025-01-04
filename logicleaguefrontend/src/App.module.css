@@ -1,0 +1,9 @@
+.RouteBody{
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 100%;
+  /* background-color: aliceblue; */
+  /* height: 100%; */
+}

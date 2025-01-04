@@ -1,0 +1,15 @@
+.terminalContainer{
+    background-color: #2a272a;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    padding: 1rem;
+    color: white;
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-x: auto;
+}
+
+#errormsg{
+ color: red;
+}

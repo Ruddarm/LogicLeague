@@ -1,70 +1,118 @@
 .headContainer{
     width: 100%;
+    height: max-content;
     background-color: #0f3b3b;
-    /* padding: 0.5rem 1rem; */
     display: flex;
     padding: 0rem 1rem;
-    /* height: 5rem; */
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    background-color: white;
+    box-shadow: 1px 1px 4px rgba(45,250,93,0.2);
+    /* background-color: red; */
+    /* position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; */
 }
 .Headlogo{
     display: flex;
-    /* background-color: pink; */
-    justify-content: center;
+    width: auto;
+    justify-content: flex-start;
     align-items: center;
     padding: 0 1rem;
 }
+.NavBar{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
 
+}
 
+.closeMenu{
+    display: none;
+}
 .logo{
-    /* background-color: black; */
-    margin-right: 0.3rem;
-    color: white;
+    color: black;
     font-size: 1.8rem;
 }
 .Option{
+    /* background-color: pink; */
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+.HamBurger{
+    display: none;
 
-    /* background-color: red; */
+}
+.HamBurger button  {
+ background-color: transparent;
+ border: none;
+ height: 2rem;
+ width: 2rem;
+ outline: none;
+ cursor: pointer;
+}
+.HamBurger img{
+    background-color: transparent;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+   }
+.listContainer{
+    /* background-color: blue; */
     display: flex;
     vertical-align:middle;
     justify-content: center;
     
 }
-.Option ul{
+.unorderlist{
     list-style: none;
     margin: 0;
     display: flex;
     text-decoration: none;
-    color: white;
+    color: black;
     size: 1.3rem;
 }
 li{
-    /* background-color: sblue; */
+    /* background-color:#0f3b3b; */
     margin: 1rem;
-    font-size: 1.2rem
-    ;
+    font-size: 1.2rem;
+    height: auto;
 }
-li a{
+ a{
     font-family: inherit;
     color: inherit;
+    /* background-color: pink; */
     text-decoration: none;
 }
 li:hover{
     color: #e77b00;
     cursor: pointer;
 }
+.profileContianer{
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
+    /* background-color: red; */
+}
+.NavContainer{
+    flex: 1;
+    display: flex;
+    /* background-color: blue; */
+    justify-content: center;
+    flex-direction: row;
 
-
+}
+/* .profileContianer ul li{
+    background-color: aliceblue;
+} */
 /* Phone Configuration */
 
 @media (min-width:100px) and (max-width : 601px) {
 
     .headContainer{
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     .Headlogo{
@@ -72,6 +120,69 @@ li:hover{
         width: 100%;
     }
     .Option{
+        /* background-color: green; */
+        display: block;
+        flex: 0;
+
+    }
+    .HamBurger{
+        /* background-color: yellow; */
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    .NavBar{
         display: none;
+        text-align: center;
+    }
+    .NavContainer{
+        flex-direction: column;
+    }
+    .profileContianer{
+        
+        display: block;
+        /* background-color: pink; */
+    }
+    .Open{
+        overflow: hidden;
+        position: absolute;
+        top: 5rem;
+        /* right: 1rem; */
+        width: calc(100% - 1rem);
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        background-color:#0f3b3b;
+        min-height: auto;
+        justify-content: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        z-index: 1000;
+        box-shadow: 2px 1px 4px black;
+    }
+    .unorderlist{
+        display: block;
+    }
+    .closeMenu{
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.5rem 0.5rem;
+     
+        /* background-color: orange; */
+    }
+    .closeMenu button{
+        background-color: transparent;
+        border: none;
+        width: 1rem;
+        height: 1rem;
+        cursor: pointer;
+    }
+    .closeMenu button  img{
+        background-color: transparent;
+        border: none;
+        width: 1rem;
+        height: 1rem;
     }
 }
+
+

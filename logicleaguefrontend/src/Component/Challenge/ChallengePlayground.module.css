@@ -1,0 +1,133 @@
+
+*{
+  box-sizing: border-box;
+
+}
+.PlaygroundContainer{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    flex: 1;
+    align-content: center;
+    justify-content: center;
+    padding: 0 1rem 1rem 1rem;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* background-color: pink; */
+}
+.innerPlayground{
+  display: flex;
+  flex: 1;
+  /* min-height: 100%; */
+  overflow: auto;
+  /* background-color: aliceblue; */
+  /* height: 100px; */
+}
+/* .innerPlayground div{
+  background-color: beige;
+  width: 100%;
+  height: 800px;
+} */
+.ChallengeDescBox
+{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    overflow: auto;
+    min-width: 100px;
+    /* max-width: 100%; */
+}
+.CodeContainer{
+    width: auto;
+    min-width: 100px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    flex: 1;
+    /* background-color: yellow; */
+    /* background-color: yellow; */
+}
+
+.CodeEditor{
+    /* background-color: black; */
+    min-width: 150px;
+    display: flex;
+    width: 100%;
+    min-height: 150px;
+    height: 70%;
+    /* flex: 1; */
+    overflow-y: hidden;
+    padding: 0;
+}
+.flexOne{
+  flex: 1;
+  /* background-color: red; */
+}
+.TestCaseContainer{
+  /* background-color: orange; */
+  height: 10%; 
+  flex:  1;/* Sets the height relative to the parent */
+  min-height: 10%; /* Ensures it doesn't shrink below this */
+  width: 100%; /* Ensures it takes the full width of its parent */
+  min-width: 200px; /* Ensures a minimum width */
+  display: flex;
+  flex-direction: column; /* Organizes children in a vertical stack */
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden
+
+}
+
+
+  
+  
+  .Resizer {
+    width: 3px;
+    align-self: center;
+    height: 5%;
+    cursor: ew-resize;
+    margin: auto;
+    display:flex;
+    margin: 0.1rem;
+    border-radius: 5px;
+    /* background-color: rgba(230, 230, 230, 0.8);
+     */
+     background-color: #0f3b3b;
+    transition: height 0.1s ease-in;
+    
+  }
+  
+  .Resizer:hover{
+    height: 90%;
+    border-radius: 2px;
+    display: block;
+    /* background-color: red; */
+  }
+
+  .VResizer{
+    margin: 0.1rem;
+    width: 5%;
+    align-self: center;
+    height: 3px;
+    border-radius: 2px;
+    cursor:ns-resize;
+    z-index: 10;
+    border-radius: 5px;
+    transition: width 0.1s ease-in;
+
+    /* background-color: rgba(230, 230, 230, 0.8);
+     */
+    background-color: #0f3b3b;
+  }
+
+  .VResizer:hover{
+    width: 90%;
+    /* background-color:red; */
+
+  }
+
+
+.displayNone{
+    display: none;
+}

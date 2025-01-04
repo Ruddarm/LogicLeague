@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import Style from "./loginform.module.css";
 import { useNavigate } from "react-router-dom";
-import Header from "../utils/header";
-import axios from "axios";
 import axiosInstance from "../utils/request";
+import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
+import { AuthContext } from "../utils/authencation";
 
 function LoginFrom() {
+  const {isLogedIN, SetLogedIn} = useContext(AuthContext);
   const [singUP, setSingUP] = useState(false);
   const [isLogin, setLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -32,8 +33,7 @@ function LoginFrom() {
       console.warn(`Element with id ${name} not found`);
       return false;
     }
-    // console.log(name);
-    // console.log(e);
+
     if (e.value.trim() === "") {
       e.classList.remove(Style.greenborder);
       e.classList.add(Style.warnborder);
@@ -45,10 +45,6 @@ function LoginFrom() {
       e.classList.add(Style.greenborder);
       return true;
     }
-    // }
-    // else{
-    // console.log("gadabad hai ")
-    // }
   };
   const validate = () => {
     let isValidFields = true;
@@ -80,7 +76,6 @@ function LoginFrom() {
     validateFeild(name);
   };
   const handelLogin = async (e) => {
-    //   console.log(e.target.elements)
     e.preventDefault();
     setWarning(false);
     setError("");
@@ -94,21 +89,23 @@ function LoginFrom() {
             email,
             password,
           });
+          console.log(response)
+
           if (response.status === 200) {
-            console.log(response);
-            localStorage.setItem("jwttoken", response.data.tokens.access);
             localStorage.setItem("user", JSON.stringify(response.data.user));
+            
+            SetLogedIn(true);
             navigate("/home");
           }
         } catch (err) {
-          if (err.response.data) {
+          if (err.response?.data) {
             console.log(err.response.data);
             if (err.response.data) {
               setError("Invalid email or password");
               setWarning(true);
             }
-          }else{
-            console.log(err)
+          } else {
+            console.log(err);
           }
         }
       }
@@ -117,8 +114,7 @@ function LoginFrom() {
         if (password === cnfPassword) {
           try {
             console.log(username, password, email);
-
-            const response = await axios.post("users/register/", {
+            const response = await axiosInstance.post("users/register/", {
               username,
               email,
               password,
@@ -127,13 +123,13 @@ function LoginFrom() {
               setSingUP(true);
               setLogin(true);
               navigate("/login");
-              console.log("login sucesfull");
             }
           } catch (e) {
-            if (e.response.data.msg.email) {
+            if (e.response.data) {
               setError("Email already exist.. please try to login");
               setWarning(true);
             }
+            console.log(e);
           }
         } else {
           setError("Confirm password should match with password");
@@ -148,42 +144,24 @@ function LoginFrom() {
   };
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      const accessToken = tokenResponse.access_token;
-      console.log("ID Token:", tokenResponse.access_token);
+      const access_token = tokenResponse.access_token;
       try {
-        // console.log(userInfoResponse)
         const response = await axiosInstance.post("users/api/auth/google/", {
-          token: accessToken,
+          token: access_token,
         });
-        localStorage.setItem("jwttoken", response.data.tokens.access);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        SetLogedIn(true);
         navigate("/home");
-
-        // console.log("Login successful:", response.data);
       } catch (error) {
         console.error("Login failed:", error);
       }
     },
     onError: (err) => console.log("Login Failed", err),
   });
-  // const handelLoginSucess = useGoogleLogin({
-  //   onSuccess: async (tokenResponse) => {
-  //     const idToken = tokenResponse.credential;
-  //     console.log("ID Token:", idToken);
-  //   },
-  // });
-  //   //Implment login / singup handel
-  //   setValidate(validateFields());
-  //   if (isLogin && isvalid) {
-  //
-  //   } else if (!isLogin && isvalid) {
-  //     if (password !== cnfPassword) {
-  //     }
 
   return (
     <>
       {/* {localStorage.removeItem("jwttoken")} */}
-      <Header></Header>
       <div className={Style.blockContainer}>
         <div className={Style.Container}>
           <div className={Style.loginContainer}>

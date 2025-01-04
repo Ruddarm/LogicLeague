@@ -1,0 +1,55 @@
+.NavContainer{
+
+    padding-left: 0.5rem;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    justify-content: space-between;
+    height: 2rem;
+    border-bottom: 1px solid gray;
+}
+.select{
+    /* background-color: rebeccapurple; */
+    border: none;
+    color: gray;
+
+
+}
+.select:hover{
+    background-color: rgb(240, 240, 240);
+    height: 1rem;
+    cursor: pointer;
+    color: black;
+    border-radius: 4px;
+}
+.OptionContainer{
+    display: flex;
+    flex: 1;
+    /* padding: 10px; */
+    justify-content: flex-end;
+}
+
+.OptionContainer button{
+    border: none;
+    display: flex;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 100%;
+    align-items: center;
+    padding: 0.1rem 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background-color: #0f3b3b;
+}
+.OptionContainer button:hover{
+    /* opacity: .5; */
+    background-color: #4d8a77;
+}
+.OptionContainer button img{
+    width: 24px;
+    height:24px;
+
+}

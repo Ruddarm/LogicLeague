@@ -1,0 +1,25 @@
+.OptiontabContainer{
+    /* background-color: red; */
+    display: flex;
+    background-color: #0f3b3b;
+    justify-content: flex-start;
+
+}
+
+.OptionTabBtn{
+    padding: 0.5rem 1rem ;
+    height: auto;
+    border: none;
+    color: white;
+
+    background-color: transparent;
+    width: auto;
+    cursor: pointer;
+}
+
+.activeBtn{
+    color: black;
+    /* box-shadow: 1px 1px 4px black ; */
+    border-left: 1px solid black;
+    background-color: white;
+}

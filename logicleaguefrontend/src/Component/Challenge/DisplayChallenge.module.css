@@ -1,0 +1,153 @@
+
+.DisplayContainer{
+    display: block;
+    flex: 1;
+    display: flex;
+    max-width: 100%;
+    padding: 1rem;
+    /* background-color: yellow; */
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+.DisplayChallengeHeader{
+    display: flex;
+    background-color: white;
+    width: max-content;
+    /* width: 70%; */
+    border-radius: 10px;
+    grid-template-columns: repeat(10,10%) ;
+    grid-template-rows:  max-content  auto ;
+    box-shadow: 1px 2px 4px black, 1px 1px 2px white;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: flex-start;
+    margin:  1rem auto;
+    position: relative;
+    overflow: auto;
+
+}
+
+
+.Displaythtr{
+    min-height: max-content;
+    display: grid;
+    min-width: 600px;
+    max-width: 100%;
+    grid-template-columns: repeat(10,10%);
+    padding: 0.2rem 0.5rem;
+    margin-top: 10px;
+
+}
+.DispalyData{
+    /* background-color: aliceblue; */
+    /* border: 1px solid red; */
+
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+
+    justify-content: flex-start;
+}
+.status {
+    grid-column: 1/2;
+}
+.title{
+    grid-column: 2/8;
+}
+
+.level{
+ grid-column:  8/9;
+}
+
+.playnow{
+    /* cursor: pointer; */
+    grid-column: 9/11;
+    place-self: center;
+}
+.playBtn{
+    cursor: pointer;
+    border: none;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    align-items: center;
+    background-color: green;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    width: auto;
+    height: 2rem;
+}
+.Displaythtr:hover{
+    background-color: gainsboro;
+}
+.head{
+    background-color: white;
+    color: rgb(172, 171, 171);
+    height: 2.5rem;
+    grid-column: 1/11;
+    font-size: 1.25rem;
+    padding: 0 0.5rem;
+    align-items: center;
+    border-top: 2px solid gainsboro;
+    border-bottom: 2px solid gainsboro;
+}
+.challengeLevel{
+    /* background-color: black; */
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+}
+.medium{
+    color: rgb(232, 239, 133);
+}
+.easy{
+    color: green
+
+
+}
+.hard{
+
+    color: red;
+}
+
+
+@media (max-width:480px) {
+    .DisplayContainer{
+        padding: 0.5rem;
+    }
+    .DisplayChallengeHeader{
+        width: 100%;
+        padding: 0.25rem;
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    
+    }
+    .Displaythtr{
+        min-width:100%;
+    }
+    .status{
+        grid-column: 1/2;
+    }
+    .title{
+        display:flex;
+        grid-column: 3/6;
+         max-width: 100%;
+        text-wrap: nowrap;
+        overflow: hidden;
+        border: 1px solid red;
+        text-overflow: ellipsis;
+    }
+    .level{
+        grid-column: 7/9;
+    }
+    .playnow{
+        grid-column: 9/10;
+    }
+    
+}

@@ -1,19 +1,28 @@
-import axios from "axios"
+import axios from "axios";
 
-const axiosInstance =  axios.create({
-    baseURL:process.env.REACT_APP_BASE_URL
+const axiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  withCredentials: true,
 });
 
-
-axiosInstance.interceptors.request.use((config)=>{
-    const token = localStorage.getItem("jwttoken");
-    if(token){
-        config.headers.Authorization=`Bearer ${token}`;
+axiosInstance.interceptors.request.use(
+  (config) => {
+    config.withCredentials = true;
+    return config;
+  },
+  (error) => {
+    console.log(error);
+  }
+);
+axiosInstance.interceptors.response.use(
+  (response) => {
+    if (response) {
+      return response;
     }
-    return  config;
-
-},(error)=>{
-    return Promise.reject(error)
-});
+  },
+  (error) => {
+    console.log(error);
+  }
+);
 
 export default axiosInstance;

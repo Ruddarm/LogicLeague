@@ -1,0 +1,25 @@
+
+#demoId
+{
+    background-color: red;
+
+}
+.demo{
+    /* background-color: rebeccapurple; */
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    min-width: 100px;  /* Set a minimum width */
+    min-height: 250px;
+    flex: 1;
+}
+.MonacoEditor{
+    padding: 0.5rem 0rem;
+    /* height: 100%  !important; */
+    /* width: 100% !important; */
+    flex: 1  !important;
+    /* background-color: green; */
+    overflow: auto !important;
+    display: flex !important;
+    /* flex-direction: row !important; */
+}

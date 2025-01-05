@@ -143,9 +143,9 @@ function HomePage() {
         {/* Social Media */}
         <div className={Style.social_media}>
           <div class={Style.logo_with_name}>
-            <img src="/Bvp_logo_final.png" id={Style.bvp} />
+            <img src="/Bvp_logo_final.png" alt="clg logo" id={Style.bvp} />
             <div class={Style.name_contianer}>
-              <sapn>Bharti Vidyapeeth Deemeed to be University</sapn>
+              <span>Bharti Vidyapeeth Deemeed to be University</span>
               <span>(DMS), Kharghar ,Navi Mumbai</span>
             </div>
           </div>

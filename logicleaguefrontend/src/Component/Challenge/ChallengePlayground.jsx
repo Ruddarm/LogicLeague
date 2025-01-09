@@ -1,22 +1,16 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import Style from "./ChallengePlayground.module.css";
 import { useParams } from "react-router-dom";
-// import CodeEditor from "../CodeEditior/Code";
 import { ResizeContext } from "./ResizeContext";
 import ChallengeDesc from "./ChallengeDescription/ChallengeDescripiton";
-// import TestCase from "./Terminal/TerminalContainer";
-import {
-  FetchChallengeByID,
-  fetchTestCase,
-  fetchTestCases,
-} from "./Challengeapi";
-// import Header from "../utils/header";
+import { FetchChallengeByID, fetchTestCases } from "./Challengeapi";
 import CodeConainter from "./ChallengeCodeContainer";
 import { CodeContextProvider } from "./CodeContext";
 import { PlayGroundChallengeContext } from "./ChallengeContext";
-// import axiosInstance from "../utils/request";
 import Loader from "../utils/loading";
-export default () => {
+
+// playgroudn to display challenge des,terminal and code editor
+const PlayGround = () => {
   const { widthContext, maxContext } = useContext(ResizeContext);
   const { challengeContext, testCasesContext } = useContext(
     PlayGroundChallengeContext
@@ -93,3 +87,5 @@ export default () => {
     </div>
   );
 };
+
+export default PlayGround;

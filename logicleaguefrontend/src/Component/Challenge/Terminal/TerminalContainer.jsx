@@ -5,29 +5,13 @@ import { CodeContext } from "../CodeContext.js";
 import { useParams } from "react-router-dom";
 import { fetchTestCases } from "../Challengeapi.js";
 import Terminal from "./Terminal.jsx";
+import TestCase from "./testCaseDisplay.jsx";
 import Loader from "../../utils/loading.jsx";
-function GetIndex({ index, setIndex }) {
-  return (
-    <div
-      onClick={() => {
-        setIndex(index);
-      }}
-      className={Style.caseIndex}
-    >
-      Case {index + 1}
-    </div>
-  );
-}
-function GetCase({ variable, value }) {
-  return (
-    <>
-      <div className={Style.Case}>
-        <span>{variable}</span>
-        <div style={{height:"auto"}}><pre style={{margin:0}}>{value}</pre></div>
-      </div>
-    </>
-  );
-}
+import TestCaseIndex from "./testCaseIndex.jsx";
+
+
+
+// terminal container component
 function TerminalContainer({ Output }) {
   const { maxContext } = useContext(ResizeContext);
   const { loadContext, terminalContext } = useContext(CodeContext);
@@ -44,7 +28,7 @@ function TerminalContainer({ Output }) {
     }));
   };
 
-  const [terminal, Openterminal] = useState(false);
+  // const [terminal, Openterminal] = useState(false);
   const [testCases, setTestCases] = useState([]);
   const GetTestCases = async () => {
     const testCaseResponse = await fetchTestCases(id, true);
@@ -55,7 +39,6 @@ function TerminalContainer({ Output }) {
   useEffect(() => {
     GetTestCases();
   }, [loadContext.load, id]);
-  // console.log(testCases);
   return (
     <>
       <div className={Style.Container}>
@@ -82,22 +65,22 @@ function TerminalContainer({ Output }) {
             <div className={Style.TestCaseContiner}>
               <div className={Style.TestCaseIndex}>
                 {testCases.map((data, index) => (
-                  <GetIndex
+                  <TestCaseIndex
                     key={index}
                     setIndex={setIndex}
                     index={index}
-                  ></GetIndex>
+                  ></TestCaseIndex>
                 ))}
               </div>
               <div className={Style.CaseDisplay}>
                 {testCases[caseIndex]?.input?.map((data, index) => (
-                  <GetCase
+                  <TestCase
                     key={index}
                     variable={data.variable}
                     value={data.value}
-                  ></GetCase>
+                  ></TestCase>
                 ))}
-                <GetCase
+                <TestCase
                   variable={"Expected output"}
                   value={testCases[caseIndex]?.output}
                 />

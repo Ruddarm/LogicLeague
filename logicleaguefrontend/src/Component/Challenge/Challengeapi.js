@@ -11,7 +11,7 @@ async function FetchChallengeByID(id) {
 }
 //create a new challenge
 const create_challenge = async (ChallengeState) => {
-  const response = await axiosInstance.post("challenges/challenge/", {
+  const response = await axiosInstance.post("challenges/challenge/admin", {
     ChallengeState,
   });
   return response;

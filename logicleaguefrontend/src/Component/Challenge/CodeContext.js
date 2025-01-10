@@ -1,28 +1,36 @@
 import { children, createContext, useEffect, useState } from "react";
+import { fetchTestCases } from "./Challengeapi";
 
 export const CodeContext = createContext();
-export const CodeContextProvider = ({ children }) => {
+export const CodeContextProvider = ({ children, id }) => {
   // code state
   const [code, setCode] = useState("write ur code here\n\n\n\n");
   // result state
-  const [result, setResult] = useState({
-    output: "",
-    error: "",
-    result: [],
-  });
+  const [testCases, setTestCases] = useState([]);
+  const [result,setCodeResult] = useState({"output":"","error":"","isError":false});
   // loading state
   const [load, setLoading] = useState(false);
   // terminal state
   const [terminal, openTerminal] = useState(false);
+  const GetTestCases = async () => {
+    const testCaseResponse = await fetchTestCases(id, true);
+    if (testCaseResponse?.status === 200) {
+      setTestCases(testCaseResponse.data.testCases);
+    }
+  };
+  useEffect(() => {
+    GetTestCases();
+  }, [id]);
 
   return (
     <>
       <CodeContext.Provider
         value={{
           codeContext: { code, setCode },
-          resultContext: { result, setResult },
+          testCaseContext: { testCases, setTestCases },
           loadContext: { load, setLoading },
-          terminalContext : {terminal,openTerminal}
+          resultContext: { result, setCodeResult },
+          terminalContext: { terminal, openTerminal },
         }}
       >
         {children}

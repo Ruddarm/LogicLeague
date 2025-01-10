@@ -34,7 +34,7 @@ function GetInput({ variable, value }) {
   );
 }
 function GetExplaintaion({ testCase }) {
-  console.log(testCase);
+  // console.log(testCase);
   return (
     <>
       <div className={Style.exampleContainer}>

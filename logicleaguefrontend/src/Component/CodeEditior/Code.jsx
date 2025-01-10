@@ -14,26 +14,31 @@ function CodeEditor() {
   // code state
   const [code, setCode] = useState("");
   // context to get result and loading
-  const { resultContext, loadContext } = useContext(CodeContext);
+  const { testCaseContext, loadContext, resultContext } =
+    useContext(CodeContext);
   // const EditiorContianer = useRef(null);
   const [language, setLanguage] = useState("javascript");
   const RunCode = async () => {
     try {
       loadContext.setLoading(true);
-      const response = await axiosInstance.post(`challenges/challenge/runcode/${id}/`, {
-        code: code,
-        lang: language,
-      });
+      const response = await axiosInstance.post(
+        `challenges/challenge/runcode/${id}/`,
+        {
+          code: code,
+          lang: language,
+        }
+      );
+
       loadContext.setLoading(false);
-      console.log(response);
+      // console.log("res is ", response);
       if (response?.status === 200) {
-        resultContext.setResult((res) => ({
-          ...res,
+        resultContext.setCodeResult((prev) => ({
+          ...prev,
           output: response?.data?.output,
           error: response.data.error,
           isError: response.data.isError,
-          result: response.data.result,
         }));
+        testCaseContext.setTestCases(response.data.result);
       }
     } catch (e) {}
   };

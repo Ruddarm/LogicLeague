@@ -24,7 +24,6 @@ const PlayGround = () => {
   const GetChallenge = async () => {
     const response = await FetchChallengeByID(id);
     const testcaseresponse = await fetchTestCases(id, false, true);
-    console.log(testcaseresponse);
     setLoadChallenge(false);
     if (response?.status == 200 && testcaseresponse?.status == 200) {
       challengeContext.setChallengeData(response.data?.challenge);
@@ -80,7 +79,7 @@ const PlayGround = () => {
             onMouseDown={handleHorizontalMouseDown}
           />
         )}
-        <CodeContextProvider>
+        <CodeContextProvider id={id}>
           <CodeConainter></CodeConainter>
         </CodeContextProvider>
       </div>

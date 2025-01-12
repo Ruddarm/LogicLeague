@@ -14,7 +14,7 @@ function TerminalContainer({ Output }) {
   const { maxContext } = useContext(ResizeContext);
   const { loadContext, terminalContext, testCaseContext, resultContext } =
     useContext(CodeContext);
-  console.log("testcase context is ", testCaseContext.testCases);
+  // console.log("testcase context is ", testCaseContext.testCases);
   const [caseIndex, setCaseIndex] = useState(0);
 
   function setIndex(index) {

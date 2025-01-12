@@ -1,7 +1,6 @@
 import Style from "./TerminalContainer.module.css";
 // get index of test cases component
 function GetIndex({ caseIndex,index, setIndex, result = "None" }) {
-  console.log("data  is ", result);
   return (
     <>
       {result === "None" ? (

@@ -24,9 +24,15 @@ function CodeBar({ submit }) {
         </div>
 
         <div className={Style.OptionContainer}>
+          <button className={Style.submitBtn} onClick={submit}>
+            Click
+          </button>
           <button onClick={maxCodeEditior}>
             <img
-              src={maxContext.max.codeEditior ? "/minimize.png" : "/maximize.png"}
+              alt="max"
+              src={
+                maxContext.max.codeEditior ? "/minimize.png" : "/maximize.png"
+              }
             ></img>
           </button>
         </div>

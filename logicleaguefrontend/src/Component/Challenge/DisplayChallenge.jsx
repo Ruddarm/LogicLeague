@@ -71,13 +71,11 @@ function ChallengeBoard() {
           </thead>
           <tbody>
             {challenges.map((data) => (
-              <>
                 <GetChallengeRow
                   key={data.challengeID}
                   challenge={data}
                   handeler={playNowHandel}
                 ></GetChallengeRow>
-              </>
             ))}
           </tbody>
         </table>

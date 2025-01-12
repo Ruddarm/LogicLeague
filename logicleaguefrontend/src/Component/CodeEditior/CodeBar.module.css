@@ -14,13 +14,16 @@
 
 .OptionContainer{
     display: flex;
+    flex: 1;
     padding-right: 1rem;
     padding-left: 0.5rem;
     justify-content: center;
     align-content: center;
+    background-color: orange;
     align-items: center;
     width: max-content;
     height: 100%;
+    justify-content: space-between;
 }
 .CodeBarContainer button{
     background-color: transparent;
@@ -40,4 +43,8 @@
     cursor: pointer;
     height:24px;
 
+}
+
+.submitBtn{
+    background-color: rgb(126, 56, 196);
 }

@@ -21,12 +21,10 @@ function CodeBar({ submit }) {
               <b>Code</b>
             </span>
           </button>
+  
         </div>
-
-        <div className={Style.OptionContainer}>
-          <button className={Style.submitBtn} onClick={submit}>
-            Click
-          </button>
+        <div className={`${Style.OptionContainer} ${Style.flexend}`}>
+        
           <button onClick={maxCodeEditior}>
             <img
               alt="max"

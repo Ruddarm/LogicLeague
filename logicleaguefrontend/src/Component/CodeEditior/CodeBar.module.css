@@ -19,11 +19,14 @@
     padding-left: 0.5rem;
     justify-content: center;
     align-content: center;
-    background-color: orange;
+    /* background-color: orange; */
     align-items: center;
     width: max-content;
     height: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+}
+.flexend{
+    justify-content: flex-end;
 }
 .CodeBarContainer button{
     background-color: transparent;
@@ -34,6 +37,10 @@
     border-radius: 5px;
     border: none;
     padding: 2px;
+    /* padding: 5px; */
+    cursor: pointer;
+    height: 90%;
+    /* margin-left: 5px; */
 }
 .CodeBarContainer button:hover{
     background-color:#0f3b3b;
@@ -45,6 +52,3 @@
 
 }
 
-.submitBtn{
-    background-color: rgb(126, 56, 196);
-}

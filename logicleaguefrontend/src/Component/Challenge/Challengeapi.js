@@ -63,13 +63,14 @@ const uploadTestCase = async (challegneID, testCase) => {
   );
   return response;
 };
-
+// delete a testcase
 const deleteTestCase = async (challegneID, testCaseId) => {
   const response = await axiosInstance.delete(
     `challenges/challenge/admin/${challegneID}/testCase/${testCaseId}/`
   );
   return response;
 };
+// update a testcase
 const updateTestCase = async (challegneID, testCaseId,testCase) => {
   const response = await axiosInstance.put(
     `challenges/challenge/admin/${challegneID}/testCase/${testCaseId}/`,
@@ -78,6 +79,17 @@ const updateTestCase = async (challegneID, testCaseId,testCase) => {
   return response
 };
 
+// Submit the code to backend
+const submitCode = async (code, language, challengeId) => {
+  const response = await axiosInstance.post(
+    `challenges/challenge/${challengeId}/submit/`,
+    {
+      code,
+      language,
+    }
+  );
+  return response;
+};
 export {
   FetchChallengeByID,
   create_challenge,

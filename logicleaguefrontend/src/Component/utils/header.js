@@ -43,7 +43,7 @@ function Header({ sticky }) {
               <div className={Style.listContainer}>
                 <ul className={Style.unorderlist}>
                   <li>
-                    <a href="#">Contest</a>
+                    <a href="/contest">Contest</a>
                   </li>
                   <li>
                     <a href="/challenge">Challenges</a>

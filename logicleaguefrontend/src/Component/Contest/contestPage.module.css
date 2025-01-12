@@ -1,0 +1,89 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+.spacer {
+    height: 90px; /* Adjust height as needed */
+    width: 100%; /* Full width */
+    display: flex;
+    /*justify-content: space-between;  Space between heading and buttons */
+    align-items: center; /* Vertically center items */
+    /*padding: 0 20px;  Add some padding to the left and right */
+    padding-left: 6px;
+    padding-right: 5px;
+    background-color: rgb(237, 214, 235);
+  }
+  
+  .buttons {
+    display: flex; /* Adds spacing between the buttons */
+  }
+  h3{
+    padding-right: 70pc;
+  }
+  
+  .button1 {
+    background-color:rgb(126, 52, 238);
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 5px; 
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  }
+  
+  .button1:hover {
+    background-color: rgb(128, 94, 247);
+  }
+
+  .button2 {
+    background-color: white;
+  color: black;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 5px; /* Adjust margin for spacing */
+  border-radius: 5px;
+  border: black;
+  border:1px solid black;
+  }
+  
+.content1{
+  background-color: yellow;
+  height: 100px;
+}
+
+.head{
+  background-color: red;
+  margin-bottom: 30px;
+}
+
+
+.contestsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.contestCard {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contestCard h5 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.contestCard p {
+  margin: 5px 0;
+}

@@ -29,13 +29,13 @@ function Header({ sticky }) {
         {/* Logo contianer */}
         <div className={Style.Headlogo}>
           <div className={Style.logo}>
-            <a href="/">LogicLeague</a>
+            <a href="/"><strong>LogicLeague</strong></a>
           </div>
         </div>
         <div className={`${Style.NavBar} ${isMenuOpen ? Style.Open : ""}`}>
           <div className={Style.closeMenu}>
             <button onClick={handelMenu}>
-              <img src="/close.png"></img>
+              <img src="/close.png" alt="close"></img>
             </button>
           </div>
           <div className={Style.NavContainer}>

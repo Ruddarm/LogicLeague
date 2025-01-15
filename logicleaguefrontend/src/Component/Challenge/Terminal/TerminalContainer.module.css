@@ -108,6 +108,7 @@
     border-radius: 5px;
     /* background-color: rebeccapurple; */
     margin-right: 1rem;
+    /* width: max-content; */
     flex-wrap: nowrap;
     align-items: center;
     display: flex;

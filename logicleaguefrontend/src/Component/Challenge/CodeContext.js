@@ -12,6 +12,13 @@ export const CodeContextProvider = ({ children, id }) => {
   const [load, setLoading] = useState(false);
   // terminal state
   const [terminal, openTerminal] = useState(false);
+  // submission tab state
+  const [submitTab , openSubmitTab] = useState(false);
+  // const tab context 
+  const [tab,setTab] = useState({testCase:true,terminal:false,submission:false});
+  // submission result stat
+  const [submissionResult , setSubmissionResult] = useState("");
+  
   const GetTestCases = async () => {
     const testCaseResponse = await fetchTestCases(id, true);
     if (testCaseResponse?.status === 200) {
@@ -31,6 +38,9 @@ export const CodeContextProvider = ({ children, id }) => {
           loadContext: { load, setLoading },
           resultContext: { result, setCodeResult },
           terminalContext: { terminal, openTerminal },
+          tabContext: { tab, setTab },
+          submitTabContext: { submitTab, openSubmitTab },
+          submissionResultContext: { submissionResult, setSubmissionResult },
         }}
       >
         {children}

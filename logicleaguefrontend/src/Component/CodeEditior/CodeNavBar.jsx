@@ -1,6 +1,6 @@
 import React from "react";
 import Style from "./CodeNavBar.module.css";
-function CodeNavBar({ language, updateLanguage, runcode }) {
+function CodeNavBar({ language, updateLanguage, runCode, submitCode }) {
   const setofLang = ["java", "javascript", "python"];
   const handleChange = (e) => {
     console.log("called");
@@ -22,8 +22,10 @@ function CodeNavBar({ language, updateLanguage, runcode }) {
           ))}
         </select>
         <div className={Style.OptionContainer}>
-          <button id={Style.submitBtn}>Submit</button>
-          <button onClick={runcode}>
+          <button id={Style.submitBtn}
+            onClick={submitCode}
+          >Submit</button>
+          <button onClick={runCode}>
             <img src="/play-button.png" alt="run"></img>
             <span>Run</span>
           </button>

@@ -5,6 +5,7 @@ import { CodeContext } from "../CodeContext.js";
 import { useParams } from "react-router-dom";
 import { fetchTestCases } from "../Challengeapi.js";
 import Terminal from "./Terminal.jsx";
+import Submission from "./Submission.jsx";
 import TestCase from "./testCaseDisplay.jsx";
 import Loader from "../../utils/loading.jsx";
 import TestCaseIndex from "./testCaseIndex.jsx";
@@ -12,11 +13,13 @@ import TestCaseIndex from "./testCaseIndex.jsx";
 // terminal container component
 function TerminalContainer({ Output }) {
   const { maxContext } = useContext(ResizeContext);
-  const { loadContext, terminalContext, testCaseContext, resultContext } =
-    useContext(CodeContext);
-  // console.log("testcase context is ", testCaseContext.testCases);
+  const {
+    loadContext,
+    testCaseContext,
+    resultContext,
+    tabContext,
+  } = useContext(CodeContext);
   const [caseIndex, setCaseIndex] = useState(0);
-
   function setIndex(index) {
     setCaseIndex(index);
   }
@@ -28,7 +31,7 @@ function TerminalContainer({ Output }) {
   };
   useEffect(() => {
     if (resultContext.result.error) {
-      terminalContext.openTerminal(true);
+      tabContext.setTab({testCase:false,terminal:true,submission:false});
     }
   }, [resultContext.result]);
 
@@ -43,20 +46,36 @@ function TerminalContainer({ Output }) {
   // useEffect(() => {
   //   GetTestCases();
   // }, [loadContext.load, id]);
+
   return (
     <>
       <div className={Style.Container}>
         {loadContext.load && <Loader></Loader>}
         <div className={Style.Header}>
-          <button onClick={() => terminalContext.openTerminal(false)}>
+          <button
+            onClick={() =>
+              tabContext.setTab({
+                testCase: true,
+                terminal: false,
+                submission: false,
+              })
+            }
+          >
             Test Cases
           </button>
           <button
-            onClick={() => {
-              terminalContext.openTerminal(true);
-            }}
+            onClick={() =>
+              tabContext.setTab({
+                testCase: false,
+                terminal: true,
+                submission: false,
+              })
+            }
           >
             <img src="/Terminal.png" alt="terminal"></img>Terminal
+          </button>
+          <button onClick={() => tabContext.setTab({ testCase: false, terminal: false, submission: true })}>
+            Submission
           </button>
           <div className={Style.optionContinaer}>
             <button onClick={maxTerminalEditior}>
@@ -64,7 +83,8 @@ function TerminalContainer({ Output }) {
             </button>
           </div>
         </div>
-        {!terminalContext.terminal ? (
+        {/* if terminal  and submit tab is not open open test cases */}
+        {tabContext.tab.testCase ? (
           <>
             <div className={Style.TestCaseContiner}>
               <div className={Style.TestCaseIndex}>
@@ -103,6 +123,8 @@ function TerminalContainer({ Output }) {
               </div>
             </div>
           </>
+        ) : tabContext.tab.submission ? (
+          <Submission></Submission>
         ) : (
           <>
             <Terminal></Terminal>

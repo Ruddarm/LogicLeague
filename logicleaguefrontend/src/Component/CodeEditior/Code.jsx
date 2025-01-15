@@ -5,8 +5,10 @@ import CodeNavBar from "./CodeNavBar";
 import CodeEditior from "./MonacEditior";
 import axiosInstance from "../utils/request.js";
 import { useContext } from "react";
+
 import { useParams } from "react-router-dom";
 import { CodeContext } from "../Challenge/CodeContext.js";
+import Submission from "../Challenge/Terminal/Submission.jsx";
 // code editor component
 function CodeEditor() {
   // id of challenge
@@ -14,7 +16,7 @@ function CodeEditor() {
   // code state
   const [code, setCode] = useState("");
   // context to get result and loading
-  const { testCaseContext, loadContext, resultContext } =
+  const { testCaseContext, loadContext, resultContext , tabContext } =
     useContext(CodeContext);
   // const EditiorContianer = useRef(null);
   const [language, setLanguage] = useState("javascript");
@@ -42,6 +44,19 @@ function CodeEditor() {
       }
     } catch (e) {}
   };
+  const submitCode = async () => {
+    loadContext.setLoading(true);
+    tabContext.setTab((prev)=>({...prev,submission:true}))
+    const response = await axiosInstance.post(
+      `challenges/challenge/${id}/submit/`,
+      {
+        code:code,
+        lang:language,
+      }
+    );
+    loadContext.setLoading(false);
+    console.log(response)
+  }
 
   return (
     <>
@@ -60,7 +75,8 @@ function CodeEditor() {
               updateLanguage={(newlang) => {
                 setLanguage(newlang);
               }}
-              runcode={RunCode}
+              runCode={RunCode}
+              submitCode={submitCode}
             ></CodeNavBar>
           </div>
           {/* code block */}

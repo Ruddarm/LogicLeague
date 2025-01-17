@@ -31,10 +31,12 @@ function TerminalContainer({ Output }) {
   };
   useEffect(() => {
     if (resultContext.result.error) {
+      console.log("here bc")
       tabContext.setTab({testCase:false,terminal:true,submission:false});
     }
   }, [resultContext.result]);
 
+  console.log(tabContext)
   // const [terminal, Openterminal] = useState(false);
   // const [testCases, setTestCases] = useState([]);
   // const GetTestCases = async () => {

@@ -16,10 +16,16 @@ function CodeEditor() {
   // code state
   const [code, setCode] = useState("");
   // context to get result and loading
-  const { testCaseContext, loadContext, resultContext , tabContext } =
-    useContext(CodeContext);
+  const {
+    testCaseContext,
+    loadContext,
+    resultContext,
+    tabContext,
+    submissionResultContext,
+  } = useContext(CodeContext);
   // const EditiorContianer = useRef(null);
   const [language, setLanguage] = useState("javascript");
+  // run code
   const RunCode = async () => {
     try {
       loadContext.setLoading(true);
@@ -32,7 +38,7 @@ function CodeEditor() {
       );
 
       loadContext.setLoading(false);
-      // console.log("res is ", response);
+      // console.log("res when run code is  ", response);
       if (response?.status === 200) {
         resultContext.setCodeResult((prev) => ({
           ...prev,
@@ -44,19 +50,38 @@ function CodeEditor() {
       }
     } catch (e) {}
   };
+  // Handel code submission
   const submitCode = async () => {
     loadContext.setLoading(true);
-    tabContext.setTab((prev)=>({...prev,submission:true}))
     const response = await axiosInstance.post(
       `challenges/challenge/${id}/submit/`,
       {
-        code:code,
-        lang:language,
+        code: code,
+        lang: language,
       }
     );
     loadContext.setLoading(false);
-    console.log(response)
-  }
+    // console.log("res is ", response);
+
+    if (response?.status === 200) {
+      if (response.data.isError) {
+        resultContext.setCodeResult((prev) => ({
+          ...prev,
+          output: response?.data?.output,
+          error: response.data.error,
+          isError: response.data.isError,
+        }));
+        testCaseContext.setTestCases(response.data.result);
+        return;
+      }
+      tabContext.setTab((prev) => ({
+        testCase: false,
+        terminal: false,
+        submission: true,
+      }));
+      submissionResultContext.setSubmissionResult(response.data);
+    }
+  };
 
   return (
     <>

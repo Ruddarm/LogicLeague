@@ -1,0 +1,18 @@
+
+.SubmissionContainer{
+    /* background-color: yellow; */
+    padding: 10px;
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sucessContainer{
+    /* background-color: yellow; */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+

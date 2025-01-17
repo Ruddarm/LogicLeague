@@ -17,7 +17,7 @@ export const CodeContextProvider = ({ children, id }) => {
   // const tab context 
   const [tab,setTab] = useState({testCase:true,terminal:false,submission:false});
   // submission result stat
-  const [submissionResult , setSubmissionResult] = useState("");
+  const [submissionResult , setSubmissionResult] = useState({});
   
   const GetTestCases = async () => {
     const testCaseResponse = await fetchTestCases(id, true);

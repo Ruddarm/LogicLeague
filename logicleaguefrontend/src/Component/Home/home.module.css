@@ -57,18 +57,18 @@
     align-content: center;
     align-items: center;
     background: linear-gradient(45deg, 
-    rgb(30, 250, 93, 0.2) 0%, 
-    rgba(255, 255, 255, 0.1) 50%, 
-    rgb(153, 94, 247,0.2) 100%);   
+    rgb(30, 250, 93, 0.1) 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgb(153, 94, 247,0.1) 100%);   
     box-shadow: #66ccff;
     margin: 0;
 }
 .main2{
     height: auto;
     background: linear-gradient(45deg, 
-    rgb(30, 250, 93, 0.3) 0%, 
+    rgb(30, 250, 93, 0.1) 0%, 
     rgba(255, 255, 255, 0.1) 50%, 
-    rgb(153, 94, 247,0.3) 100%);
+    rgb(153, 94, 247,0.1) 100%);
     box-shadow: lightgreen;
     display: flex;
     flex-direction: column;
@@ -158,8 +158,8 @@
     justify-content: center;
     /* background-color: lemonchiffon; */
     box-shadow: lightgreen;
-    background: linear-gradient(to bottom, rgb(255, 255, 255,0.5), rgba(57, 127, 230, 0.3));
-    background: linear-gradient(45deg ,rgb(45, 250, 93,0.2) ,rgba(255, 255, 255, 0.3), rgb(153, 94, 247,0.2));
+    background: linear-gradient(to bottom, rgb(255, 255, 255,0.2), rgba(57, 127, 230, 0.1));
+    background: linear-gradient(45deg ,rgb(45, 250, 93,0.1) ,rgba(255, 255, 255, 0.1), rgb(153, 94, 247,0.1));
 }
 .main3Content{
     flex: 1;
@@ -196,8 +196,8 @@
     width: 100%;
     padding:1rem 0 0 0;
     /* background-color: green; */
-    background: linear-gradient(to bottom, rgb(255, 255, 255,0.6), rgba(57, 127, 230, 0.3));
-    background: linear-gradient(45deg ,rgb(45, 250, 93,0.4) ,rgba(255, 255, 255, 0.3), rgb(153, 94, 247,0.4));
+    background: linear-gradient(to bottom, rgb(255, 255, 255,0.6), rgba(57, 127, 230, 0.1));
+    background: linear-gradient(45deg ,rgb(45, 250, 93,0.1) ,rgba(255, 255, 255, 0.2), rgb(153, 94, 247,0.1));
     box-shadow: #66ccff;
     box-shadow: 3px;
     overflow: hidden;

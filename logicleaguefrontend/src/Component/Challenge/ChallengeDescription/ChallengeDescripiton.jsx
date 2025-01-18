@@ -21,10 +21,12 @@ function GetInput({ variable, value }) {
   return (
     <>
       <div className={Style.inputContinaer}>
-        <div><b>{variable}</b></div>
+        <div>
+          <b>{variable}</b>
+        </div>
         <div className={Style.outputContinaer}>
           <div>
-            <pre style={{margin:0}} >{value}</pre>
+            <pre style={{ margin: 0 }}>{value}</pre>
           </div>
         </div>
       </div>
@@ -32,7 +34,7 @@ function GetInput({ variable, value }) {
   );
 }
 function GetExplaintaion({ testCase }) {
-  console.log(testCase);
+  // console.log(testCase);
   return (
     <>
       <div className={Style.exampleContainer}>
@@ -148,14 +150,6 @@ function ChallengeDesc() {
                 ),
               }}
             ></div>
-          </div>
-          <div>
-            <div>
-              <p></p>
-              <p>
-                <b>Input : </b> l1 = [2,4,3], l2 = [5,6,4]
-              </p>
-            </div>
           </div>
         </div>
       </div>

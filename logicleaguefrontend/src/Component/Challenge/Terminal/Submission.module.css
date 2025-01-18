@@ -1,0 +1,29 @@
+
+.SubmissionContainer{
+    /* background-color: yellow; */
+    padding: 10px;
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow-y:auto;
+}
+
+.sucessContainer{
+    /* background-color: yellow; */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.submissionRow{
+    background-color: #f0f0f0;
+    margin-top: 5px;
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+    justify-content: space-between;
+    /* border: 4px solid red; */
+}

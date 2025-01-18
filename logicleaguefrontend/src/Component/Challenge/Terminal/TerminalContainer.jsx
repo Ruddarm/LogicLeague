@@ -5,35 +5,21 @@ import { CodeContext } from "../CodeContext.js";
 import { useParams } from "react-router-dom";
 import { fetchTestCases } from "../Challengeapi.js";
 import Terminal from "./Terminal.jsx";
+import Submission from "./Submission.jsx";
+import TestCase from "./testCaseDisplay.jsx";
 import Loader from "../../utils/loading.jsx";
-function GetIndex({ index, setIndex }) {
-  return (
-    <div
-      onClick={() => {
-        setIndex(index);
-      }}
-      className={Style.caseIndex}
-    >
-      Case {index + 1}
-    </div>
-  );
-}
-function GetCase({ variable, value }) {
-  return (
-    <>
-      <div className={Style.Case}>
-        <span>{variable}</span>
-        <div style={{height:"auto"}}><pre style={{margin:0}}>{value}</pre></div>
-      </div>
-    </>
-  );
-}
+import TestCaseIndex from "./testCaseIndex.jsx";
+
+// terminal container component
 function TerminalContainer({ Output }) {
   const { maxContext } = useContext(ResizeContext);
-  const { loadContext, terminalContext } = useContext(CodeContext);
-  const { id } = useParams("id");
+  const {
+    loadContext,
+    testCaseContext,
+    resultContext,
+    tabContext,
+  } = useContext(CodeContext);
   const [caseIndex, setCaseIndex] = useState(0);
-
   function setIndex(index) {
     setCaseIndex(index);
   }
@@ -43,67 +29,104 @@ function TerminalContainer({ Output }) {
       terminal: !maxContext.max.terminal,
     }));
   };
-
-  const [terminal, Openterminal] = useState(false);
-  const [testCases, setTestCases] = useState([]);
-  const GetTestCases = async () => {
-    const testCaseResponse = await fetchTestCases(id, true);
-    if (testCaseResponse?.status === 200) {
-      setTestCases(testCaseResponse.data.testCases);
-    }
-  };
   useEffect(() => {
-    GetTestCases();
-  }, [loadContext.load, id]);
-  // console.log(testCases);
+    if (resultContext.result.error) {
+      // console.log("here bc")
+      tabContext.setTab({testCase:false,terminal:true,submission:false});
+    }
+  }, [resultContext.result]);
+
+  // console.log(tabContext)
+  // const [terminal, Openterminal] = useState(false);
+  // const [testCases, setTestCases] = useState([]);
+  // const GetTestCases = async () => {
+  //   const testCaseResponse = await fetchTestCases(id, true);
+  //   if (testCaseResponse?.status === 200) {
+  //     setTestCases(testCaseResponse.data.testCases);
+  //   }
+  // };
+  // useEffect(() => {
+  //   GetTestCases();
+  // }, [loadContext.load, id]);
+
   return (
     <>
       <div className={Style.Container}>
         {loadContext.load && <Loader></Loader>}
         <div className={Style.Header}>
-          <button onClick={() => terminalContext.openTerminal(false)}>
+          <button
+            onClick={() =>
+              tabContext.setTab({
+                testCase: true,
+                terminal: false,
+                submission: false,
+              })
+            }
+          >
             Test Cases
           </button>
           <button
-            onClick={() => {
-              terminalContext.openTerminal(true);
-            }}
+            onClick={() =>
+              tabContext.setTab({
+                testCase: false,
+                terminal: true,
+                submission: false,
+              })
+            }
           >
-            <img src="/Terminal.png"></img>Terminal
+            <img src="/Terminal.png" alt="terminal"></img>Terminal
+          </button>
+          <button onClick={() => tabContext.setTab({ testCase: false, terminal: false, submission: true })}>
+            Submission
           </button>
           <div className={Style.optionContinaer}>
             <button onClick={maxTerminalEditior}>
-              <img src="/maximize.png"></img>
+              <img src="/maximize.png" alt="max"></img>
             </button>
           </div>
         </div>
-        {!terminalContext.terminal ? (
+        {/* if terminal  and submit tab is not open open test cases */}
+        {tabContext.tab.testCase ? (
           <>
             <div className={Style.TestCaseContiner}>
               <div className={Style.TestCaseIndex}>
-                {testCases.map((data, index) => (
-                  <GetIndex
+                {testCaseContext.testCases.map((data, index) => (
+                  <TestCaseIndex
                     key={index}
+                    caseIndex={caseIndex}
                     setIndex={setIndex}
                     index={index}
-                  ></GetIndex>
+                    result={data.result}
+                  ></TestCaseIndex>
                 ))}
               </div>
               <div className={Style.CaseDisplay}>
-                {testCases[caseIndex]?.input?.map((data, index) => (
-                  <GetCase
-                    key={index}
-                    variable={data.variable}
-                    value={data.value}
-                  ></GetCase>
-                ))}
-                <GetCase
+                {testCaseContext.testCases[caseIndex]?.input?.map(
+                  (data, index) => (
+                    <TestCase
+                      key={index}
+                      variable={data.variable}
+                      value={data.value}
+                    ></TestCase>
+                  )
+                )}
+                <TestCase
                   variable={"Expected output"}
-                  value={testCases[caseIndex]?.output}
+                  value={testCaseContext.testCases[caseIndex]?.output}
                 />
+                {testCaseContext.testCases[caseIndex]?.ans && (
+                  <>
+                    <TestCase
+                      variable={"Your output"}
+                      value={testCaseContext.testCases[caseIndex].ans}
+                    ></TestCase>
+                  </>
+                )}
               </div>
             </div>
           </>
+        ) : tabContext.tab.submission ? (
+          <Submission></Submission>
         ) : (
           <>
             <Terminal></Terminal>

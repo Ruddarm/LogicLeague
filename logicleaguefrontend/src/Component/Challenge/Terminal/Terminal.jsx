@@ -6,6 +6,7 @@ import Style from "./Terminal.module.css";
 
 function Terminal() {
   const { resultContext } = useContext(CodeContext);
+  // console.log("result is ", resultContext);
   return (
     <>
       <div className={Style.terminalContainer}>

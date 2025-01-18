@@ -1,7 +1,15 @@
 import { children, createContext, useEffect, useState } from "react";
 import { fetchTestCases } from "./Challengeapi";
+import axiosInstance from "../utils/request";
 
 export const CodeContext = createContext();
+/*
+ * under list comonent is use to share a state between terminal and code editior 
+   using context 
+ * @param {children} component to be rendered
+ * @param {id} Challenge id
+ * @returns  {code,testcasecontext,loadContext,submissionResultContext,CodeContextProvider,pastSubmissionContext}
+ */
 export const CodeContextProvider = ({ children, id }) => {
   // code state
   const [code, setCode] = useState("write ur code here\n\n\n\n");
@@ -10,14 +18,12 @@ export const CodeContextProvider = ({ children, id }) => {
   const [result,setCodeResult] = useState({"output":"","error":"","isError":false});
   // loading state
   const [load, setLoading] = useState(false);
-  // terminal state
-  const [terminal, openTerminal] = useState(false);
-  // submission tab state
-  const [submitTab , openSubmitTab] = useState(false);
   // const tab context 
   const [tab,setTab] = useState({testCase:true,terminal:false,submission:false});
   // submission result stat
-  const [submissionResult , setSubmissionResult] = useState({});
+  const [submissionResult , setSubmissionResult] = useState(undefined);
+  // past submissong records 
+  const [pastSubmissions, setPastSubmission] = useState({})
   
   const GetTestCases = async () => {
     const testCaseResponse = await fetchTestCases(id, true);
@@ -25,8 +31,15 @@ export const CodeContextProvider = ({ children, id }) => {
       setTestCases(testCaseResponse.data.testCases);
     }
   };
+  const GetSolution = async()=> {
+    const solutionresponse = await axiosInstance.get(`challenges/challenge/solution/${id}/`)
+    if (solutionresponse?.status === 200){
+        setPastSubmission(solutionresponse.data)
+    }
+  }
   useEffect(() => {
     GetTestCases();
+    GetSolution();
   }, [id]);
 
   return (
@@ -37,10 +50,9 @@ export const CodeContextProvider = ({ children, id }) => {
           testCaseContext: { testCases, setTestCases },
           loadContext: { load, setLoading },
           resultContext: { result, setCodeResult },
-          terminalContext: { terminal, openTerminal },
           tabContext: { tab, setTab },
-          submitTabContext: { submitTab, openSubmitTab },
           submissionResultContext: { submissionResult, setSubmissionResult },
+          pastSubmissionContext : {pastSubmissions,setPastSubmission}
         }}
       >
         {children}

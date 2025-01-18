@@ -8,8 +8,13 @@ import { useContext } from "react";
 
 import { useParams } from "react-router-dom";
 import { CodeContext } from "../Challenge/CodeContext.js";
-import Submission from "../Challenge/Terminal/Submission.jsx";
-// code editor component
+
+/**
+ * UnderList compoente 
+ * It render a codeEditior interface on playground 
+ * 
+ * @returns code editor interface 
+ */
 function CodeEditor() {
   // id of challenge
   const { id } = useParams();
@@ -50,7 +55,10 @@ function CodeEditor() {
       }
     } catch (e) {}
   };
-  // Handel code submission
+  /**
+   * This funciton will handel submiton  of user solution 
+   * @returns 
+   */
   const submitCode = async () => {
     loadContext.setLoading(true);
     const response = await axiosInstance.post(

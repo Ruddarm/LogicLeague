@@ -2,7 +2,7 @@ import React, { PureComponent, useState, useEffect } from "react";
 import axios from "axios";
 import axiosInstance from "../utils/request";
 import Style from "./home.module.css";
-
+import ContestCard from "../Contest/contestcard";
 function contestCard() {
   return (
     <div class={Style.card}>
@@ -90,7 +90,7 @@ function HomePage() {
           <h2>UPCOMING CONTESTS</h2>
           <div class={Style.contestContainer}>
             <div class={Style.contestCardContainer}>
-              {contest.map(() => contestCard())}
+              {contest.map((data,index) => (<ContestCard key={index}  contest={data}></ContestCard>))}
             </div>
           </div>
         </div>

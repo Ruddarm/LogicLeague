@@ -3,7 +3,7 @@ import HomePage from "./Component/Home/home";
 import LoginFrom from "./Component/login/loginform";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Header from "./Component/utils/header.js";
-import ContestPage from "./Component/Contest/contestPage.js";
+import ContestPage from "./Component/Contest/contestPage.jsx";
 import CreateContest from "./Component/Contest/CreateContest.jsx";
 import {
   BrowserRouter as Router,

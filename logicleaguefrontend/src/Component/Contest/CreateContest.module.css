@@ -9,12 +9,12 @@
     box-sizing: border-box;
   }
   
-  h1 {
+  /* h1 {
     color: #10b981;
     font-size: 2rem;
     margin-bottom: 20px; 
   }
-  
+   */
   .formdiv {
     background-color: rgb(250, 250, 250);
     width: 60%;
@@ -28,7 +28,7 @@
     margin-bottom: 20px;
     justify-content: center;
   }
-  
+/*   
   label {
     font-family: 'Arial Narrow', Arial, sans-serif;
     font-size: 1.2rem;
@@ -49,9 +49,9 @@
   
   textarea {
     resize: none;
-  }
-  
-  button {
+  } */
+ 
+  /* button {
     width: 70%;
     padding: 12px;
     background-color: rgb(126, 52, 238);
@@ -62,13 +62,12 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: block; /* Added for centering */
-    margin: 0 auto; /* Added for centering */
-}
-  
-  button:hover {
+    display: block; 
+    margin: 0 auto;
+  } */
+  /* button:hover {
     background-color: rgba(162, 109, 248, 0.2); 
-  }
+  }  */
   
   .box {
     margin-bottom: 5px;

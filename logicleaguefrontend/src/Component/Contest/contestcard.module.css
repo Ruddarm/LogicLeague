@@ -1,0 +1,58 @@
+
+.card{ 
+    height: 280px;
+    min-width:280px;
+    max-width: 280px;
+    padding: 0.5rem;
+    margin-top: 5px;
+    border: 2px solid white;
+    outline: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 0.5rem;
+    color: black;
+    background-color: #f0f0f0;
+    
+    /* margin: 70px; */
+    /* background-color:rgba(0, 0, 0, 0.521); */
+    /* background-color:rgba(14, 232, 112,0.8); */
+    text-align: center;      
+}
+.contestTitle{
+    /* background-color: yellow; */
+}
+.contestDate{
+    /* background-color: rebeccapurple; */
+}
+.Register{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card p{
+    font-size: 1.2rem;
+}
+.card h3 a{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+}
+
+.Regbtn{
+        height: auto;
+        display: flex;
+        width: auto;
+        padding: 0.5rem 2rem;
+        border: 1.5px solid lightblue;
+        outline: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 2px;
+        background-color:black;
+        color: white;
+        cursor: pointer;
+        font-size: 20px;
+}

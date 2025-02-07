@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./contestPage.module.css";
-import axiosInstance from "../utils/request";
-import ContestCard from "./contestcard";
+import styles from './contestPage.module.css';
+
 const ContestPage = () => {
   const navigate = useNavigate(); // Initialize navigation hook
   const [activeContests, setActiveContests] = useState([]);
@@ -12,9 +11,8 @@ const ContestPage = () => {
   useEffect(() => {
     const fetchContests = async () => {
       try {
-        const response = await axiosInstance.get("/contests"); // Update with your actual API URL
-        const data = response.data;
-        console.log(data);
+        const response = await fetch('/contests'); // Update with your actual API URL
+        const data = await response.json();
         setActiveContests(data.active_contests);
         setUpcomingContests(data.upcoming_contests);
       } catch (error) {
@@ -29,32 +27,45 @@ const ContestPage = () => {
     navigate("/create-contest"); // Navigate to Create Contest page
   };
 
+  const handleManageContest = ()  => {
+    navigate("/manage-contest")
+  }
+
+  const handleRegisterContest = (contestId) => {
+    navigate(`/register-contest/${contestId}`); // Navigate to register page with contestId
+  }
+
+
   return (
-    <div className={styles.contianer}>
+    <div>
       <div className={styles.spacer}>
-        <h2>CONTEST</h2>
-        <div style={{}}>
-          <button className={styles.button1} onClick={handleCreateContest}>
-            CREATE A CONTEST
-          </button>
-          <button className={styles.button2}>MANAGE CONTEST</button>
-        </div>
+        <h3>CONTEST</h3>
+        <button className={styles.button1} onClick={handleCreateContest}>CREATE A CONTEST</button>
+        <button className={styles.button2} onClick={handleManageContest}>MANAGE CONTEST</button>
       </div>
 
       <div className={styles.content1}>
         <div className={styles.head}>
-          <h2 style={{margin:"0",color:"gainsboro"}}>Active Contests</h2>
+          <h4>Active Contests</h4>
           <div className={styles.contestsGrid}>
             {activeContests.length === 0 ? (
               <p>No active contests available.</p>
             ) : (
-              activeContests.map((contest) => <ContestCard contest={contest}></ContestCard>)
+              activeContests.map((contest) => (
+                <div className={styles.contestCard} key={contest.id}>
+                  <h5>{contest.name}</h5>
+                  <p>{contest.description}</p>
+                  <p><strong>Start Time:</strong> {new Date(contest.start_time).toLocaleString()}</p>
+                  <p><strong>End Time:</strong> {new Date(contest.end_time).toLocaleString()}</p>
+                  <button className={styles.button1}>PARTICIPATE</button>
+                </div>
+              ))
             )}
           </div>
         </div>
 
         <div className={styles.head}>
-          <h2 style={{margin:"0",color:"gainsboro"}}>Upcoming Contests</h2>
+          <h4>Upcoming Contests</h4>
           <div className={styles.contestsGrid}>
             {upcomingContests.length === 0 ? (
               <p>No upcoming contests available.</p>
@@ -63,15 +74,9 @@ const ContestPage = () => {
                 <div className={styles.contestCard} key={contest.id}>
                   <h5>{contest.name}</h5>
                   <p>{contest.description}</p>
-                  <p>
-                    <strong>Start Time:</strong>{" "}
-                    {new Date(contest.start_time).toLocaleString()}
-                  </p>
-                  <p>
-                    <strong>End Time:</strong>{" "}
-                    {new Date(contest.end_time).toLocaleString()}
-                  </p>
-                  <button className={styles.button1}>REGISTER</button>
+                  <p><strong>Start Time:</strong> {new Date(contest.start_time).toLocaleString()}</p>
+                  <p><strong>End Time:</strong> {new Date(contest.end_time).toLocaleString()}</p>
+                  <button className={styles.button1}onClick={() => handleRegisterContest(contest.id)}>REGISTER</button>
                 </div>
               ))
             )}
@@ -83,22 +88,3 @@ const ContestPage = () => {
 };
 
 export default ContestPage;
-
-/**
- * <div className={styles.contestCard} key={contest.id}>
-                  <h5>{contest.name}</h5>
-                  <p>{contest.description}</p>
-                  <p>
-                    <strong>Start Time:</strong>{" "}
-                    {new Date(contest.start_time).toLocaleString()}
-                  </p>
-                  <p>
-                    <strong>End Time:</strong>{" "}
-                    {new Date(contest.end_time).toLocaleString()}
-                  </p>
-                  <button className={styles.button1}>REGISTER</button>
-                </div>
- * 
- * 
- * 
- */

@@ -5,6 +5,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Header from "./Component/utils/header.js";
 import ContestPage from "./Component/Contest/contestPage.jsx";
 import CreateContest from "./Component/Contest/CreateContest.jsx";
+import ManageContest from "./Component/Contest/ManageContest.jsx";
+import RegisterContest from "./Component/Contest/RegisterContest.jsx";
 import {
   BrowserRouter as Router,
   Routes,
@@ -33,6 +35,8 @@ function App() {
               <Route path="/Challenge" element={<ChallengeBoard />} />
               <Route path="/contest" element={<ContestPage />} />
               <Route path="/create-contest" element={<CreateContest />} />
+              <Route path="/manage-contest" element={<ManageContest />} />
+              <Route path="/register-contest/:contestId" element={<RegisterContest />} />
               <Route
                 path="/challenge/edit/:id"
                 element={

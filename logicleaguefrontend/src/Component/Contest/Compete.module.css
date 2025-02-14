@@ -1,0 +1,113 @@
+/* Overall Page Styles */
+#competeContestPage {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    position: absolute;
+    top: 60px;
+    left: 0;
+  }
+  
+  /* Left Image Section */
+  #competeContestImage {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Right Contest Details Section */
+  #competeContestContainer {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(
+      to bottom right,
+      rgba(45, 250, 93, 0.2),
+      rgba(255, 255, 255, 0.3),
+      rgba(153, 94, 247, 0.2)
+    );
+    padding: 40px;
+  }
+  
+  /* Contest Legend */
+  .competeContestLegend {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #444;
+    text-align: center;
+    width: 100%;
+  }
+  
+  /* Contest Name */
+  .competeContestName {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    font-weight: bolder;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Contest Description */
+  .competeContestDescription {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  /* Prizes */
+  .competeContestDetail {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
+  }
+  
+  /* Challenge List */
+  .competeContestChallengeList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+  
+  .competeContestChallenge {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #2575fc;
+    text-decoration: underline;
+  }
+  
+  /* Button */
+  #competeContestButton {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background: rgba(153, 94, 247);
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  #competeContestButton:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+  }
+  
+  /* Error Message */
+  .competeContestError {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  /* Loading Message */
+  #competeContestLoadingMessage {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+  }
+  

@@ -27,14 +27,17 @@ const ContestPage = () => {
     navigate("/create-contest"); // Navigate to Create Contest page
   };
 
-  const handleManageContest = ()  => {
-    navigate("/manage-contest")
-  }
+  const handleManageContest = () => {
+    navigate("/manage-contest");
+  };
 
   const handleRegisterContest = (contestId) => {
-    navigate(`/register-contest/${contestId}`); // Navigate to register page with contestId
-  }
+    navigate(`/register-contest/${contestId}`); // Navigate to Register Contest page with contestId
+  };
 
+  const handleParticipateContest = (contestId) => {
+    navigate(`/participate-contest/${contestId}`); // Navigate to Participate Contest page with contestId
+  };
 
   return (
     <div>
@@ -57,7 +60,12 @@ const ContestPage = () => {
                   <p>{contest.description}</p>
                   <p><strong>Start Time:</strong> {new Date(contest.start_time).toLocaleString()}</p>
                   <p><strong>End Time:</strong> {new Date(contest.end_time).toLocaleString()}</p>
-                  <button className={styles.button1}>PARTICIPATE</button>
+                  <button
+                    className={styles.button1}
+                    onClick={() => handleParticipateContest(contest.id)}
+                  >
+                    PARTICIPATE
+                  </button>
                 </div>
               ))
             )}
@@ -76,7 +84,12 @@ const ContestPage = () => {
                   <p>{contest.description}</p>
                   <p><strong>Start Time:</strong> {new Date(contest.start_time).toLocaleString()}</p>
                   <p><strong>End Time:</strong> {new Date(contest.end_time).toLocaleString()}</p>
-                  <button className={styles.button1}onClick={() => handleRegisterContest(contest.id)}>REGISTER</button>
+                  <button
+                    className={styles.button1}
+                    onClick={() => handleRegisterContest(contest.id)}
+                  >
+                    REGISTER
+                  </button>
                 </div>
               ))
             )}

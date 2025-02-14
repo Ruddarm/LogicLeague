@@ -7,6 +7,8 @@ import ContestPage from "./Component/Contest/contestPage.jsx";
 import CreateContest from "./Component/Contest/CreateContest.jsx";
 import ManageContest from "./Component/Contest/ManageContest.jsx";
 import RegisterContest from "./Component/Contest/RegisterContest.jsx";
+import ParticipateContest from "./Component/Contest/ParticipateContest.jsx";
+import Compete from "./Component/Contest/Compete.jsx";
 import {
   BrowserRouter as Router,
   Routes,
@@ -37,6 +39,8 @@ function App() {
               <Route path="/create-contest" element={<CreateContest />} />
               <Route path="/manage-contest" element={<ManageContest />} />
               <Route path="/register-contest/:contestId" element={<RegisterContest />} />
+              <Route path="/participate-contest/:contestId" element={<ParticipateContest />} />
+              <Route path="/compete" element={<Compete />} />
               <Route
                 path="/challenge/edit/:id"
                 element={

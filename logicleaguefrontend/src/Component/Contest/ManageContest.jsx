@@ -1,264 +1,336 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ManageContest.module.css";
 
-const ContestManagement = () => {
-  const [contests, setContests] = useState([]); // List of contests
-  const [selectedContest, setSelectedContest] = useState(null); // Currently selected contest
-  const [contestInfo, setContestInfo] = useState({
+const ManageContest = () => {
+  const [contestList, setContestList] = useState([]);
+  const [selectedContest, setSelectedContest] = useState(null);
+  const [contestDetails, setContestDetails] = useState({
     name: "",
     description: "",
     start_time: "",
     end_time: "",
     prizes: "",
-  }); // Contest details
-  const [challenges, setChallenges] = useState([]); // List of all challenges
-  const [selectedChallenges, setSelectedChallenges] = useState([]); // Challenges selected for a contest
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(""); // Error message
-  const [successMessage, setSuccessMessage] = useState(""); // Success message
+  });
+  const [challengeList, setChallengeList] = useState([]);
+  const [selectedChallenge, setSelectedChallenge] = useState("");
+  const [addedChallenges, setAddedChallenges] = useState([]); // New state to store added challenges
 
-  // Fetch all contests and challenges on component load
+  // Fetch contests and challenges on component mount
   useEffect(() => {
-    const fetchContests = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch("/contests/admin/manage/");
-        if (response.ok) {
-          const data = await response.json();
-          setContests(data || []);
-        } else {
-          setError("Failed to fetch contests.");
-        }
-      } catch (err) {
-        setError("Error fetching contests: " + err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const fetchChallenges = async () => {
-      try {
-        const response = await fetch("/challenges/challenge/");
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Challenges API Response:", data); // Log the response
-          setChallenges(data.challenges || []); // Access the challenges array from the response
-        } else {
-          setError("Failed to fetch challenges.");
-        }
-      } catch (err) {
-        setError("Error fetching challenges: " + err.message);
-      }
-    };
-
-    fetchContests();
-    fetchChallenges();
+    fetchAllContests();
+    fetchAllChallenges();
   }, []);
 
-  // Handle contest selection
-  const handleContestSelect = (e) => {
+  const fetchAllContests = () => {
+    fetch("/contests/admin/manage/")
+      .then((response) => response.json())
+      .then((data) => setContestList(data || []))
+      .catch((error) => console.error("Error fetching contests:", error));
+  };
+
+  const fetchAllChallenges = () => {
+    fetch("/challenges/challenge/")
+      .then((response) => response.json())
+      .then((data) => setChallengeList(data.challenges || []))
+      .catch((error) => console.error("Error fetching challenges:", error));
+  };
+
+  const handleSelectContest = (e) => {
     const contestId = e.target.value;
-    const selected = contests.find((contest) => contest.id === parseInt(contestId));
+    const selected = contestList.find((contest) => contest.id === parseInt(contestId));
     setSelectedContest(selected);
+
     if (selected) {
-      setContestInfo({
-        name: selected.name,
-        description: selected.description,
+      setContestDetails({
+        name: selected.name || "",
+        description: selected.description || "",
         start_time: selected.start_time ? selected.start_time.slice(0, 16) : "",
         end_time: selected.end_time ? selected.end_time.slice(0, 16) : "",
-        prizes: selected.prizes,
+        prizes: selected.prizes || "",
       });
     } else {
-      setContestInfo({
-        name: "",
-        description: "",
-        start_time: "",
-        end_time: "",
-        prizes: "",
-      });
+      resetContestDetails();
     }
   };
 
-  // Handle input changes in contest details
-  const handleInputChange = (e) => {
-    setContestInfo({
-      ...contestInfo,
-      [e.target.name]: e.target.value,
+  const resetContestDetails = () => {
+    setContestDetails({
+      name: "",
+      description: "",
+      start_time: "",
+      end_time: "",
+      prizes: "",
     });
   };
 
-  // Handle adding challenges to the selected contest
-  const handleAddChallenges = async (e) => {
+  const handleContestInputChange = (e) => {
+    const { name, value } = e.target;
+    setContestDetails({ ...contestDetails, [name]: value });
+  };
+
+  const handleUpdateContest = (e) => {
     e.preventDefault();
-    setError("");
-    setSuccessMessage("");
-  
+
     if (!selectedContest) {
-      setError("Please select a contest first.");
+      alert("Please select a contest to update.");
       return;
     }
-  
-    // Log the selected challenges to ensure we are sending the correct challenge IDs
-    const challengeIds = selectedChallenges.map((challengeId) => challengeId.toString());
-    console.log("Selected challenge IDs:", challengeIds); // Log the challenge IDs being sent
-  
-    try {
-      const response = await fetch(`/contests/admin/contests/${selectedContest.id}/add_problem/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ challenges: challengeIds }), // Send challenge IDs as strings
-      });
-  
-      if (response.ok) {
-        setSuccessMessage("Challenges added successfully!");
-        setSelectedChallenges([]); // Clear selected challenges after successful submission
-      } else {
-        const errorData = await response.json();
-        console.log("Error Response:", errorData); // Log the error response for debugging
-        setError("Error adding challenges: " + JSON.stringify(errorData));
-      }
-    } catch (err) {
-      setError("An unexpected error occurred: " + err.message);
+
+    const updatedData = {
+      ...contestDetails,
+    };
+
+    fetch(`/contests/admin/contests/${selectedContest.id}/`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedData),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        alert("Contest updated successfully!");
+        fetchAllContests();
+      })
+      .catch((error) => console.error("Error updating contest:", error));
+  };
+
+  const handleDeleteContest = () => {
+    if (!selectedContest) {
+      alert("Please select a contest to delete.");
+      return;
+    }
+
+    if (window.confirm("Are you sure you want to delete this contest?")) {
+      fetch(`/contests/admin/contests/${selectedContest.id}/delete/`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.status === 204) {
+            alert("Contest deleted successfully!");
+            fetchAllContests();
+            setSelectedContest(null);
+            resetContestDetails();
+          } else {
+            return response.text().then((text) => {
+              throw new Error(`Failed to delete contest: ${text}`);
+            });
+          }
+        })
+        .catch((error) => console.error("Error deleting contest:", error));
     }
   };
-  
 
-  // Render component
+  const handleAddChallengeToList = () => {
+    if (!selectedChallenge) {
+      alert("Please select a challenge.");
+      return;
+    }
+
+    if (addedChallenges.includes(selectedChallenge)) {
+      alert("Challenge is already added.");
+      return;
+    }
+
+    setAddedChallenges([...addedChallenges, selectedChallenge]);
+    setSelectedChallenge(""); // Clear the selection after adding
+  };
+
+  const handleAddChallengesToContest = () => {
+    if (!selectedContest) {
+        alert("Please select a contest to add challenges.");
+        return;
+    }
+
+    if (addedChallenges.length === 0) {
+        alert("Please add at least one challenge to the list.");
+        return;
+    }
+
+    // Send challenges in the correct format
+    const payload = {
+        challenges: addedChallenges, // Ensure it matches the format ["uuid"]
+    };
+
+    fetch(`/contests/admin/contests/${selectedContest.id}/addchallenge/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert("Challenges added to contest successfully!");
+                setAddedChallenges([]); // Reset addedChallenges after successful addition
+            } else {
+                return response.text().then((text) => {
+                    throw new Error(`Failed to add challenges: ${text}`);
+                });
+            }
+        })
+        .catch((error) => console.error("Error adding challenges to contest:", error));
+};
+
   return (
-    <div className={styles.contentspace}>
-      <h1>Manage Contest</h1>
-      {loading && <p>Loading contests...</p>}
-      {error && <p className={styles.error}>{error}</p>}
-      {successMessage && <p className={styles.success}>{successMessage}</p>}
+    <div className={styles.manageContainer}>
+      <h1 className={styles.manageHeader}>Manage Contests</h1>
 
-      <div className={`${styles.formdiv} ${styles.scrollable}`}>
-        <form onSubmit={handleAddChallenges}>
-          {/* Contest Selection */}
-          <div className={styles.box}>
-            <label htmlFor="contestSelect">Select Contest:</label>
+      <form onSubmit={handleUpdateContest} className={styles.manageForm}>
+        <fieldset>
+          <legend>Contest Details</legend>
+          <div className={styles.manageBox}>
+            <label htmlFor="contest-dropdown" className={styles.manageLabel}>
+              Select Contest:
+            </label>
             <select
-              id="contestSelect"
-              onChange={handleContestSelect}
-              value={selectedContest?.id || ""}
+              id="contest-dropdown"
+              onChange={handleSelectContest}
+              defaultValue=""
+              className={styles.manageSelect}
             >
-              <option value="">--Select a Contest--</option>
-              {contests.length > 0 ? (
-                contests.map((contest) => (
-                  <option key={contest.id} value={contest.id}>
-                    {contest.name} {new Date(contest.start_time) > new Date() ? "(Upcoming)" : "(Active)"}
-                  </option>
-                ))
-              ) : (
-                <option disabled>Loading contests...</option>
-              )}
+              <option value="" disabled>
+                -- Select a Contest --
+              </option>
+              {contestList.map((contest) => (
+                <option key={contest.id} value={contest.id}>
+                  {contest.name}
+                </option>
+              ))}
             </select>
           </div>
 
-          {/* Add Challenges Section */}
-          <div className={styles.box}>
-            <label htmlFor="challenges">Select Challenges:</label>
-            <select
-              id="challenges"
-              multiple
-              value={selectedChallenges}
-              onChange={(e) =>
-                setSelectedChallenges(Array.from(e.target.selectedOptions, (option) => option.value))
-              }
-            >
-              {(() => {
-                const challengeOptions = [];
-                if (Array.isArray(challenges) && challenges.length > 0) {
-                  for (let i = 0; i < challenges.length; i++) {
-                    const challenge = challenges[i];
-                    challengeOptions.push(
-                      <option key={challenge.challengeID} value={challenge.challengeID}>
-                        {challenge.challengeName}
-                      </option>
-                    );
-                  }
-                } else {
-                  challengeOptions.push(<option key="no-challenges" disabled>No challenges available</option>);
-                }
-                return challengeOptions;
-              })()}
-            </select>
-          </div>
-
-          <button type="submit" disabled={!selectedContest}>
-            Add Challenges
-          </button>
-        </form>
-
-        {/* Contest Details */}
-        <form>
-          <div className={styles.box}>
-            <label htmlFor="name">Contest Name:</label>
+          <div className={styles.manageBox}>
+            <label htmlFor="contest-name" className={styles.manageLabel}>
+              Name:
+            </label>
             <input
               type="text"
-              id="name"
+              id="contest-name"
               name="name"
-              value={contestInfo.name}
-              onChange={handleInputChange}
-              disabled={!selectedContest}
+              placeholder="Enter contest name"
+              value={contestDetails.name}
+              onChange={handleContestInputChange}
+              className={styles.manageInput}
             />
           </div>
 
-          <div className={styles.box}>
-            <label htmlFor="description">Description:</label>
+          <div className={styles.manageBox}>
+            <label htmlFor="contest-description" className={styles.manageLabel}>
+              Description:
+            </label>
             <textarea
-              id="description"
+              id="contest-description"
               name="description"
-              value={contestInfo.description}
-              onChange={handleInputChange}
-              disabled={!selectedContest}
+              placeholder="Enter contest description"
+              value={contestDetails.description}
+              onChange={handleContestInputChange}
+              className={styles.manageTextarea}
             ></textarea>
           </div>
 
-          <div className={styles.box}>
-            <label htmlFor="start_time">Start Time:</label>
+          <div className={styles.manageBox}>
+            <label htmlFor="contest-start-time" className={styles.manageLabel}>
+              Start Time:
+            </label>
             <input
               type="datetime-local"
-              id="start_time"
+              id="contest-start-time"
               name="start_time"
-              value={contestInfo.start_time}
-              onChange={handleInputChange}
-              disabled={!selectedContest}
+              value={contestDetails.start_time}
+              onChange={handleContestInputChange}
+              className={styles.manageInput}
             />
           </div>
 
-          <div className={styles.box}>
-            <label htmlFor="end_time">End Time:</label>
+          <div className={styles.manageBox}>
+            <label htmlFor="contest-end-time" className={styles.manageLabel}>
+              End Time:
+            </label>
             <input
               type="datetime-local"
-              id="end_time"
+              id="contest-end-time"
               name="end_time"
-              value={contestInfo.end_time}
-              onChange={handleInputChange}
-              disabled={!selectedContest}
+              value={contestDetails.end_time}
+              onChange={handleContestInputChange}
+              className={styles.manageInput}
             />
           </div>
 
-          <div className={styles.box}>
-            <label htmlFor="prizes">Prizes:</label>
+          <div className={styles.manageBox}>
+            <label htmlFor="contest-prizes" className={styles.manageLabel}>
+              Prizes:
+            </label>
             <input
               type="text"
-              id="prizes"
+              id="contest-prizes"
               name="prizes"
-              value={contestInfo.prizes}
-              onChange={handleInputChange}
-              disabled={!selectedContest}
+              placeholder="Enter contest prizes"
+              value={contestDetails.prizes}
+              onChange={handleContestInputChange}
+              className={styles.manageInput}
             />
           </div>
 
-          <button type="submit" disabled={!selectedContest}>
+          <div>
+            <label htmlFor="challenge-dropdown" className={styles.manageLabel}>
+              Select Challenge:
+            </label>
+          </div>
+          <div className={styles.manageChallengeBox}>
+            <select
+              id="challenge-dropdown"
+              value={selectedChallenge}
+              onChange={(e) => setSelectedChallenge(e.target.value)}
+              className={styles.manageSelect}
+            >
+              <option value="" disabled>
+                -- Select a Challenge --
+              </option>
+              {Array.isArray(challengeList) &&
+                challengeList.map((challenge) => (
+                  <option key={challenge.challengeID} value={challenge.challengeID}>
+                    {challenge.challengeName}
+                  </option>
+                ))}
+            </select>
+            <button
+              type="button"
+              onClick={handleAddChallengeToList}
+              className={styles.manageAddChallengeButton}
+            >
+              +
+            </button>
+          </div>
+
+          <div className={styles.addedChallengesBox}>
+            <label className={styles.manageLabel}>Added Challenges:</label>
+            <textarea
+              value={addedChallenges.join(", ")}
+              readOnly
+              className={styles.manageTextarea}
+            ></textarea>
+          </div>
+        </fieldset>
+
+        <div className={styles.manageButtonGroup}>
+          <button type="submit" className={styles.manageUpdateButton}>
             Update Contest
           </button>
-        </form>
-      </div>
+          <button
+            type="button"
+            onClick={handleDeleteContest}
+            className={`${styles.manageButton} ${styles.manageDeleteButton}`}
+          >
+            Delete Contest
+          </button>
+          <button
+            type="button"
+            onClick={handleAddChallengesToContest}
+            className={`${styles.manageButton} ${styles.manageAddChallengeButton}`}
+          >
+            Add Challenges to Contest
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default ContestManagement;
+export default ManageContest;

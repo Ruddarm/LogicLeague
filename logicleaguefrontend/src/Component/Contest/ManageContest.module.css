@@ -1,43 +1,53 @@
-.contentspace {
+/* Main container */
+.manageContainer {
   background: linear-gradient(45deg, rgba(45, 250, 93, 0.2), rgba(255, 255, 255, 0.3), rgba(153, 94, 247, 0.2));
-  min-height: 100vh; /* Adjusted for scrollable content */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  overflow-y: auto; /* Added for scrollability */
 }
 
-h1 {
+.manageHeader {
   color: #10b981;
   font-size: 2rem;
   margin-bottom: 20px;
-  text-align: center; /* Center the heading */
+  text-align: center;
 }
 
-.formdiv {
-  background-color: #f9f9f9; /* Slightly lighter color for better contrast */
-  width: 60%;
-  max-height: 90%; /* Added to keep it manageable within the viewport */
+/* Form container */
+.manageForm {
+  background-color: #f9f9f9;
+  width: 70%;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  margin-bottom: 20px;
-  overflow-y: auto; /* Added for scrollability */
+  animation: fadeIn 0.5s ease-in-out;
+  overflow-y: auto; /* Make the form scrollable */
+  max-height: 80vh; /* Prevent the form from exceeding the viewport height */
 }
 
-label {
-  font-family: 'Arial Narrow', Arial, sans-serif;
+.managechallengebox{
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust spacing as needed */
+  margin-bottom: 1rem;
+}
+
+/* Label */
+.manageLabel {
   font-size: 1.2rem;
   margin-bottom: 8px;
   display: inline-block;
+  color: #333;
 }
 
-input,
-textarea,
-select {
+/* Inputs, textarea, and select dropdown */
+.manageInput,
+.manageTextarea,
+.manageSelect {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -47,100 +57,105 @@ select {
   box-sizing: border-box;
 }
 
-textarea {
-  resize: vertical; /* Allow vertical resizing only */
+.manageTextarea {
+  resize: vertical;
 }
 
-button {
-  width: 100%; /* Full width for better usability */
-  padding: 12px;
-  background-color: #7e34ee;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
+.manageSelect {
+  cursor: pointer;
+}
+
+/* Button group container */
+.manageButtonGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Buttons */
+.manageUpdateButton,
+.manageDeleteButton,.manageAddChallengeButton {
+  flex: 1;
   border: none;
+  padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-button:hover {
-  background-color: rgba(162, 109, 248, 0.8); /* More visible hover effect */
+.manageAddChallengeButton{
+  font-size: larger;
+  top: -5;
 }
 
-.box {
-  margin-bottom: 20px; /* Added consistent spacing */
+.manageUpdateButton, .manageAddChallengeButton{
+  background-color: #4caf50;
+  color: white;
 }
 
-.error {
-  color: #e63946; /* Red for error messages */
-  font-size: 1rem;
-  margin-bottom: 10px;
+.manageDeleteButton {
+  background-color: #f44336;
+  color: white;
 }
 
-.success {
-  color: #10b981; /* Green for success messages */
-  font-size: 1rem;
-  margin-bottom: 10px;
+.manageUpdateButton:hover,
+.manageDeleteButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.sidebarToggle {
-  margin-top: 15px;
-  cursor: pointer;
-  color: #7e34ee;
-  font-weight: bold;
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.sidebar {
-  margin-top: 20px;
-  padding: 15px;
-  background: rgba(126, 52, 238, 0.1);
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar h2 {
-  color: #7e34ee;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.sidebar input {
-  margin-bottom: 10px;
-}
-
-.sidebar button {
-  width: 100%; /* Full width within sidebar */
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+  .manageForm {
+    width: 70%;
+  }
 }
 
 @media (max-width: 768px) {
-  .formdiv {
-    width: 90%; /* Utilize more screen width on smaller devices */
+  .manageForm {
+    width: 90%;
   }
 
-  h1 {
+  .manageHeader {
     font-size: 1.5rem;
-  }
-
-  button {
-    font-size: 0.9rem; /* Slightly smaller text for buttons */
   }
 }
 
 @media (max-width: 480px) {
-  .formdiv {
-    width: 100%; /* Maximize use of small screens */
-    padding: 15px;
-  }
-
-  h1 {
+  .manageHeader {
     font-size: 1.2rem;
   }
 
-  input,
-  textarea,
-  button {
-    font-size: 0.85rem;
+  .manageForm {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .manageLabel {
+    font-size: 1rem;
+  }
+
+  .manageInput,
+  .manageTextarea,
+  .manageSelect {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .manageUpdateButton,
+  .manageDeleteButton {
+    padding: 8px;
   }
 }

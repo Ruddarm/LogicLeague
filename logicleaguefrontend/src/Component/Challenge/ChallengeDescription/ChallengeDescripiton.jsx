@@ -22,7 +22,7 @@ function GetInput({ variable, value }) {
     <>
       <div className={Style.inputContinaer}>
         <div>
-          <b>{variable}</b>
+          {variable}
         </div>
         <div className={Style.outputContinaer}>
           <div>
@@ -80,7 +80,7 @@ function ChallengeDesc() {
         <div className={Style.content}>
           {/* challenge heading */}
           <div>
-            <h1>{challengeContext.challengeData.challengeName}</h1>
+            <h3>{challengeContext.challengeData.challengeName}</h3>
             <div>
               <div className={Style.leveldiv}>
                 {challengeContext.challengeData.challengeLevel}

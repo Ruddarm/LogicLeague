@@ -4,7 +4,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0.5rem;
+    padding: 0 0rem;
+    color: var(--lightGrey);
+    background-color:var(--themeContrast);
 }
 
 .maxiBtn{
@@ -12,16 +14,18 @@
     background-color: transparent;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     border: none;
-    color: white;
     cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'opensans', Times, serif;
     font-size: 1.2rem;
+    /* background-color: pink; */
 
 }
 
 .maxiBtn img{
     width: 24px;
+    margin-right: 2px;
     height: 24px;
+    /* background-color: yellow; */
 }

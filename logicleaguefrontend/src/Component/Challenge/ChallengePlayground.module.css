@@ -10,7 +10,7 @@
     flex: 1;
     align-content: center;
     justify-content: center;
-    padding: 0 1rem 1rem 1rem;
+    padding: 0rem 0.25rem 0.25rem 0.25rem;
     flex-wrap: nowrap;
     box-sizing: border-box;
     overflow: hidden;
@@ -75,7 +75,10 @@
   display: flex;
   flex-direction: column; /* Organizes children in a vertical stack */
   overflow-y: auto; /* Enables vertical scrolling */
-  overflow-x: hidden
+  overflow-x: hidden;
+  padding: 0.5rem;
+  /* padding: 1rem; */
+  
 
 }
 

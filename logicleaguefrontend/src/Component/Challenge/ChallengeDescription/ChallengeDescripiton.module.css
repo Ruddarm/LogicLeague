@@ -7,12 +7,13 @@
     flex-direction: column;
     border-radius: 5px;
     padding: 0 ;
-    background-color: rgb(137, 137, 137); 
-    /* background-color: rgba(0, 0, 0, 0.8);  */
-    border: 1px solid gainsboro;
+    /* background-color: rgb(137, 137, 137);  */
+    /* background-color: rgba(0, 0, 0, 0.51);  */
+    border: var(--playGroundBorder);
     overflow: hidden;
     font-family: 'Lora', Times, serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    box-shadow: var(--playGroundShadow);
     color: var(--lightGrey);
 }
 .content{

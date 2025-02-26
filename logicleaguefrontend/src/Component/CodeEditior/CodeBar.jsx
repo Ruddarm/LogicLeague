@@ -17,8 +17,8 @@ function CodeBar({ submit }) {
         <div className={Style.OptionContainer}>
           <button>
             <img src="/web-programming.png" alt="" />
-            <span style={{ marginLeft: "5px", fontFamily: "times new roman" }}>
-              <b>Code</b>
+            <span style={{ marginLeft: "5px" }}>
+              Code
             </span>
           </button>
   

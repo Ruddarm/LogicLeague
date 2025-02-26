@@ -60,6 +60,7 @@ const PlayGround = () => {
           ref={descBoxRef}
           style={{
             width: widthContext.width,
+            padding:'0.5rem',
             maxWidth: maxContext.max.desc ? "100%" : "70%",
           }}
           className={
@@ -73,6 +74,7 @@ const PlayGround = () => {
           {loadChallenge && <Loader></Loader>}
           <ChallengeDesc />
         </div>
+        {/* resizer */}
         {maxContext.codeEditior || maxContext.terminal || maxContext.desc || (
           <div
             className={Style.Resizer}

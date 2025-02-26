@@ -16,11 +16,10 @@
     display: flex;
     flex: 1;
     padding-right: 1rem;
-    padding-left: 0.5rem;
+    padding-left: 0rem;
     justify-content: center;
-    align-content: center;
-    /* background-color: orange; */
     align-items: center;
+    /* background-color: orange; */
     width: max-content;
     height: 100%;
     justify-content: flex-start;
@@ -31,19 +30,21 @@
 .CodeBarContainer button{
     background-color: transparent;
     display: flex;
-    color: white;
+    /* background-color: pink; */
+    color: var(--lightGrey);
     justify-content: center;
     align-items: center;
+    align-content: center;
     border-radius: 5px;
     border: none;
+    font-family: 'opensans', Times, serif;
+    font-size: 1.2rem;
     padding: 2px;
-    /* padding: 5px; */
     cursor: pointer;
     height: 90%;
-    /* margin-left: 5px; */
 }
 .CodeBarContainer button:hover{
-    background-color:#0f3b3b;
+    background-color:var(--themeContrast);
 }
 .CodeBarContainer button img{
     width: 24px;

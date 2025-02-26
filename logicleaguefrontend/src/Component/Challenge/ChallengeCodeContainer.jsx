@@ -35,14 +35,14 @@ function CodeConainter() {
         <></>
       ) : (
         <>
-          <div className={`${Style.CodeContainer}`}>
+          <div className={`${Style.CodeContainer}` }>
             {maxContext.max.terminal || maxContext.max.desc ? (
               <></>
             ) : (
               <>
                 <div
                   ref={codeContainerRef}
-                  style={{ height: heightContext.height }}
+                  style={{ height: heightContext.height, }}
                   className={
                     maxContext.max.codeEditior
                       ? `${Style.CodeEditor} ${Style.flexOne}`

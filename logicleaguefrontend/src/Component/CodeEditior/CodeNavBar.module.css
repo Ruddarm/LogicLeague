@@ -9,18 +9,14 @@
     justify-content: space-between;
     height: 2rem;
     border-bottom: 1px solid gray;
-    background-color: rgb(240, 240, 240);
 }
 .select{
-    /* background-color: rebeccapurple; */
     border: none;
-    background-color: rgb(240, 240, 240);
     color: gray;
 
 
 }
 .select:hover{
-    background-color: rgb(240, 240, 240);
     height: 1rem;
     cursor: pointer;
     color: black;
@@ -29,8 +25,6 @@
 .OptionContainer{
     display: flex;
     flex: 1;
-    /* background-color: orange; */
-    /* padding: 10px; */
     justify-content: flex-end;
 }
 
@@ -48,8 +42,6 @@
     border: 1px solid white;
     outline: 1px solid gainsboro;
     background-color: #0f3b3b;
-    /* background-color: black; */
-    /* border: 1px solid #0f3b3b; */
 }
 .OptionContainer button:hover{
     /* opacity: .5; */
@@ -69,8 +61,6 @@
     outline: 1px solid gainsboro;
     font-family: 'Times New Roman', Times, serif;
     background-color: green;
-    /* border-left: 1px solid white; */
     font-size: 1rem;
-    /* font-weight: bold; */
     margin-left: 1rem;
 }

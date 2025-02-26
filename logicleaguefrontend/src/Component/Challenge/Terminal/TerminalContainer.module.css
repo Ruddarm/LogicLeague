@@ -8,9 +8,10 @@
     overflow-x: hidden;
     border-radius: 5px;
     position: relative;
-    border: 1px solid gainsboro;
+    border: var(--playGroundBorder);
+    box-shadow: var(--playGroundShadow);
+
     container: size;
-    /* background-color: red; */
 }
 .Header{
 
@@ -21,12 +22,8 @@
     max-height: 2rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    outline: 1px solid #4d8a77;
     padding: 2px;
     background-color: var(--themeContrast)
-
-
-
 }
 
 .Header button{

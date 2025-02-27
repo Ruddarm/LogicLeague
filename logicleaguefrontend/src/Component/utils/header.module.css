@@ -7,8 +7,8 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 8px black;
+    border-bottom: 1px solid gainsboro;
+    /* box-shadow: 1px 1px 8px black; */
     top: 0;
     z-index: 1000; 
 }

@@ -1,7 +1,7 @@
 .bodyContainer{
     /* background-color: yellow; */
     background-color: white;
-    background:linear-gradient(to bottom, rgba(30,250, 93,0.1),rgba(255, 255, 255,1));  
+    /* background:linear-gradient(to bottom, rgba(30,250, 93,0.1),rgba(255, 255, 255,1));   */
 
     flex: 1;
     overflow-y: auto;

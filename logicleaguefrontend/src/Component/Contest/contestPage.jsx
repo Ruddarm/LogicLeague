@@ -44,7 +44,7 @@ const ContestPage = () => {
       <div className={styles.content1}>
         <div className={styles.head}>
           <h2 style={{margin:"0",color:"gainsboro"}}>Active Contests</h2>
-          <div className={styles.contestsGrid}>
+          <div className={styles.contestCardContainer}>
             {activeContests.length === 0 ? (
               <p>No active contests available.</p>
             ) : (

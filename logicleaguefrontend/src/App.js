@@ -19,6 +19,7 @@ import CreateChallengePage from "./Component/Challenge/CreateChallenge/create.js
 import ChallengeBoard from "./Component/Challenge/DisplayChallenge.jsx";
 import { ChallengeContextProvider } from "./Component/Challenge/CreateChallenge/ChallengeContext.js";
 import { CreateChallengeTabContextProvider } from "./Component/Challenge/CreateChallenge/tabContext.js";
+import ProfilePage from "./Component/Profile/ProfilePage.jsx";
 function App() {
   const gclientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   return (
@@ -28,11 +29,17 @@ function App() {
           <Header></Header>
           <Router>
             <Routes>
+              {/* login page */}
               <Route path="/login" element={<LoginFrom />} />
+              {/* home page */}
               <Route path="/home" element={<HomePage />} />
+              {/* challenge page */}
               <Route path="/Challenge" element={<ChallengeBoard />} />
+              {/* contest page */}
               <Route path="/contest" element={<ContestPage />} />
+              {/* create-contest page */}
               <Route path="/create-contest" element={<CreateContest />} />
+              {/* edit challenge  route */}
               <Route
                 path="/challenge/edit/:id"
                 element={
@@ -43,6 +50,7 @@ function App() {
                   </ChallengeContextProvider>
                 }
               />
+              {/* get challenge */}
               <Route
                 path="/challenge/:id"
                 element={
@@ -53,7 +61,7 @@ function App() {
                   </ResizeProvider>
                 }
               />
-
+              {/* get route  */}
               <Route
                 path="/challenge/create"
                 element={
@@ -64,7 +72,7 @@ function App() {
                   </ChallengeContextProvider>
                 }
               />
-
+              <Route path="/profile" element={<ProfilePage></ProfilePage>} />
               <Route path="/" element={<Navigate to="/home" />} />
             </Routes>
           </Router>

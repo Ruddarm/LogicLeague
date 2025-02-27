@@ -1,58 +1,76 @@
-
-.card{ 
-    height: 280px;
-    min-width:280px;
-    max-width: 280px;
-    padding: 0.5rem;
-    margin-top: 5px;
-    border: 2px solid white;
-    outline: 1px solid black;
+.contestcard{
+    height: 250px;
+    /* max-height: 300px; */
+    width: 300px;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column ;
+    background-color: white;
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-right: 0.5rem;
-    color: black;
-    background-color: #f0f0f0;
+overflow: hidden;
+transition: width 0.3s ease-out, height 0.3s ease-out;
+
+border-top: var(--playGroundBorder);
+box-shadow: var(--playGroundShadow);
+
     
-    /* margin: 70px; */
-    /* background-color:rgba(0, 0, 0, 0.521); */
-    /* background-color:rgba(14, 232, 112,0.8); */
-    text-align: center;      
-}
-.contestTitle{
-    /* background-color: yellow; */
-}
-.contestDate{
-    /* background-color: rebeccapurple; */
-}
-.Register{
-    /* background-color: red; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.card p{
-    font-size: 1.2rem;
-}
-.card h3 a{
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-size: 30px;
 }
 
-.Regbtn{
-        height: auto;
-        display: flex;
-        width: auto;
-        padding: 0.5rem 2rem;
-        border: 1.5px solid lightblue;
-        outline: 1px solid white;
-        border-radius: 5px;
-        box-shadow: 2px;
-        background-color:black;
-        color: white;
-        cursor: pointer;
-        font-size: 20px;
+.contestcard:hover{
+    /* cursor: pointer;
+    width: 325px;
+    
+    height: 325px; */
+    /* transform: scale(1.25); */
+    
+
 }
+.contestcardImageContainer{
+    width: 100%;
+    height: 80%;
+    background-color: blue;
+    overflow: hidden;
+    display: flex;
+    overflow: hidden;
+}
+#contestBgImg{
+    height: 100%;
+    width: 100%;
+    /* max-height: 250px; */
+}
+.contestTitleContainer{
+    font-size: 1rem;
+    display: flex;
+    flex: 1;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--lightGrey);
+    padding: 0.25rem  0.25rem;
+
+}
+#contesttitle{
+    font-size: 1.25rem;
+    color: white;
+    margin: 0;
+    text-align: left;
+    font-family: 'Playfair dc';
+    font-family: 'lora';
+}
+
+#regBtn{
+    border: 1px solid gainsboro;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: var(--lightGrey);
+    background-color: var(--themeContrast);
+    min-width: 5rem;
+    box-shadow:  1px 2px 4px black , inset 1px 2px 10px gray;
+    /* background-color: var(--themeContrast); */
+    border-radius: 5px;
+    font-family: 'lora';
+    /* box-shadow: var(--playGroundShadow); */
+    /* background:linear-gradient(to bottom, rgba(30,250, 93,0.1),rgba(255, 255, 255,1));   */
+
+}
+

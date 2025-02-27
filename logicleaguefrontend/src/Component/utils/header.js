@@ -65,7 +65,7 @@ function Header({ sticky }) {
                         </a>
                       </li>
                       <li>
-                        <a>Profile</a>
+                        <a href="/profile">Profile</a>
                       </li>
                     </>
                   ) : (

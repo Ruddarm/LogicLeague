@@ -1,20 +1,24 @@
-import Style from "./contestcard.module.css"
-function ContestCard({contest}) {
-    return (
-      <div class={Style.card}>
-        <div class={Style.contestTitle}>
-          <h3 style={{margin:0}}>
-            <a href="#">{contest.name}</a>
-          </h3>
+import Style from "./contestcard.module.css";
+function ContestCard({ contest }) {
+  return (
+    <div class={Style.contestcard}>
+      <div className={Style.contestcardImageContainer}>
+        <img
+          id={Style.contestBgImg}
+          src="/contestGreen.jpg"
+          alt="contest-background"
+        ></img>
+      </div>
+      <div className={Style.contestTitleContainer}>
+        <div>
+          <h1 id={Style.contesttitle}>Contest Name</h1>
         </div>
-        <div class={Style.contestDate}>
-          <p>Registration open {new Date().toLocaleString(contest.start)}</p>
-        </div>
-        <div class={Style.Register}>
-          <button class={Style.Regbtn}>Register</button>
+        <div>
+          <button id={Style.regBtn}>Register</button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-export default ContestCard
+export default ContestCard;

@@ -6,12 +6,16 @@
     padding: 1rem;
 }
 .profileRightContainer{
-    /* background-color: blue; */
+    background-color:white;
     width: 40%;
     height: auto;
+    border-radius: 5px;
     padding: 0.5rem;
+    flex-direction: column;
+    border: var(--playGroundBorder);
     overflow: hidden;
     display: flex;
+    /* box-shadow: var(--playGroundShadow); */
 }
 .profileLeftContainer{
     flex: 1;
@@ -27,7 +31,7 @@
     border-radius: 5px;
     height: 300px;
     border: var(--lightGrey);
-    box-shadow: 1px 2px 4px gray, 1px 2px 8px rgb(168, 167, 167);
+    box-shadow: inset 1px 2px 4px gray,  inset 1px 2px 8px rgb(168, 167, 167);
     /* box-shadow: var(--playGroundShadow); */
     background-color: var(--themeContrast);
     overflow: hidden;
@@ -98,4 +102,10 @@
     font-size: 0.8rem;
     color: var(--lightGrey);
 
+}
+
+.profileDetailsContainer{
+    width: 100%;
+    /* background-color: white; */
+    height: 200px;
 }

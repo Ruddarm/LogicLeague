@@ -32,6 +32,9 @@ function ProfilePage() {
               </p>
             </div>
           </div>
+          <div className={Style.profileDetailsContainer}>
+                
+          </div>
         </div>
         <div className={Style.profileLeftContainer}></div>
       </div>

@@ -1,0 +1,186 @@
+.ContestLandingPageContainer
+{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    width: 100%;
+    /* background-color: red; */
+
+}
+
+
+.ContestBannerContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    height: 16rem;
+    background-color: var(--lightGrey);
+
+}
+#trophyImage{
+    width: 6rem;
+    height: 6rem;
+}
+#ContestBannerText{
+    font-size:3rem;
+    color: var(--themeColor);
+    margin-top: 1rem;
+    font-family: 'playfair ds'
+}
+
+.ContestContentContainer{
+    background-color: var(--themeColor);
+    display: flex;
+    height: auto;
+    align-items: center;
+    /* background-color: blue; */
+    width: 100%;
+    padding: 0.5rem;
+    flex-direction: column;
+
+}
+.ContestInfoContainer{
+    display: flex;
+    /* background-color: green; */
+    width: 80%;
+    flex-direction: column;
+    height: 100%;
+}
+.ContestInfoCard{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    /* background-color: var(--themeContrast); */
+    padding: 0.25rem 1rem;
+    /* background-color: pink; */
+    /* border: var(--playGroundBorder); */
+    margin-bottom: 0.5rem;
+    box-shadow: var(--playGroundShadow);
+}
+#infoHeading{
+    font-size:1.5rem;
+    font-weight: bold;
+    padding: 0.25rem;
+    color: var(--lightGrey);
+    font-family: 'playfair ds'
+}
+.content{
+    background-color: var(--themeContrast);
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: justify;
+    font-family: 'lato';
+    font-size: 1rem;
+    color: var(--lightGrey);
+
+}
+.ContestChallengeBoardContainer{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    /* background-color: red; */
+}
+
+
+.ChalenegeBox{
+    /* background-color: var(--themeContrast); */
+    display: flex;
+    /* background-color: red; */
+    padding: 0.5rem 1rem;
+    height: auto;
+    flex-direction: column;
+}
+
+
+.ChallengeCard{
+    background-color: var(--themeColor);
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1.5px solid var(--themeContrast);
+    margin-bottom: 0.25rem;
+}
+.ChallengeCard:hover{
+    background-color: var(--themeContrast);
+    cursor: pointer;
+}
+.flexCenter{
+    /* background-color: pink; */
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem 0.5rem;
+}
+.flexCentercolumn{
+    /* background-color: blue; */
+    width: 100%;
+    
+}
+
+.ContestLeaderboardContainer{
+    width: 80%;
+
+}
+.LeaderboardBox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    /* background-color: var(--themeContrast); */
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--themeContrast);
+    border-radius: 5px;
+
+    /* background-color: red; */
+
+}
+
+.userCard{
+    width: 100%;
+    height: auto;
+    background-color: var(--themeColor);
+}
+.LeaderboardHead{
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.LeaderboardBox tr{
+    display: flex;
+    background-color: var(--themeColor);
+    padding: 0.5rem;
+
+    width: 100%;
+    /* background-color: green; */
+    align-items: center;
+    border-bottom: 1px solid var(--themeContrast);
+    justify-content: space-evenly;
+
+}
+.LeaderboardBox tr th,td{
+    /* width: 100%; */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+
+    /* border: 1px solid red; */
+    /* background-color: yellow; */
+}
+
+.rank
+{
+
+    max-width: 5%;
+}

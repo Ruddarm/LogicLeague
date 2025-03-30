@@ -44,6 +44,14 @@ function TimePicker({ startTime, setStartTime, generateTimeOptions }) {
   );
 }
 function ErrorMsg({ msg }) {}
+// contest input
+function ContestInput() {
+  return (
+    <>
+      <input className={Style.ContestInput}></input>
+    </>
+  );
+}
 function ContestForm() {
   //
   const generateTimeOptions = () => {
@@ -113,3 +121,5 @@ function ContestForm() {
 }
 
 export default ContestForm;
+
+export { ContestLabel,ContestInput };

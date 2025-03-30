@@ -41,8 +41,7 @@ const CreateContest = () => {
 
   return (
     <>
-
-        
+        <h1>Fuck you Man</h1>
     </>
   );
 };

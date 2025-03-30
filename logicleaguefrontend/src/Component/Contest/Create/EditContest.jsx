@@ -2,16 +2,18 @@ import React from "react";
 import Style from "./EditContest.module.css";
 import ContestForm from "./ContestForm";
 import ContestOptionTab, { OptionButton } from "./ContestOptionTab";
+import ContestChallenge from "./ContestChallenge";
 function EditContest() {
   return (
     <>
       
       <div className={Style.EditBodyContainer}>
         <div className={Style.OptionTabContaier}>
-          <ContestOptionTab></ContestOptionTab>
+          <ContestOptionTab  ></ContestOptionTab>
         </div>
         <div className={Style.EditiorFormContainer}>
-          <ContestForm></ContestForm>
+          {/* <ContestForm></ContestForm> */}
+          <ContestChallenge></ContestChallenge>
         </div>
         <div className={Style.SaveTabContainer}>
             <button id={Style.contestSaveBtn}>Save</button>

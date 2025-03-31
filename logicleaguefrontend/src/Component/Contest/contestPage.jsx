@@ -26,7 +26,7 @@ const ContestPage = () => {
   }, []); // Empty dependency array ensures this runs once on component mount
 
   const handleCreateContest = () => {
-    navigate("/create-contest"); // Navigate to Create Contest page
+    navigate("/contest/create"); // Navigate to Create Contest page
   };
 
   return (

@@ -12,10 +12,6 @@ function ContestInfoCard(title, content) {
         <span id={Style.infoHeading}>{title}</span>
         <div className={Style.content}>
           {content}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure impedit
-          distinctio perspiciatis nisi dolor ipsa rem quaerat repudiandae
-          cupiditate. Totam doloremque perspiciatis nihil fugiat, quam nulla
-          consectetur ipsum qui nisi!
         </div>
       </div>
     </>
@@ -23,7 +19,7 @@ function ContestInfoCard(title, content) {
 }
 
 // Function to create the Contest Banner
-function ContestBanner() {
+function ContestBanner(name) {
   return (
     <>
       <div className={Style.ContestBannerContainer}>
@@ -33,28 +29,29 @@ function ContestBanner() {
           alt="Contest Banner"
           className={Style.ContestBannerImage}
         />
-        <span id={Style.ContestBannerText}>Code to conquer the world</span>
+        <span id={Style.ContestBannerText}>{name}</span>
         <span></span>
       </div>
     </>
   );
 }
 // Function to create the Contest Challenge Board
-function ContestChallengeBoard() {
+function ContestChallengeBoard(challenges) {
   return (
     <>
       <div className={Style.ContestInfoCard}>
         <span id={Style.infoHeading}>Challenges</span>
         <div className={Style.ChalenegeBox}>
-          {ContestChallengeCard("Challenge 1")}
-          {ContestChallengeCard("Challenge 1")}
-        </div>
+            {
+              challenges.map((challenge,indx) => (<ContestChallengeCard title={challenge.challenge_name} id={challenge.challenge} marks = {challenge.marks} ></ContestChallengeCard>))
+            }
+          </div>
       </div>
     </>
   );
 }
 // Function to create the Contest Challenge Card
-function ContestChallengeCard(title) {
+function ContestChallengeCard({title,id,marks}) {
   return (
     <>
       <div className={Style.ChallengeCard}>
@@ -67,7 +64,7 @@ function ContestChallengeCard(title) {
               fontSize: "0.9rem",
             }}
           >
-            Max Score: <span>100</span>
+            Max Score: <span>{marks}</span>
           </div>
         </div>
         <div className={Style.flexCenter}>
@@ -78,21 +75,21 @@ function ContestChallengeCard(title) {
   );
 }
 // Function to create the Contest Landing Page
-function ContestLandingPage() {
+function ContestLanding({contest,challenges,leaders}) {
   return (
     <>
       <div className={Style.ContestLandingPageContainer}>
         <div>
-          {ContestBanner()}
+          {ContestBanner(contest.name)}
           <div className={Style.ContestContentContainer}>
             <div className={Style.ContestInfoContainer}>
-              {ContestInfoCard("About Contest", "")}
-              {ContestInfoCard("Rules", "")}
-              {ContestInfoCard("Prizes", "")}
-              {ContestInfoCard("Scoring", "")}
+              {ContestInfoCard("About Contest", contest.description)}
+              {ContestInfoCard("Rules",contest.rules)}
+              {ContestInfoCard("Prizes",contest.prizes)}
+              {ContestInfoCard("Scoring", contest.scoring)}
             </div>
             <div className={Style.ContestChallengeBoardContainer}>
-              {ContestChallengeBoard()}
+              {ContestChallengeBoard(challenges)}
             </div>
             <div className={Style.ContestLeaderboardContainer}>
               <ContestLeaderboard />
@@ -139,4 +136,4 @@ function userCard(rank, name, score) {
   );
 }
 
-export default ContestLandingPage;
+export default ContestLanding;

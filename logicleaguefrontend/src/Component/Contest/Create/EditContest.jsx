@@ -3,7 +3,9 @@ import Style from "./EditContest.module.css";
 import ContestForm from "./ContestForm";
 import ContestOptionTab, { OptionButton } from "./ContestOptionTab";
 import ContestChallenge from "./ContestChallenge";
-function EditContest() {
+import { useParams } from "react-router-dom";
+function EditContest({contest,tab,challenges}) {
+
   return (
     <>
       
@@ -12,8 +14,8 @@ function EditContest() {
           <ContestOptionTab  ></ContestOptionTab>
         </div>
         <div className={Style.EditiorFormContainer}>
-          {/* <ContestForm></ContestForm> */}
-          <ContestChallenge></ContestChallenge>
+          <ContestForm contest={contest} ></ContestForm>
+          {/* <ContestChallenge></ContestChallenge> */}
         </div>
         <div className={Style.SaveTabContainer}>
             <button id={Style.contestSaveBtn}>Save</button>

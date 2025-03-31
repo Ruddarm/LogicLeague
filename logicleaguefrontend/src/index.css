@@ -20,3 +20,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.flex{
+  display: flex;
+}
+.flexColumn{
+  flex-direction: column;
+}
+.flexend{
+  justify-content: flex-end;
+}
+
+.bgRed{
+  /* background-color: red; */
+}
+
+.pdTopBottom{
+  padding: 1rem 0;
+}
+
+.sucessBtn{
+  width: 6rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: var(--themeColor);
+  background-color: green;
+  cursor: pointer;
+}

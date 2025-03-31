@@ -1,0 +1,20 @@
+.container{
+    width: 100%;
+    background-color: var(--themeColor);
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    box-shadow: 1px 2px 8px var(--themeContrast);
+}
+.innerContainer{
+    width: 400px;
+    border: 2px solid var(--themeContrast);
+    background-color: var(--themeColor);
+    display: flex;
+    padding: 2rem;
+    border-radius: 5px;
+    height: 200px;
+    flex-direction: column;
+}

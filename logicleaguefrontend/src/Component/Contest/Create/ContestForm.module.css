@@ -33,7 +33,7 @@
     color: var(--lightGrey);
 }
 .InputContainer{
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;

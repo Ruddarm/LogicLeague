@@ -15,5 +15,9 @@ async function fetchContestChallenges(id) {
 
 }
 
+async function  updateContestById(contestId,contest) {
+    console.log('uudid' , contestId)
+    return  await axiosInstance.put(`/contests/edit/${contestId}/`, contest);
 
-export  {fetchContestByID,fetchContestChallenges}
+}
+export  {fetchContestByID,fetchContestChallenges,updateContestById}

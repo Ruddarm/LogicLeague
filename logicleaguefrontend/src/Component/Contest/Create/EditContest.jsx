@@ -4,21 +4,22 @@ import ContestForm from "./ContestForm";
 import ContestOptionTab, { OptionButton } from "./ContestOptionTab";
 import ContestChallenge from "./ContestChallenge";
 import { useParams } from "react-router-dom";
-function EditContest({contest,tab,challenges}) {
-
+import { useContestEdit } from "../Hooks/ContestLandingHooks";
+function EditContest() {
+  const { loading , handelUpdate } = useContestEdit();
   return (
     <>
-      
       <div className={Style.EditBodyContainer}>
         <div className={Style.OptionTabContaier}>
-          <ContestOptionTab  ></ContestOptionTab>
+          <ContestOptionTab></ContestOptionTab>
         </div>
         <div className={Style.EditiorFormContainer}>
-          <ContestForm contest={contest} ></ContestForm>
+          {loading ? "land le le bc" : <ContestForm></ContestForm>}
+          {/* <ContestForm  ></ContestForm> */}
           {/* <ContestChallenge></ContestChallenge> */}
         </div>
         <div className={Style.SaveTabContainer}>
-            <button id={Style.contestSaveBtn}>Save</button>
+          <button onClick={handelUpdate} id={Style.contestSaveBtn}>Save</button>
         </div>
       </div>
     </>

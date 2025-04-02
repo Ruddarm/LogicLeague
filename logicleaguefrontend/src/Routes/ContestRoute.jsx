@@ -6,6 +6,7 @@ import EditContest from "../Component/Contest/Create/EditContest.jsx";
 import CreateContestPage from "../Component/Contest/pages/CreateContestPage.jsx";
 import ContestLandingPage from "../Component/Contest/pages/ContestLandingPage.jsx";
 import ContestEditPage from "../Component/Contest/pages/ContestEditPage.jsx";
+import { ContestEditProvider } from "../Component/Contest/Hooks/ContestLandingHooks.jsx";
 
 function ContestRoute() {
   return (
@@ -16,8 +17,16 @@ function ContestRoute() {
           path="/create"
           element={<CreateContestPage></CreateContestPage>}
         ></Route>
-        <Route path="/edit/:id" element={<ContestEditPage></ContestEditPage>}></Route>
-        <Route path="/view/:id" element={<ContestLandingPage></ContestLandingPage>} />
+        <Route
+          path="/edit/:id"
+          element={
+              <ContestEditPage></ContestEditPage>
+          }
+        ></Route>
+        <Route
+          path="/view/:id"
+          element={<ContestLandingPage></ContestLandingPage>}
+        />
       </Routes>
     </>
   );

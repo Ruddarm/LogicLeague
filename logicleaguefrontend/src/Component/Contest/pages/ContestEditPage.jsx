@@ -1,13 +1,21 @@
 import EditContest from "../Create/EditContest";
 import { useParams } from "react-router-dom";
-import { useEditContest } from "../Hooks/ContestLandingHooks";
+import {
+  ContestEditProvider,
+  useContestEdit,
+} from "../Hooks/ContestLandingHooks";
 
 function ContestEditPage() {
-  const data = useParams();
-  const { contest } = useEditContest(data.id);
-  
+  const urlData = useParams();
+  console.log(urlData)
   return (
-    <>{contest ? <EditContest contest={contest}></EditContest> : "w8 kr bkl"}</>
+    <>
+      {
+        <ContestEditProvider contestId={urlData.id}>
+          <EditContest></EditContest>
+        </ContestEditProvider>
+      }
+    </>
   );
 }
 

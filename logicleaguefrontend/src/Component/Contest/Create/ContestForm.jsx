@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Style from "./ContestForm.module.css";
 import ContestDateTimePicker from "./DateTime";
 import TextEditior from "../../Challenge/CreateChallenge/TextEditor";
+import { useEffect } from "react";
+import { useContestEdit } from "../Hooks/ContestLandingHooks";
 
 function ContestLabel({ title }) {
   return <label className={Style.ContestLabel}>{title}</label>;
 }
-function DatePicker({ value }) {
+function DatePicker({ onchange,value }) {
   const today = new Date().toISOString().split("T")[0];
   return (
     <>
@@ -15,10 +17,7 @@ function DatePicker({ value }) {
         className={Style.ContestInput}
         value={value}
         onChange={(e) => {
-          // setStartDate(e.target.value);
-          // if (new Date(e.target.value) > new Date(endDate)) {
-          //   setEndDate(e.target.value); // Auto adjust end date if invalid
-          // }
+            onchange(e.target.value);
         }}
         min={today} // Prevent past dates
       />
@@ -26,14 +25,15 @@ function DatePicker({ value }) {
   );
 }
 
-function TimePicker({ value, setValue, generateTimeOptions }) {
-  console.log('vali s' ,value)
+function TimePicker({ value, setTime,  generateTimeOptions, name }) {
+  // confirm()
   return (
     <>
       <select
         className={Style.ContestInput}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        name={name}
+        onChange={(e) => setTime(e.target.value)}
       >
         {generateTimeOptions().map((time) => (
           <option key={time} value={time}>
@@ -53,12 +53,30 @@ function ContestInput({ placeholder }) {
     </>
   );
 }
-function ContestForm({ contest }) {
-  console.log(contest.start_time);
+function ContestForm() {
+  const { contest, handleContestChange  } = useContestEdit();
+  console.log(contest);
   const startDateTime = new Date(contest.start_time);
-  const startDate = startDateTime.toISOString().split("T")[0]; // "2024-04-01"
-  const startTime = startDateTime.toISOString().split("T")[1].split("Z")[0];
-  //
+  const endDateTime = new Date(contest.end_time);
+  const [startDate, setStartDate] = useState(
+    startDateTime.toISOString().split("T")[0]
+  ); // "2024-04-01"
+  const [startTime, setStartTime] = useState(
+    startDateTime.toISOString().split("T")[1].split("Z")[0].substring(0, 5)
+  );
+  const [endDate, setEndDate] = useState(
+    endDateTime.toISOString().split("T")[0]
+  );
+  const [endTime, setEndTime] = useState(
+    endDateTime.toISOString().split("T")[1].split("Z")[0].substring(0, 5)
+  );
+  useEffect(() => {
+    handleContestChange("start_time", `${startDate}T${startTime}:00Z`);
+  }, [startDate, startTime]);
+  useEffect(() => {
+    handleContestChange("end_time", `${startDate}T${startTime}:00Z`);
+  }, [endDate, endTime]);
+
   const generateTimeOptions = () => {
     let times = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -66,7 +84,7 @@ function ContestForm({ contest }) {
         let time = `${hour.toString().padStart(2, "0")}:${min
           .toString()
           .padStart(2, "0")}`;
-        times.push(time+':00');
+        times.push(time);
       }
     }
     return times;
@@ -77,17 +95,26 @@ function ContestForm({ contest }) {
         <div className={Style.ContainerInner}>
           <div className={Style.InputContainer}>
             <ContestLabel title={"Contest Name"}></ContestLabel>
-            <input value={contest.name} className={Style.ContestInput}></input>
+            <input
+              name="name"
+              onChange={(e) => {
+                handleContestChange(e.target.name, e.target.value);
+              }}
+              value={contest.name}
+              className={Style.ContestInput}
+            ></input>
           </div>
           <div className={Style.DateTimeInputContainer}>
             <div className={Style.InputContainer2}>
               <ContestLabel title={"Start Date"}></ContestLabel>
-              <DatePicker  value={startDate} ></DatePicker>
+              <DatePicker onchange={setStartDate}  value={startDate}></DatePicker>
             </div>
             <div className={Style.InputContainer2}>
               <ContestLabel title={"Start Time"}></ContestLabel>
               <TimePicker
                 value={startTime}
+                setTime={setStartTime}
+                name={"startTime"}
                 generateTimeOptions={generateTimeOptions}
               ></TimePicker>
             </div>
@@ -95,30 +122,55 @@ function ContestForm({ contest }) {
           <div className={Style.DateTimeInputContainer}>
             <div className={Style.InputContainer2}>
               <ContestLabel title={"End Date"}></ContestLabel>
-              <DatePicker></DatePicker>
+              <DatePicker onchange={setEndDate} value={endDate}></DatePicker>
             </div>
             <div className={Style.InputContainer2}>
               <ContestLabel title={"End Time"}></ContestLabel>
               <TimePicker
+                name={"end_time"}
+                setTime={setEndTime}
+                value={endTime}
                 generateTimeOptions={generateTimeOptions}
               ></TimePicker>
             </div>
           </div>
           <div className={Style.InputContainer}>
             <ContestLabel title={"About Contest"}></ContestLabel>
-            <textarea className={Style.ContestInput}></textarea>
+            <textarea
+              name="description"
+              onChange={(e) => {
+                handleContestChange(e.target.name, e.target.value);
+              }}
+              value={contest.description}
+              className={Style.ContestInput}
+            ></textarea>
           </div>
           <div className={Style.InputContainer}>
             <ContestLabel title={"Rules"}></ContestLabel>
-            <TextEditior></TextEditior>
+            <TextEditior
+              setData={(data) => {
+                handleContestChange("rules", data);
+              }}
+              prevData={""}
+            ></TextEditior>
           </div>
           <div className={Style.InputContainer}>
             <ContestLabel title={"Prizes"}></ContestLabel>
-            <TextEditior></TextEditior>
+            <TextEditior
+              setData={(data) => {
+                handleContestChange("prizes", data);
+              }}
+              prevData={""}
+            ></TextEditior>
           </div>
           <div className={Style.InputContainer}>
             <ContestLabel title={"Scoring"}></ContestLabel>
-            <TextEditior></TextEditior>
+            <TextEditior
+              setData={(data) => {
+                handleContestChange("scoring", data);
+              }}
+              prevData=""
+            ></TextEditior>
           </div>
         </div>
       </div>

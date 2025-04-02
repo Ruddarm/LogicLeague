@@ -75,6 +75,7 @@ function TextEditior({ setData, prevData = "" }) {
 
           const parsedData = JSON.parse(prevData); // Par
           // se prevData if it's a string
+          console.log("parsed data is ",parsedData)
           quillInstanceRef.current.setContents(parsedData);
         } catch (e) {
           console.error("Error parsing prevData:", e);

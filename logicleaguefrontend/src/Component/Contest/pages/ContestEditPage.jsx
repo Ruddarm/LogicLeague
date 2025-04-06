@@ -7,7 +7,6 @@ import {
 
 function ContestEditPage() {
   const urlData = useParams();
-  console.log(urlData)
   return (
     <>
       {

@@ -70,6 +70,15 @@
   /* background-color: blue; */
   /* border: 1px solid red; */
 }
+.contestCardContainer{
+  /* background-color: yellow; */
+  overflow-x: auto;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  overflow-x: auto;
+}
 
 
 .contestCardContainer {

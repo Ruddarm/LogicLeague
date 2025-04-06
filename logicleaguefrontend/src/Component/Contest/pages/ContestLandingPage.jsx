@@ -1,18 +1,30 @@
 import { useParams } from "react-router-dom";
 import ContestLanding from "../ContestLanding";
 import ContestPage from "../contestPage";
-import {useContestLanding} from "../Hooks/ContestLandingHooks";
+import { useContestLanding } from "../Hooks/ContestLandingHooks";
 
 function ContestLandingPage() {
   const { id } = useParams("id");
-  const { contest ,challenges } = useContestLanding(id);
-  console.log(challenges);
+  const {
+    contest,
+    loading,
+    challenges,
+    isRegistered,
+    regUser,
+    unregUser,
+  } = useContestLanding(id);
   return (
     <>
-      {contest ? (
-        <ContestLanding challenges={challenges} contest={contest} ></ContestLanding>
+      {loading ? (
+        <h1>Ruk ja bsdk</h1>
       ) : (
-        "wait mc"
+        <ContestLanding
+          challenges={challenges}
+          contest={contest}
+          isRegistered={isRegistered}
+          regUser={regUser}
+          unregUser={unregUser}
+        ></ContestLanding>
       )}
     </>
   );

@@ -6,7 +6,7 @@ import ContestChallenge from "./ContestChallenge";
 import { useParams } from "react-router-dom";
 import { useContestEdit } from "../Hooks/ContestLandingHooks";
 function EditContest() {
-  const { loading , handelUpdate } = useContestEdit();
+  const { loading, handelUpdate, optionTab } = useContestEdit();
   return (
     <>
       <div className={Style.EditBodyContainer}>
@@ -14,12 +14,31 @@ function EditContest() {
           <ContestOptionTab></ContestOptionTab>
         </div>
         <div className={Style.EditiorFormContainer}>
-          {loading ? "land le le bc" : <ContestForm></ContestForm>}
+          {optionTab.basic ? (
+            loading ? (
+              "land le lo bc"
+            ) : (
+              <ContestForm></ContestForm>
+            )
+          ) : (
+            <></>
+          )}
+          {optionTab.challengeTab ? (
+            loading ? (
+              "loading bsdk"
+            ) : (
+              <ContestChallenge></ContestChallenge>
+            )
+          ) : (
+            <></>
+          )}
           {/* <ContestForm  ></ContestForm> */}
           {/* <ContestChallenge></ContestChallenge> */}
         </div>
         <div className={Style.SaveTabContainer}>
-          <button onClick={handelUpdate} id={Style.contestSaveBtn}>Save</button>
+          <button onClick={handelUpdate} id={Style.contestSaveBtn}>
+            Save
+          </button>
         </div>
       </div>
     </>

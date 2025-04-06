@@ -1,7 +1,7 @@
 import Style from "./contestcard.module.css";
-function ContestCard({ contest }) {
+function ContestCard({ contest, onClick }) {
   return (
-    <div class={Style.contestcard}>
+    <div className={Style.contestcard}>
       <div className={Style.contestcardImageContainer}>
         <img
           id={Style.contestBgImg}
@@ -11,10 +11,17 @@ function ContestCard({ contest }) {
       </div>
       <div className={Style.contestTitleContainer}>
         <div>
-          <h1 id={Style.contesttitle}>Contest Name</h1>
+          <h1 id={Style.contesttitle}>{contest.name}</h1>
         </div>
         <div>
-          <button id={Style.regBtn}>Register</button>
+          <button
+            onClick={() => {
+              onClick(contest.id);
+            }}
+            id={Style.regBtn}
+          >
+            Register
+          </button>
         </div>
       </div>
     </div>

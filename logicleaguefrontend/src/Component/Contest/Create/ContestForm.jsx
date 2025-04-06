@@ -8,7 +8,7 @@ import { useContestEdit } from "../Hooks/ContestLandingHooks";
 function ContestLabel({ title }) {
   return <label className={Style.ContestLabel}>{title}</label>;
 }
-function DatePicker({ onchange,value }) {
+function DatePicker({ onchange, value }) {
   const today = new Date().toISOString().split("T")[0];
   return (
     <>
@@ -17,7 +17,7 @@ function DatePicker({ onchange,value }) {
         className={Style.ContestInput}
         value={value}
         onChange={(e) => {
-            onchange(e.target.value);
+          onchange(e.target.value);
         }}
         min={today} // Prevent past dates
       />
@@ -25,7 +25,7 @@ function DatePicker({ onchange,value }) {
   );
 }
 
-function TimePicker({ value, setTime,  generateTimeOptions, name }) {
+function TimePicker({ value, setTime, generateTimeOptions, name }) {
   // confirm()
   return (
     <>
@@ -46,18 +46,23 @@ function TimePicker({ value, setTime,  generateTimeOptions, name }) {
 }
 function ErrorMsg({ msg }) {}
 // contest input
-function ContestInput({ placeholder }) {
+function ContestInput({ name, placeholder, value, changeHandeler }) {
   return (
     <>
-      <input placeholder={placeholder} className={Style.ContestInput}></input>
+      <input
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={changeHandeler}
+        className={Style.ContestInput}
+      ></input>
     </>
   );
 }
 function ContestForm() {
-  const { contest, handleContestChange  } = useContestEdit();
-  console.log(contest);
-  const startDateTime = new Date(contest.start_time);
-  const endDateTime = new Date(contest.end_time);
+  const { contest, handleContestChange } = useContestEdit();
+  const startDateTime = convertUTCtoIST(new Date(contest.start_time));
+  const endDateTime = convertUTCtoIST(new Date(contest.end_time));
   const [startDate, setStartDate] = useState(
     startDateTime.toISOString().split("T")[0]
   ); // "2024-04-01"
@@ -70,11 +75,32 @@ function ContestForm() {
   const [endTime, setEndTime] = useState(
     endDateTime.toISOString().split("T")[1].split("Z")[0].substring(0, 5)
   );
+  function convertISTtoUTC(dateStr, timeStr) {
+    const [year, month, day] = dateStr.split("-");
+    const [hour, minute] = timeStr.split(":");
+
+    // Create Date object in IST manually (no timezone offset issues)
+    const istDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
+
+    // Now subtract 5.5 hours to get UTC
+    const utcDate = new Date(istDate.getTime() - 5.5 * 60 * 60 * 1000);
+    return utcDate.toISOString();
+  }
+  // const convertISTtoUTC = (dateStr, timeStr) => {
+  function convertUTCtoIST(utcString) {
+    const date = new Date(utcString);
+    date.setMinutes(date.getMinutes() + 330); // +5.5 hours
+    return date;
+  }
+
   useEffect(() => {
-    handleContestChange("start_time", `${startDate}T${startTime}:00Z`);
+    const utcStart = convertISTtoUTC(startDate, startTime);
+    handleContestChange("start_time", utcStart);
   }, [startDate, startTime]);
+
   useEffect(() => {
-    handleContestChange("end_time", `${startDate}T${startTime}:00Z`);
+    const utcEnd = convertISTtoUTC(endDate, endTime);
+    handleContestChange("end_time", utcEnd);
   }, [endDate, endTime]);
 
   const generateTimeOptions = () => {
@@ -89,6 +115,7 @@ function ContestForm() {
     }
     return times;
   };
+  console.log(contest);
   return (
     <>
       <div className={Style.Container}>
@@ -100,14 +127,17 @@ function ContestForm() {
               onChange={(e) => {
                 handleContestChange(e.target.name, e.target.value);
               }}
-              value={contest.name}
+              value={contest?.name}
               className={Style.ContestInput}
             ></input>
           </div>
           <div className={Style.DateTimeInputContainer}>
             <div className={Style.InputContainer2}>
               <ContestLabel title={"Start Date"}></ContestLabel>
-              <DatePicker onchange={setStartDate}  value={startDate}></DatePicker>
+              <DatePicker
+                onchange={setStartDate}
+                value={startDate}
+              ></DatePicker>
             </div>
             <div className={Style.InputContainer2}>
               <ContestLabel title={"Start Time"}></ContestLabel>
@@ -151,7 +181,7 @@ function ContestForm() {
               setData={(data) => {
                 handleContestChange("rules", data);
               }}
-              prevData={""}
+              prevData={contest.rules}
             ></TextEditior>
           </div>
           <div className={Style.InputContainer}>
@@ -160,7 +190,7 @@ function ContestForm() {
               setData={(data) => {
                 handleContestChange("prizes", data);
               }}
-              prevData={""}
+              prevData={contest.prizes}
             ></TextEditior>
           </div>
           <div className={Style.InputContainer}>
@@ -169,7 +199,7 @@ function ContestForm() {
               setData={(data) => {
                 handleContestChange("scoring", data);
               }}
-              prevData=""
+              prevData={contest.scoring}
             ></TextEditior>
           </div>
         </div>

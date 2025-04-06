@@ -84,7 +84,7 @@
     /* background-color: red; */
     padding: 0.25rem;
 }
-.profileTitleContainer h2,p{
+.profileTitleContainerPara{
     margin: 0;
     font-family: 'lora';
     color: var(--lightGrey);

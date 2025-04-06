@@ -158,7 +158,7 @@ function ChallengeDesc() {
 }
 
 export default ChallengeDesc;
-
+export {getHtmlformat}
 // dangerouslySetInnerHTML={{
 //   __html: getHtmlformat(challenge.challengeDesc),
 // }}

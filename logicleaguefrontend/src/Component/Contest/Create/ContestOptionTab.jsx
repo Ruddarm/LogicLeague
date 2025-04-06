@@ -1,10 +1,12 @@
 import React from "react";
 
 import Style from "./ContestOptionTab.module.css";
-function OptionButton({ Cta, isActive }) {
+import { useContestEdit } from "../Hooks/ContestLandingHooks";
+function OptionButton({ Cta, isActive, handelFunction ,name}) {
   return (
     <>
       <button
+        onClick={(e) => handelFunction(name, e.target.value)}
         className={`${Style.ContestButton} ${
           isActive ? Style.ContestButtonActive : ""
         }`}
@@ -15,13 +17,15 @@ function OptionButton({ Cta, isActive }) {
   );
 }
 function ContestOptionTab() {
+  const { handelOption } = useContestEdit();
+  // console.log(setOptionTab)
   return (
     <>
       <div className={Style.ContestOptionTabBody}>
-        <OptionButton isActive={true} Cta={"Basic Details"}></OptionButton>
-        <OptionButton Cta={"Challenges"}></OptionButton>
-        <OptionButton Cta={"Registartion"}></OptionButton>
-        <OptionButton Cta={"Settings"}></OptionButton>
+        <OptionButton isActive={true} Cta={"Basic Details"} name={'basic'} handelFunction={handelOption}></OptionButton>
+        <OptionButton Cta={"Challenges"} name={'challengeTab'} handelFunction={handelOption}></OptionButton>
+        <OptionButton Cta={"Registartion"} handelFunction={handelOption}></OptionButton>
+        <OptionButton Cta={"Settings"} handelFunction={handelOption}></OptionButton>
       </div>
     </>
   );
@@ -29,4 +33,4 @@ function ContestOptionTab() {
 
 export default ContestOptionTab;
 
-export {OptionButton}
+export { OptionButton };
